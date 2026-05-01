@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Arena | Trust Who Countdown</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="mode-holding countdown-screen">
+    <main class="holding-screen">
+      <section class="stage">
+        <div class="liha-frame liha-frame-dark">
+          <div class="liha-panel liha-panel-blue countdown-panel with-scroll-indicator">
+            <div class="countdown-corner-shape" aria-hidden="true"></div>
+            <div class="countdown-bottom-shape" aria-hidden="true"></div>
+            <div class="countdown-content">
+              <h1 id="countdown-title">Timer</h1>
+              <div class="countdown-timer" id="countdown-timer">15:00</div>
+              <p class="countdown-results-heading">Results</p>
+              <div id="countdown-board" class="countdown-results-wrap"></div>
+              <div id="countdown-transition-loader" class="countdown-transition-loader hidden">
+                <p class="countdown-transition-label">Preparing points results...</p>
+                <div class="countdown-transition-track">
+                  <span id="countdown-transition-fill" class="countdown-transition-fill"></span>
+                </div>
+              </div>
+            </div>
+            <p class="countdown-copy hidden" id="countdown-copy">Waiting for the latest Trust Who run to start.</p>
+            <div class="hidden" aria-hidden="true">
+              <span id="countdown-group">-</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="display-fullscreen.js"></script>
+    <script src="viewport-guard.js"></script>
+    <script src="scroll-indicators.js"></script>
+    <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+    <script src="lottie-overlays.js"></script>
+    <script src="countdown.js"></script>
+  </body>
+</html>

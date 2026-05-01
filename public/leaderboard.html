@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Arena | Leaderboard Display</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="mode-holding leaderboard-screen">
+    <main class="holding-screen">
+      <section class="stage">
+        <div class="liha-frame liha-frame-dark">
+          <div class="liha-panel liha-panel-blue leaderboard-panel with-scroll-indicator">
+            <div class="lb-left-visual-fixed" aria-hidden="true">
+              <video class="lb-left-visual-video-fixed" autoplay muted loop playsinline preload="auto">
+                <source src="/assets/images/leaderboard.webm" type="video/webm" />
+              </video>
+            </div>
+            <h1 id="board-title" class="sr-only">Leaderboard</h1>
+            <p class="subcopy sr-only" id="board-copy">Live standings (team score points).</p>
+            <div id="board-table-wrap" class="leaderboard-layout-wrap"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="display-fullscreen.js"></script>
+    <script src="viewport-guard.js"></script>
+    <script src="scroll-indicators.js"></script>
+    <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+    <script src="lottie-overlays.js"></script>
+    <script src="leaderboard.js"></script>
+  </body>
+</html>

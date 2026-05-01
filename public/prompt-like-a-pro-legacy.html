@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Arena | Player</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="ua-flags.js"></script>
+</head>
+
+<body class="mode-player">
+  <main class="game-shell">
+    <section class="stage hidden" id="stage-passcode-entry">
+      <div class="liha-frame liha-frame-dark liha-frame-single passcode-launch-frame">
+        <div class="liha-panel liha-panel-blue passcode-launch-panel">
+          <header class="passcode-launch-header">
+            <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+          </header>
+
+          <div class="passcode-launch-main">
+            <img src="/assets/images/appIcon.svg" alt="" aria-hidden="true" class="passcode-app-icon" />
+            <h1>Prompt Like a Pro</h1>
+          </div>
+
+          <div class="passcode-launch-form">
+            <div class="passcode-launch-input-wrap">
+              <input id="passcode" type="text" placeholder="Enter passcode" maxlength="10" autocomplete="off"
+                spellcheck="false" />
+              <p id="passcode-error" class="passcode-launch-error"></p>
+            </div>
+            <button id="check-passcode-btn" class="passcode-launch-btn footer-btn-arrow">
+              <span>Enter</span>
+              <span class="footer-btn-arrow-bubble">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </button>
+          </div>
+
+          <label class="passcode-fullscreen-toggle" for="launch-fullscreen-toggle">
+            <input id="launch-fullscreen-toggle" type="checkbox" checked />
+            <span>Launch in full screen</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-team">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="liha-frame">
+        <header class="liha-topbar">
+          <div class="team-mini-board" id="team-mini-board">
+            <div class="team-mini-item"><img class="team-mini-dot team-mini-red" data-mini-icon="red"
+                alt="Red team" /><strong data-mini-score="red">230pt</strong></div>
+            <div class="team-mini-item"><img class="team-mini-dot team-mini-green" data-mini-icon="green"
+                alt="Green team" /><strong data-mini-score="green">230pt</strong></div>
+            <div class="team-mini-item"><img class="team-mini-dot team-mini-blue" data-mini-icon="blue"
+                alt="Blue team" /><strong data-mini-score="blue">230pt</strong></div>
+            <div class="team-mini-item"><img class="team-mini-dot team-mini-yellow" data-mini-icon="yellow"
+                alt="Yellow team" /><strong data-mini-score="yellow">230pt</strong></div>
+          </div>
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-blue liha-panel-hero with-scroll-indicator">
+          <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="/assets/images/sideShapes.webm" type="video/webm" />
+          </video>
+          <img class="side-shapes-fallback" src="/assets/images/sideShapes.svg" alt="" aria-hidden="true" />
+
+          <div class="stage-content team-stage-content">
+            <h1>Prompt Like a Pro</h1>
+            <p class="ui-field-label">Select your team</p>
+            <div class="join-card team-card">
+              <div class="team-choice-grid" id="team-choice-grid">
+                <button type="button" class="team-choice team-red" data-team-choice="red" aria-label="Red team">
+                  <img class="team-choice-icon" data-team-icon="red" alt="Red team" />
+                </button>
+                <button type="button" class="team-choice team-green" data-team-choice="green" aria-label="Green team">
+                  <img class="team-choice-icon" data-team-icon="green" alt="Green team" />
+                </button>
+                <button type="button" class="team-choice team-yellow" data-team-choice="yellow"
+                  aria-label="Yellow team">
+                  <img class="team-choice-icon" data-team-icon="yellow" alt="Yellow team" />
+                </button>
+                <button type="button" class="team-choice team-blue" data-team-choice="blue" aria-label="Blue team">
+                  <img class="team-choice-icon" data-team-icon="blue" alt="Blue team" />
+                </button>
+              </div>
+            </div>
+            <p id="welcome-meta" class="tiny-note"></p>
+          </div>
+        </div>
+        <footer class="liha-footer">
+          <strong>Prompt Like a Pro</strong>
+          <div class="actions-row">
+            <button id="change-passcode-btn" class="ghost hidden">Change passcode</button>
+            <button id="join-session-btn" class="footer-btn footer-btn-arrow">
+              <span>Join Game</span>
+              <span class="footer-btn-arrow-bubble">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </button>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-lobby">
+      <div class="liha-frame liha-frame-dark">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-blue liha-panel-lobby with-scroll-indicator">
+          <button id="lobby-change-team-btn" class="lobby-change-team-btn" type="button">Exit</button>
+          <h1 id="lobby-title">Waiting for other teams...</h1>
+          <div id="team-orbits" class="team-orbits"></div>
+          <p class="subcopy centered" id="lobby-subcopy">All players have the same timer once the round begins.</p>
+        </div>
+        <div class="eyebrow hidden">Lobby</div>
+        <div class="status-row lobby-status">
+          <div class="status-chip">
+            <span>Timer</span>
+            <strong id="timer" data-round-timer>15:00</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-round-welcome">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="liha-frame">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-blue liha-panel-hero with-scroll-indicator">
+          <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="/assets/images/sideShapes.webm" type="video/webm" />
+          </video>
+          <img class="side-shapes-fallback" src="/assets/images/sideShapes.svg" alt="" aria-hidden="true" />
+
+          <div class="stage-content round-welcome-content">
+            <h1>Welcome to<br />Prompt Like a Pro</h1>
+            <p class="round-welcome-lead">Master the art of prompting.<br>Better inputs drive better outputs.</p>
+            <p class="round-welcome-detail">
+              Select a role you&rsquo;re hiring for and learn what makes a strong sourcing prompt.<br>
+              We&rsquo;ll put your skills to the test and help you craft stronger prompts that get better results.
+            </p>
+          </div>
+        </div>
+        <footer class="liha-footer">
+          <strong>Prompt Like a Pro</strong>
+          <button id="continue-to-brief-pick" class="footer-btn round-welcome-cta">
+            <span>Game starting in</span>
+            <span id="welcome-countdown" class="round-welcome-count">5</span>
+            <span id="welcome-timer" data-round-timer class="hidden">15:00</span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-brief-pick">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="liha-frame">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-blue brief-pick-panel with-scroll-indicator">
+          <div class="brief-choice-grid" id="brief-choice-grid">
+            <button type="button" class="brief-choice" data-brief-choice="business-analyst">Business Analyst</button>
+            <button type="button" class="brief-choice" data-brief-choice="policy-officer">Policy Officer</button>
+            <button type="button" class="brief-choice" data-brief-choice="customer-service-representative">
+              Customer Service Representative
+            </button>
+          </div>
+        </div>
+        <footer class="liha-footer">
+          <strong>First, select the job you would like to recruit for</strong>
+          <button id="confirm-brief-btn" class="footer-btn footer-btn-arrow">
+            <span>Next</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-brief">
+      <div class="liha-frame no-topbar">
+        <div class="three-col-layout with-scroll-indicator">
+          <aside class="brief-role-card">
+            <p class="eyebrow">The role you're recruiting for is</p>
+            <h2 id="job-brief-role-name">Policy Officer</h2>
+          </aside>
+          <section class="brief-main-card">
+            <div class="brief-main-head">
+              <h2>Job description brief</h2>
+              <button type="button" id="copy-brief-btn" class="brief-copy-btn">
+                <img src="/assets/images/copy.svg" alt="" aria-hidden="true" />
+                <span>Copy brief</span>
+              </button>
+            </div>
+            <div class="brief-copy-body">
+              <div class="subcopy" id="job-brief-subcopy"></div>
+            </div>
+          </section>
+          <aside class="brief-tip-card">
+            <div class="brief-tip-head">
+              <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+              <h3>Pro tip</h3>
+            </div>
+            <p class="brief-tip-lead">The quality of your prompt sets the ceiling for your output.</p>
+            <div class="brief-tip-list">
+              <section class="brief-tip-item">
+                <h4><span>1</span>Role Details</h4>
+                <p>Include employment type, role, location, seniority, hybrid/onsite/remote.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>2</span>Context</h4>
+                <p>Include experience, critical skills, certifications and expected knowledge.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>3</span>Responsibilities</h4>
+                <p>Detail 2 or 3 responsibilities critical for performance.</p>
+              </section>
+            </div>
+          </aside>
+        </div>
+        <footer class="liha-footer">
+          <strong id="brief-timer" data-round-timer>15:00</strong>
+          <button id="ready-to-prompt" class="footer-btn footer-btn-arrow">
+            <span>Ready to prompt</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-prompt">
+      <div class="liha-frame no-topbar">
+        <div class="three-col-layout with-scroll-indicator">
+          <aside class="brief-role-card">
+            <p class="eyebrow">The role you're recruiting for is</p>
+            <h2 id="player-summary">-</h2>
+          </aside>
+          <section class="brief-main-card">
+            <div class="brief-main-head">
+              <h2>Enter your prompt below</h2>
+              <button type="button" id="view-brief-btn" class="brief-copy-btn">
+                <img src="/assets/images/view.svg" alt="" aria-hidden="true" />
+                <span>View briefing</span>
+              </button>
+            </div>
+            <div class="prompt-editor-wrap">
+              <textarea id="prompt-input" rows="9" maxlength="2000"
+                placeholder="Write your strongest prompt..."></textarea>
+              <div class="prompt-char-note">
+                <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+                <span class="prompt-char-max">Max 2000 characters</span>
+                <span id="prompt-char-count" class="prompt-char-count">0/2000</span>
+              </div>
+            </div>
+            <p id="submit-result" class="output"></p>
+          </section>
+          <aside class="brief-tip-card">
+            <div class="brief-tip-head">
+              <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+              <h3>A reminder</h3>
+            </div>
+            <p class="brief-tip-lead">Key criteria to make your prompt strong:</p>
+            <div class="brief-tip-list">
+              <section class="brief-tip-item">
+                <h4><span>1</span>Role Details</h4>
+                <p>Include employment type, role, location, seniority, hybrid/onsite/remote.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>2</span>Context</h4>
+                <p>Include experience, critical skills, certifications and expected knowledge.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>3</span>Responsibilities</h4>
+                <p>Detail 2 or 3 responsibilities critical for performance.</p>
+              </section>
+            </div>
+          </aside>
+        </div>
+        <footer class="liha-footer">
+          <strong id="prompt-timer" data-round-timer>15:00</strong>
+          <button id="submit-prompt" class="footer-btn footer-btn-arrow">
+            <span>Submit</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-processing">
+      <div class="liha-frame liha-frame-dark liha-frame-single">
+        <div class="liha-panel liha-panel-blue analyzing-panel">
+          <div class="analyzing-loader-wrap" aria-hidden="true">
+            <img src="/assets/images/loadingShapes.gif" alt="" class="analyzing-loader" />
+            <span class="analyzing-spinner-ring"></span>
+          </div>
+          <h2 class="analyzing-title">Processing your prompt...</h2>
+          <p class="analyzing-subcopy">Scoring quality, clarity, and constraints</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-result">
+      <div class="liha-frame no-topbar">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="result-screen">
+          <aside class="result-score-orbit" id="result-score-orbit">
+            <img id="result-team-icon" class="result-team-icon" src="/assets/images/team-A_01.png" alt="Team icon" />
+            <p class="result-score-label">You scored</p>
+            <div class="result-score-row">
+              <span class="result-score-stripe" id="result-score-stripe" aria-hidden="true"></span>
+              <div class="ring-score" id="ring-score">--</div>
+            </div>
+            <p id="result-title" class="result-score-caption">"You prompt like a pro!"</p>
+          </aside>
+
+          <div class="result-right-col">
+            <section class="result-main-card" id="result-main-card">
+              <h2 id="result-main-title">What you did well</h2>
+              <div class="result-pill-grid">
+                <article class="result-pill-card">
+                  <h3><span class="result-pill-dot" id="result-dot-role"></span>Role Details</h3>
+                  <p id="result-copy-role">Include employment type, role, location, seniority, hybrid/onsite/remote.</p>
+                  <p class="result-pill-rating" id="result-rating-role">Amazing</p>
+                </article>
+                <article class="result-pill-card">
+                  <h3><span class="result-pill-dot" id="result-dot-context"></span>Context</h3>
+                  <p id="result-copy-context">Include experience, critical skills, certifications and expected
+                    knowledge.</p>
+                  <p class="result-pill-rating" id="result-rating-context">Amazing</p>
+                </article>
+                <article class="result-pill-card">
+                  <h3><span class="result-pill-dot" id="result-dot-responsibilities"></span>Responsibilities</h3>
+                  <p id="result-copy-responsibilities">Detail 2 or 3 responsibilities critical for performance.</p>
+                  <p class="result-pill-rating" id="result-rating-responsibilities">Amazing</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="result-protip-card">
+              <div class="result-protip-head">
+                <h3>How to make your prompt even stronger</h3>
+                <p class="result-protip-brand">
+                  <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+                  <span>Pro tip</span>
+                </p>
+              </div>
+              <p class="result-protip-copy" id="result-subcopy">Could be even more specific about the organisation or
+                sector, which would make the output feel more tailored and less generic.</p>
+            </section>
+          </div>
+        </div>
+        <footer class="liha-footer" id="result-footer">
+          <strong id="result-timer" data-round-timer>15:00</strong>
+          <button class="footer-btn footer-btn-arrow" id="result-next-btn" disabled>
+            <span id="result-next-label">Waiting for others to finish</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-player-leaderboard">
+      <div class="liha-frame liha-frame-dark">
+        <div class="liha-panel liha-panel-blue leaderboard-panel with-scroll-indicator">
+          <button id="player-logout-btn" class="player-logout-btn" type="button">Log out</button>
+          <div class="lb-left-visual-fixed" aria-hidden="true">
+            <video class="lb-left-visual-video-fixed" autoplay muted loop playsinline preload="auto">
+              <source src="/assets/images/leaderboard.webm" type="video/webm" />
+            </video>
+          </div>
+          <h1 id="player-leaderboard-title" class="sr-only">Leaderboard</h1>
+          <p class="subcopy sr-only" id="player-leaderboard-copy">Combined points (Prompt Like a Pro + Trust Who).</p>
+          <div class="leaderboard-layout-wrap" id="player-leaderboard-wrap"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-blocked">
+      <div class="liha-frame liha-frame-dark">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-blue analyzing-panel with-scroll-indicator">
+          <h2 id="blocked-title">Round is not active.</h2>
+          <p class="subcopy centered" id="blocked-copy">Wait for your session to start the next game round.</p>
+        </div>
+      </div>
+    </section>
+
+    <p id="global-error" class="error"></p>
+  </main>
+
+  <script src="viewport-guard.js"></script>
+  <script src="scroll-indicators.js"></script>
+  <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+  <script src="lottie-overlays.js"></script>
+  <script src="prompt-like-a-pro-legacy.js"></script>
+</body>
+
+</html>

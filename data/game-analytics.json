@@ -1,0 +1,753 @@
+{
+  "version": 1,
+  "introSubmissions": [
+    {
+      "id": "3d035296-53f7-4a6d-ba11-e6ac65ea4b47",
+      "createdAt": 1771842454278,
+      "companyName": "Two-Eyed People",
+      "selections": [
+        {
+          "stage": "Shortlist Applicants",
+          "task": "Schedule interview panel"
+        },
+        {
+          "stage": "Calibrate candidates",
+          "task": "Review cover letters"
+        },
+        {
+          "stage": "Define the role",
+          "task": "Link to job in ATS"
+        }
+      ],
+      "result": "Focus plan across 3 stages (Shortlist Applicants, Calibrate candidates, Define the role). 3 actions selected. Priority first step: Schedule interview panel.",
+      "unpickedHours": 19.7
+    },
+    {
+      "id": "eb4ddff7-9fc2-47cd-a92b-e0bb6707bebb",
+      "createdAt": 1775706707189,
+      "companyName": "2ep",
+      "selections": [
+        {
+          "stage": "Send outreach",
+          "task": "Draft InMails"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Schedule the InMail send"
+        }
+      ],
+      "result": "Focus plan across 2 stages (Send outreach, Send follow-ups). 2 actions selected. Priority first step: Draft InMails.",
+      "unpickedHours": 19.7
+    },
+    {
+      "id": "4b661b7d-1984-4df0-882d-73e90f0622ad",
+      "createdAt": 1775712101449,
+      "companyName": "2ep",
+      "selections": [
+        {
+          "stage": "Send follow-ups",
+          "task": "Gauge responses to pipeline status"
+        },
+        {
+          "stage": "Send outreach",
+          "task": "Send outreach via different channels"
+        },
+        {
+          "stage": "Calibrate candidates",
+          "task": "Review candidate profiles"
+        },
+        {
+          "stage": "Define the role",
+          "task": "Translate candidate requirements into search queries"
+        },
+        {
+          "stage": "Calibrate candidates",
+          "task": "Review answers to screening questions"
+        }
+      ],
+      "result": "Focus plan across 4 stages (Send follow-ups, Send outreach, Calibrate candidates, Define the role). 5 actions selected. Priority first step: Gauge responses to pipeline status.",
+      "unpickedHours": 16.5
+    },
+    {
+      "id": "97d42bdd-7da3-440c-ab9b-9c0f0011dde5",
+      "createdAt": 1775775491458,
+      "companyName": "2ep",
+      "selections": [
+        {
+          "stage": "Send outreach",
+          "task": "Draft InMails"
+        },
+        {
+          "stage": "Calibrate candidates",
+          "task": "Review applicants"
+        },
+        {
+          "stage": "Calibrate candidates",
+          "task": "Review with hiring manager"
+        }
+      ],
+      "result": "Focus plan across 2 stages (Send outreach, Calibrate candidates). 3 actions selected. Priority first step: Draft InMails.",
+      "unpickedHours": 18.7
+    },
+    {
+      "id": "a02553b4-7fe1-4d1c-ac56-3ffdcb7e9727",
+      "createdAt": 1775776740513,
+      "companyName": "2ep",
+      "selections": [
+        {
+          "stage": "Source the candidate",
+          "task": "Reference external tools for candidate contact info"
+        },
+        {
+          "stage": "Send outreach",
+          "task": "Reach out to candidates"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Draft the follow-up"
+        }
+      ],
+      "result": "Focus plan across 3 stages (Source the candidate, Send outreach, Send follow-ups). 3 actions selected. Priority first step: Reference external tools for candidate contact info.",
+      "unpickedHours": 18.5
+    },
+    {
+      "id": "5d32b21d-aab1-4894-91fd-8fc555ece355",
+      "createdAt": 1775949961948,
+      "companyName": "2ep",
+      "selections": [
+        {
+          "stage": "Source the candidate",
+          "task": "Source initial candidates"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Schedule the InMail send"
+        },
+        {
+          "stage": "Shortlist Applicants",
+          "task": "Finalise candidate list for hiring manager review"
+        },
+        {
+          "stage": "Coordinate interviews",
+          "task": "Create interview questions and plan"
+        },
+        {
+          "stage": "Coordinate interviews",
+          "task": "Take notes on candidate"
+        },
+        {
+          "stage": "Coordinate interviews",
+          "task": "Move candidates to appropriate the hiring stage"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Gauge responses to pipeline status"
+        },
+        {
+          "stage": "Calibrate candidates",
+          "task": "Review with hiring manager"
+        }
+      ],
+      "result": "Focus plan across 5 stages (Source the candidate, Send follow-ups, Shortlist Applicants, Coordinate interviews, Calibrate candidates). 8 actions selected. Priority first step: Source initial candidates.",
+      "unpickedHours": 15.5
+    }
+  ],
+  "promptSubmissions": [
+    {
+      "id": "f6f0fbda-fb47-4346-86e5-8c3b70a16e54",
+      "createdAt": 1771844274442,
+      "session": "A",
+      "team": "yellow",
+      "playerId": "2a6985c5-3a5b-4cb5-ba66-b184b88115e8",
+      "brief": "customer-service-representative",
+      "passed": false,
+      "scoreRaw": 9,
+      "scoreCurved": 9,
+      "sectionScores": {
+        "role": 20,
+        "context": 0,
+        "responsibilities": 0
+      }
+    },
+    {
+      "id": "b7dd7319-d275-4c48-8fda-9b3bcae34289",
+      "createdAt": 1771844730662,
+      "session": "A",
+      "team": "red",
+      "playerId": "40846025-0e67-40ad-a965-9b7f16571d4b",
+      "brief": "customer-service-representative",
+      "passed": true,
+      "scoreRaw": 73,
+      "scoreCurved": 94,
+      "sectionScores": {
+        "ROLE_DETAILS": 80,
+        "CONTEXT": 50,
+        "RESPONSIBILITIES": 100
+      }
+    },
+    {
+      "id": "6faae454-6221-4ea3-8470-09d14ab641db",
+      "createdAt": 1775706870502,
+      "session": "A",
+      "team": "red",
+      "playerId": "8f5a6a0f-dba0-48e3-b88c-02b51ef1e0fc",
+      "brief": "business-analyst",
+      "passed": true,
+      "scoreRaw": 83,
+      "scoreCurved": 83,
+      "sectionScores": {
+        "role": 100,
+        "context": 100,
+        "responsibilities": 100
+      }
+    }
+  ],
+  "promptRounds": [
+    {
+      "id": "4c955c9e-6581-4d35-8f4a-8ed9877c42a5",
+      "session": "A",
+      "completedAt": 1771844298919,
+      "teams": [
+        {
+          "team": "red",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 894,
+          "softSkillsBonusApplied": 889
+        },
+        {
+          "team": "blue",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 890,
+          "softSkillsBonusApplied": 895
+        },
+        {
+          "team": "green",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 879,
+          "softSkillsBonusApplied": 892
+        },
+        {
+          "team": "yellow",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 1,
+          "submissions": 0,
+          "trustBonusApplied": 884,
+          "softSkillsBonusApplied": 886
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "blue",
+          "totalScore": 1785,
+          "promptPoints": 0,
+          "trustBonus": 890,
+          "softSkillsBonus": 895
+        },
+        {
+          "rank": 2,
+          "team": "red",
+          "totalScore": 1783,
+          "promptPoints": 0,
+          "trustBonus": 894,
+          "softSkillsBonus": 889
+        },
+        {
+          "rank": 3,
+          "team": "green",
+          "totalScore": 1771,
+          "promptPoints": 0,
+          "trustBonus": 879,
+          "softSkillsBonus": 892
+        },
+        {
+          "rank": 4,
+          "team": "yellow",
+          "totalScore": 1770,
+          "promptPoints": 0,
+          "trustBonus": 884,
+          "softSkillsBonus": 886
+        }
+      ]
+    },
+    {
+      "id": "ff5d3fa3-b370-491e-858f-cb071d1fbd7b",
+      "session": "A",
+      "completedAt": 1771844743961,
+      "teams": [
+        {
+          "team": "red",
+          "promptPercent": 94,
+          "promptPoints": 940,
+          "playerCount": 1,
+          "submissions": 1,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        },
+        {
+          "team": "blue",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        },
+        {
+          "team": "green",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        },
+        {
+          "team": "yellow",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "red",
+          "totalScore": 940,
+          "promptPoints": 940,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        },
+        {
+          "rank": 2,
+          "team": "blue",
+          "totalScore": 0,
+          "promptPoints": 0,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        },
+        {
+          "rank": 3,
+          "team": "green",
+          "totalScore": 0,
+          "promptPoints": 0,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        },
+        {
+          "rank": 4,
+          "team": "yellow",
+          "totalScore": 0,
+          "promptPoints": 0,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        }
+      ]
+    },
+    {
+      "id": "7aaaba69-58d7-4a64-9ebe-c3a4165690c0",
+      "session": "A",
+      "completedAt": 1775707736839,
+      "teams": [
+        {
+          "team": "red",
+          "promptPercent": 83,
+          "promptPoints": 830,
+          "playerCount": 1,
+          "submissions": 1,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        },
+        {
+          "team": "blue",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        },
+        {
+          "team": "green",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        },
+        {
+          "team": "yellow",
+          "promptPercent": 0,
+          "promptPoints": 0,
+          "playerCount": 0,
+          "submissions": 0,
+          "trustBonusApplied": 0,
+          "softSkillsBonusApplied": 0
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "red",
+          "totalScore": 830,
+          "promptPoints": 830,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        },
+        {
+          "rank": 2,
+          "team": "blue",
+          "totalScore": 0,
+          "promptPoints": 0,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        },
+        {
+          "rank": 3,
+          "team": "green",
+          "totalScore": 0,
+          "promptPoints": 0,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        },
+        {
+          "rank": 4,
+          "team": "yellow",
+          "totalScore": 0,
+          "promptPoints": 0,
+          "trustBonus": 0,
+          "softSkillsBonus": 0
+        }
+      ]
+    }
+  ],
+  "trustRuns": [
+    {
+      "id": "aa354fca-ccf1-41aa-97a5-58097691db9b",
+      "session": "A",
+      "runId": 1,
+      "completedAt": 1771843619011,
+      "teams": [
+        {
+          "team": "red",
+          "elapsedMs": 6852,
+          "elapsedSeconds": 7,
+          "points": 893
+        },
+        {
+          "team": "blue",
+          "elapsedMs": 8899,
+          "elapsedSeconds": 9,
+          "points": 891
+        },
+        {
+          "team": "green",
+          "elapsedMs": 20356,
+          "elapsedSeconds": 20,
+          "points": 880
+        },
+        {
+          "team": "yellow",
+          "elapsedMs": 11596,
+          "elapsedSeconds": 12,
+          "points": 888
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "red",
+          "elapsedMs": 6852,
+          "elapsedSeconds": 7,
+          "points": 893
+        },
+        {
+          "rank": 2,
+          "team": "blue",
+          "elapsedMs": 8899,
+          "elapsedSeconds": 9,
+          "points": 891
+        },
+        {
+          "rank": 3,
+          "team": "yellow",
+          "elapsedMs": 11596,
+          "elapsedSeconds": 12,
+          "points": 888
+        },
+        {
+          "rank": 4,
+          "team": "green",
+          "elapsedMs": 20356,
+          "elapsedSeconds": 20,
+          "points": 880
+        }
+      ]
+    },
+    {
+      "id": "93471e99-3b13-43b7-a323-7b93e5f91e9b",
+      "session": "A",
+      "runId": 1,
+      "completedAt": 1771843717376,
+      "teams": [
+        {
+          "team": "red",
+          "elapsedMs": 5780,
+          "elapsedSeconds": 6,
+          "points": 894
+        },
+        {
+          "team": "blue",
+          "elapsedMs": 10053,
+          "elapsedSeconds": 10,
+          "points": 890
+        },
+        {
+          "team": "green",
+          "elapsedMs": 20968,
+          "elapsedSeconds": 21,
+          "points": 879
+        },
+        {
+          "team": "yellow",
+          "elapsedMs": 15596,
+          "elapsedSeconds": 16,
+          "points": 884
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "red",
+          "elapsedMs": 5780,
+          "elapsedSeconds": 6,
+          "points": 894
+        },
+        {
+          "rank": 2,
+          "team": "blue",
+          "elapsedMs": 10053,
+          "elapsedSeconds": 10,
+          "points": 890
+        },
+        {
+          "rank": 3,
+          "team": "yellow",
+          "elapsedMs": 15596,
+          "elapsedSeconds": 16,
+          "points": 884
+        },
+        {
+          "rank": 4,
+          "team": "green",
+          "elapsedMs": 20968,
+          "elapsedSeconds": 21,
+          "points": 879
+        }
+      ]
+    },
+    {
+      "id": "4867e07a-c805-40fd-9883-01f86163151b",
+      "session": "A",
+      "runId": 1,
+      "completedAt": 1771844969149,
+      "teams": [
+        {
+          "team": "red",
+          "elapsedMs": 4163,
+          "elapsedSeconds": 4,
+          "points": 896
+        },
+        {
+          "team": "blue",
+          "elapsedMs": 5072,
+          "elapsedSeconds": 5,
+          "points": 895
+        },
+        {
+          "team": "green",
+          "elapsedMs": 7002,
+          "elapsedSeconds": 7,
+          "points": 893
+        },
+        {
+          "team": "yellow",
+          "elapsedMs": 5923,
+          "elapsedSeconds": 6,
+          "points": 894
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "red",
+          "elapsedMs": 4163,
+          "elapsedSeconds": 4,
+          "points": 896
+        },
+        {
+          "rank": 2,
+          "team": "blue",
+          "elapsedMs": 5072,
+          "elapsedSeconds": 5,
+          "points": 895
+        },
+        {
+          "rank": 3,
+          "team": "yellow",
+          "elapsedMs": 5923,
+          "elapsedSeconds": 6,
+          "points": 894
+        },
+        {
+          "rank": 4,
+          "team": "green",
+          "elapsedMs": 7002,
+          "elapsedSeconds": 7,
+          "points": 893
+        }
+      ]
+    }
+  ],
+  "softSkillsRuns": [
+    {
+      "id": "a908ab62-95b6-4f34-9bb9-abde234c7350",
+      "session": "A",
+      "runId": 1,
+      "completedAt": 1771843770200,
+      "teams": [
+        {
+          "team": "red",
+          "elapsedMs": 11256,
+          "elapsedSeconds": 11,
+          "points": 889
+        },
+        {
+          "team": "blue",
+          "elapsedMs": 5141,
+          "elapsedSeconds": 5,
+          "points": 895
+        },
+        {
+          "team": "green",
+          "elapsedMs": 8447,
+          "elapsedSeconds": 8,
+          "points": 892
+        },
+        {
+          "team": "yellow",
+          "elapsedMs": 13636,
+          "elapsedSeconds": 14,
+          "points": 886
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "blue",
+          "elapsedMs": 5141,
+          "elapsedSeconds": 5,
+          "points": 895
+        },
+        {
+          "rank": 2,
+          "team": "green",
+          "elapsedMs": 8447,
+          "elapsedSeconds": 8,
+          "points": 892
+        },
+        {
+          "rank": 3,
+          "team": "red",
+          "elapsedMs": 11256,
+          "elapsedSeconds": 11,
+          "points": 889
+        },
+        {
+          "rank": 4,
+          "team": "yellow",
+          "elapsedMs": 13636,
+          "elapsedSeconds": 14,
+          "points": 886
+        }
+      ]
+    },
+    {
+      "id": "2e9faf90-dfe2-4e79-97ee-27e2440f9553",
+      "session": "A",
+      "runId": 1,
+      "completedAt": 1771845005635,
+      "teams": [
+        {
+          "team": "red",
+          "elapsedMs": 12399,
+          "elapsedSeconds": 12,
+          "points": 888
+        },
+        {
+          "team": "blue",
+          "elapsedMs": 10397,
+          "elapsedSeconds": 10,
+          "points": 890
+        },
+        {
+          "team": "green",
+          "elapsedMs": 7889,
+          "elapsedSeconds": 8,
+          "points": 892
+        },
+        {
+          "team": "yellow",
+          "elapsedMs": 2672,
+          "elapsedSeconds": 3,
+          "points": 897
+        }
+      ],
+      "ranking": [
+        {
+          "rank": 1,
+          "team": "yellow",
+          "elapsedMs": 2672,
+          "elapsedSeconds": 3,
+          "points": 897
+        },
+        {
+          "rank": 2,
+          "team": "green",
+          "elapsedMs": 7889,
+          "elapsedSeconds": 8,
+          "points": 892
+        },
+        {
+          "rank": 3,
+          "team": "blue",
+          "elapsedMs": 10397,
+          "elapsedSeconds": 10,
+          "points": 890
+        },
+        {
+          "rank": 4,
+          "team": "red",
+          "elapsedMs": 12399,
+          "elapsedSeconds": 12,
+          "points": 888
+        }
+      ]
+    }
+  ],
+  "updatedAt": 1775949961948
+}

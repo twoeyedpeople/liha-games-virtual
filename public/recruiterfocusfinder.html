@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Arena | Recruiter Focus Finder</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="ua-flags.js"></script>
+</head>
+
+<body class="mode-holding">
+  <main class="holding-screen">
+    <section class="stage intro-welcome-stage" id="intro-welcome-stage">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="intro-welcome-shell">
+        <header class="liha-topbar intro-welcome-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="screen-logo liha-logo intro-linkedin-logo" />
+        </header>
+
+        <div class="intro-welcome-hero with-scroll-indicator">
+          <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="/assets/images/sideShapes.webm" type="video/webm" />
+          </video>
+          <img class="side-shapes-fallback" src="/assets/images/sideShapes.svg" alt="" aria-hidden="true" />
+          <div class="intro-hero-dot"></div>
+          <div class="intro-hero-square"></div>
+          <div class="intro-hero-bar"></div>
+
+          <div class="intro-welcome-copy">
+            <h1>Welcome to<br />Recruiter Focus Finder</h1>
+            <p>Find out where you can unlock efficiency with AI.</p>
+
+            <div class="intro-company-field">
+              <label for="company-name" class="ui-field-label">Enter your company name</label>
+              <input id="company-name" type="text" placeholder="Company Name" maxlength="60" inputmode="none" autocomplete="off"
+                autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" />
+            </div>
+
+            <p id="intro-welcome-error" class="output"></p>
+          </div>
+        </div>
+
+        <footer class="liha-footer intro-welcome-footer">
+          <strong>Recruiter Focus Finder</strong>
+          <button id="intro-get-started" class="footer-btn footer-btn-arrow intro-start-btn">
+            <span>Get Started</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden intro-graph-stage" id="intro-form-stage">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="liha-frame">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-white intro-select-panel">
+          <p class="subcopy intro-company" id="intro-company-title">Select as many focus actions as you want, then
+            generate your result.</p>
+          <p id="intro-result" class="output"></p>
+          <div class="intro-pipeline-wrap">
+            <div id="intro-pipeline" class="intro-pipeline-grid"></div>
+          </div>
+          <button id="intro-clear-all" type="button" class="intro-clear-btn">
+            <img src="/assets/images/swap.svg" alt="" aria-hidden="true" />
+            <span>Clear all</span>
+          </button>
+        </div>
+        <footer class="liha-footer">
+          <strong>Select the tasks you love most about your role</strong>
+          <button id="intro-submit" class="footer-btn footer-btn-arrow">
+            <span>Submit</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="intro-loading-stage">
+      <div class="liha-frame liha-frame-dark liha-frame-single">
+        <div class="liha-panel liha-panel-blue analyzing-panel">
+          <div class="analyzing-loader-wrap" aria-hidden="true">
+            <img src="/assets/images/loadingShapes.gif" alt="" class="analyzing-loader" />
+            <span class="analyzing-spinner-ring"></span>
+          </div>
+          <p class="analyzing-subcopy">Analysing results...</p>
+          <h2 class="analyzing-title">Applying AI to your end-to-end workflow</h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="intro-result-stage">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="liha-frame">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-blue liha-panel-hero with-scroll-indicator">
+          <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="/assets/images/sideShapes.webm" type="video/webm" />
+          </video>
+          <img class="side-shapes-fallback" src="/assets/images/sideShapes.svg" alt="" aria-hidden="true" />
+          <div class="shape-dot"></div>
+          <div class="shape-square"></div>
+          <div class="shape-bar"></div>
+          <div class="intro-result-copyblock">
+            <h2>Tasks you didn&apos;t pick?</h2>
+            <h2>AI could save you up to</h2>
+            <h2><span id="intro-result-hours-badge" class="intro-result-hours-badge">X hours</span> every week</h2>
+          </div>
+          <p class="intro-result-disclaimer">Indicative time-savings only. Actual results may vary.</p>
+          <p class="hidden" id="intro-result-copy">-</p>
+        </div>
+        <footer class="liha-footer">
+          <strong>Recruiter Focus Finder</strong>
+          <button id="intro-next" class="footer-btn footer-btn-arrow">
+            <span>Next</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden intro-graph-stage" id="intro-savings-stage">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="liha-frame">
+        <header class="liha-topbar intro-savings-topbar">
+          <div class="intro-savings-legend" aria-label="Chart legend">
+            <span class="intro-legend-item"><i class="intro-legend-dot intro-legend-love"></i>Tasks you love</span>
+            <span class="intro-legend-item"><i class="intro-legend-dot intro-legend-optimised"></i>Tasks optimised by AI
+              agent</span>
+            <span class="intro-legend-item"><i class="intro-legend-dot intro-legend-people"></i>People-centric
+              work</span>
+          </div>
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-white intro-select-panel">
+          <h2 id="intro-savings-title">AI can save you -- per week</h2>
+          <p class="subcopy" id="intro-savings-copy">Estimated weekly savings across selected actions.</p>
+          <div class="intro-pipeline-wrap">
+            <div id="intro-savings-pipeline" class="intro-pipeline-grid"></div>
+          </div>
+        </div>
+        <footer class="liha-footer">
+          <strong>AI can help save you <span id="intro-savings-hours-badge" class="intro-hours-badge">X hours</span> per
+            week so you can do more of what you love</strong>
+          <button id="intro-done" class="footer-btn footer-btn-arrow">
+            <span>Done</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <div id="intro-vkbd" class="intro-vkbd" aria-hidden="true">
+    <div class="intro-vkbd-panel">
+      <div class="intro-vkbd-head">
+        <p>Type company name</p>
+        <button type="button" id="intro-vkbd-close" class="intro-vkbd-close" aria-label="Close keyboard">Done</button>
+      </div>
+      <div id="intro-vkbd-keys" class="intro-vkbd-keys" role="group" aria-label="Virtual keyboard"></div>
+    </div>
+  </div>
+
+  <script src="display-fullscreen.js"></script>
+  <script src="viewport-guard.js"></script>
+  <script src="scroll-indicators.js"></script>
+  <script src="intro.js"></script>
+</body>
+
+</html>

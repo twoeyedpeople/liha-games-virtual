@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiHa Games | Stats</title>
+  <link rel="stylesheet" href="/hub.css" />
+</head>
+
+<body class="hub-page">
+  <main class="hub-wrap">
+    <section class="hub-top">
+      <div class="hub-title">
+        <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" />
+        <h1>LiHa Stats Dashboard</h1>
+        <p>Recruiter Focus Finder + game outcomes with export-ready reporting.</p>
+      </div>
+      <div class="button-row">
+        <a href="/aux">Aux</a>
+        <a href="/docs" class="secondary">Documentation</a>
+        <button id="stats-refresh">Refresh</button>
+        <a href="/api/stats/export.xls">Download XLS</a>
+      </div>
+    </section>
+
+    <section class="hub-section">
+      <h2>Current Totals</h2>
+      <p class="hub-subcopy" id="stats-updated">Last updated: --</p>
+      <div class="stat-cards" id="stat-cards"></div>
+    </section>
+
+    <section class="hub-section">
+      <h2>Insights</h2>
+      <div class="chart-grid">
+        <article class="chart-card">
+          <h3>Most Selected Recruiter Focus Finder Tasks</h3>
+          <div class="simple-bars" id="chart-selected-tasks"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Average Prompt Score by Team</h3>
+          <div class="simple-bars" id="chart-prompt-teams"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Average Trust Who Points by Team</h3>
+          <div class="simple-bars" id="chart-trust-teams"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Average Soft Skills Points by Team</h3>
+          <div class="simple-bars" id="chart-soft-teams"></div>
+        </article>
+        <article class="chart-card">
+          <h3>Top Companies by Recruiter Focus Finder Uses</h3>
+          <div class="simple-bars" id="chart-companies"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="hub-section">
+      <h2>Recent Recruiter Focus Finder Submissions</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>When</th>
+              <th>Company</th>
+              <th>Selections</th>
+              <th>Est. Hours Saved</th>
+            </tr>
+          </thead>
+          <tbody id="table-intro"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/stats.js"></script>
+</body>
+
+</html>

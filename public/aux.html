@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiHa Games | Aux Displays</title>
+  <link rel="stylesheet" href="/hub.css" />
+</head>
+
+<body class="hub-page">
+  <main class="hub-wrap">
+    <section class="hub-top">
+      <div class="hub-title">
+        <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" />
+        <h1>LiHa Games Hub</h1>
+        <p>External display launcher and operations shortcuts.</p>
+      </div>
+      <nav class="hub-quick-links" aria-label="Quick links">
+        <a href="/control.html">Open Control</a>
+        <a href="/docs">Manager Guide</a>
+        <a href="/stats">Current Stats</a>
+      </nav>
+    </section>
+
+    <section class="hub-section">
+      <h2>External Displays</h2>
+      <p class="hub-subcopy">Use these launch cards for TV outputs in the venue. Click any card to open that screen in fullscreen mode.</p>
+      <div class="display-grid">
+        <a class="display-card display-launch" data-display-launch href="/intro.html?fullscreen=1">
+          <div class="preview-shell preview-landscape">
+            <img src="/assets/images/intro.png" alt="Recruiter Focus Finder display thumbnail" />
+          </div>
+          <div class="display-meta">
+            <h3>Recruiter Focus Finder Display</h3>
+            <p>Usage: 55&quot; TV - Landscape</p>
+            <span class="display-cta">Open Fullscreen</span>
+          </div>
+        </a>
+
+        <a class="display-card display-launch" data-display-launch href="/leaderboard.html?fullscreen=1&single=1">
+          <div class="preview-shell preview-landscape">
+            <img src="/assets/images/leaderboard.png" alt="Leaderboard display thumbnail" />
+          </div>
+          <div class="display-meta">
+            <h3>Leaderboard Display</h3>
+            <p>Usage: 55&quot; TV - Landscape</p>
+            <span class="display-cta">Open Fullscreen</span>
+          </div>
+        </a>
+
+        <a class="display-card display-launch" data-display-launch href="/countdown.html?fullscreen=1">
+          <div class="preview-shell preview-portrait">
+            <img src="/assets/images/countdown.png" alt="Countdown display thumbnail" />
+          </div>
+          <div class="display-meta">
+            <h3>Trust Who Display</h3>
+            <p>Usage: 55&quot; TV - Portrait</p>
+            <span class="display-cta">Open Fullscreen</span>
+          </div>
+        </a>
+
+        <a class="display-card display-launch" data-display-launch href="/soft-skills.html?fullscreen=1">
+          <div class="preview-shell preview-portrait">
+            <img src="/assets/images/softSkills.png" alt="Soft Skills Significance display thumbnail" />
+          </div>
+          <div class="display-meta">
+            <h3>Soft Skills Significance Display</h3>
+            <p>Usage: 55&quot; TV - Portrait</p>
+            <span class="display-cta">Open Fullscreen</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="hub-section aux-docs">
+      <h2>Operations Guide</h2>
+      <p class="hub-subcopy">Quick operational flow for managers running live sessions.</p>
+      <div class="runbook">
+        <article class="runbook-card">
+          <h3>Before Participants Join</h3>
+          <ol>
+            <li>Open <a href="/control.html">Control</a> and sign in with the master key.</li>
+            <li>Confirm both sessions (A and B) are in the expected state.</li>
+            <li>Launch Recruiter Focus Finder, single Leaderboard, Trust Who Countdown, and Soft Skills Significance Countdown on venue displays.</li>
+            <li>Use <strong>Claim Leaderboard</strong> on Control to point the single leaderboard display to Group A or Group B.</li>
+          </ol>
+        </article>
+        <article class="runbook-card">
+          <h3>During Trust Who</h3>
+          <ol>
+            <li>Start Trust Who for the session in control.</li>
+            <li>Mark each team as finished when they complete the activity.</li>
+            <li>Watch countdown results and confirm points are applied.</li>
+          </ol>
+        </article>
+        <article class="runbook-card">
+          <h3>During Soft Skills Significance</h3>
+          <ol>
+            <li>Run Soft Skills Significance as 3 manual rounds of 2 minutes each from control.</li>
+            <li>Mark each team as finished when they complete the activity.</li>
+            <li>Watch each round timer/results, then confirm cumulative points are applied after Round 3.</li>
+          </ol>
+        </article>
+        <article class="runbook-card">
+          <h3>During Prompt Like a Pro</h3>
+          <ol>
+            <li>Open lobby and share the current passcode.</li>
+            <li>Launch round once team participation is ready.</li>
+            <li>Review round results and merged leaderboard output.</li>
+          </ol>
+        </article>
+        <article class="runbook-card">
+          <h3>After the Event</h3>
+          <ol>
+            <li>Review aggregated performance in <a href="/stats">Stats</a>.</li>
+            <li>Export spreadsheet report via <a href="/api/stats/export.xls">XLS</a>.</li>
+            <li>Reset sessions for the next cohort when required.</li>
+          </ol>
+        </article>
+      </div>
+      <div class="button-row docs-actions">
+        <a href="/docs">Open full documentation</a>
+        <a href="/stats">Open stats dashboard</a>
+        <a href="/api/stats/export.xls" class="secondary">Download XLS</a>
+      </div>
+    </section>
+  </main>
+  <script src="/aux.js"></script>
+</body>
+
+</html>

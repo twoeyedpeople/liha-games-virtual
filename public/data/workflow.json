@@ -1,0 +1,276 @@
+{
+  "summary": {
+    "total_time_mins": 1290,
+    "total_time_hours": 21.5,
+    "ai_optimised_time_mins": 1200,
+    "ai_optimised_time_hours": 20,
+    "people_centric_time_mins": 90,
+    "people_centric_time_hours": 1.5
+  },
+  "stages": [
+    {
+      "stage": 1,
+      "workflow": "Define the role",
+      "tasks": [
+        {
+          "step": 1,
+          "task": "Strategic conversation with Hiring Manager",
+          "time_mins": 0,
+          "category": "People-centric work"
+        },
+        {
+          "step": 2,
+          "task": "Align on hiring goals",
+          "time_mins": 0,
+          "category": "People-centric work"
+        },
+        {
+          "step": 3,
+          "task": "Define role and candidate requirements with Hiring Manager",
+          "time_mins": 0,
+          "category": "People-centric work"
+        },
+        {
+          "step": 4,
+          "task": "Translate candidate requirements into search queries",
+          "time_mins": 20,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 5,
+          "task": "Link to job in ATS",
+          "time_mins": 10,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 6,
+          "task": "Adjust candidate requirements based on Hiring Manager feedback",
+          "time_mins": 10,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "workflow": "Source the candidate",
+      "tasks": [
+        {
+          "step": 7,
+          "task": "Reference external tools for candidate contact info",
+          "time_mins": 70,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 8,
+          "task": "Source initial candidates",
+          "time_mins": 80,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "workflow": "Calibrate candidates",
+      "tasks": [
+        {
+          "step": 9,
+          "task": "Review answers to screening questions",
+          "time_mins": 60,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 10,
+          "task": "Review cover letters",
+          "time_mins": 40,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 11,
+          "task": "Review candidate profiles",
+          "time_mins": 80,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 12,
+          "task": "Review applicants",
+          "time_mins": 30,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 13,
+          "task": "Review with hiring manager",
+          "time_mins": 70,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 14,
+          "task": "Update any hiring qualifications",
+          "time_mins": 50,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 4,
+      "workflow": "Send outreach",
+      "tasks": [
+        {
+          "step": 15,
+          "task": "Reach out to candidates",
+          "time_mins": 40,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 16,
+          "task": "Draft InMails",
+          "time_mins": 70,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 17,
+          "task": "Send outreach via different channels",
+          "time_mins": 60,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 18,
+          "task": "Invite candidates to apply",
+          "time_mins": 40,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 5,
+      "workflow": "Send follow-ups",
+      "tasks": [
+        {
+          "step": 19,
+          "task": "Draft the follow-up",
+          "time_mins": 70,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 20,
+          "task": "Schedule the InMail send",
+          "time_mins": 40,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 21,
+          "task": "Gauge responses to pipeline status",
+          "time_mins": 80,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 6,
+      "workflow": "Respond to candidates",
+      "tasks": [
+        {
+          "step": 22,
+          "task": "Send follow-ups to responded candidates",
+          "time_mins": 120,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 7,
+      "workflow": "Shortlist Applicants",
+      "tasks": [
+        {
+          "step": 23,
+          "task": "Finalise candidate list for hiring manager review",
+          "time_mins": 60,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 24,
+          "task": "Schedule meeting with hiring manager",
+          "time_mins": 60,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 25,
+          "task": "Schedule interview panel",
+          "time_mins": 60,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 8,
+      "workflow": "Schedule phone screen",
+      "tasks": [
+        {
+          "step": 26,
+          "task": "Ask for availability",
+          "time_mins": 10,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 27,
+          "task": "Send phone screen scheduling link",
+          "time_mins": 10,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 28,
+          "task": "Communicate with candidates",
+          "time_mins": 0,
+          "category": "People-centric work"
+        },
+        {
+          "step": 29,
+          "task": "Build candidate relationships",
+          "time_mins": 0,
+          "category": "People-centric work"
+        },
+        {
+          "step": 30,
+          "task": "Candidate reschedules",
+          "time_mins": 10,
+          "category": "Tasks optimised by AI agent"
+        }
+      ]
+    },
+    {
+      "stage": 9,
+      "workflow": "Coordinate interviews",
+      "tasks": [
+        {
+          "step": 31,
+          "task": "Create interview questions and plan",
+          "time_mins": 20,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 32,
+          "task": "Take notes on candidate",
+          "time_mins": 0,
+          "category": "People-centric work"
+        },
+        {
+          "step": 33,
+          "task": "Upload notes on ATS",
+          "time_mins": 10,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 34,
+          "task": "Move candidates to appropriate the hiring stage",
+          "time_mins": 10,
+          "category": "Tasks optimised by AI agent"
+        },
+        {
+          "step": 35,
+          "task": "Debrief with Hiring Manager",
+          "time_mins": 0,
+          "category": "People-centric work"
+        }
+      ]
+    }
+  ]
+}

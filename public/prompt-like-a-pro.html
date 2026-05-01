@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Like a Pro</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/prompt-like-a-pro.css" />
+  <script src="/ua-flags.js"></script>
+</head>
+
+<body class="mode-player prompt-pro-body">
+  <main class="game-shell">
+    <section class="stage prompt-pro-stage" id="stage-intro">
+      <header class="prompt-pro-topbar">
+        <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+      </header>
+
+      <div class="prompt-pro-hero">
+        <div class="prompt-pro-shapes" aria-hidden="true">
+          <img src="/assets/images/prompt-like-a-pro/prompt-like-a-pro-shapes.gif" alt="" class="prompt-pro-shapes-gif" />
+        </div>
+
+        <div class="prompt-pro-copy">
+          <h1>Welcome to<br />Prompt Like a Pro</h1>
+          <p class="prompt-pro-lead">Master the art of prompting better inputs to drive better outputs.</p>
+          <p class="prompt-pro-detail">Select a role you’re hiring for and learn what makes a strong sourcing prompt. We’ll put your skills to the test and help you craft stronger prompts that get better results.</p>
+        </div>
+      </div>
+
+      <footer class="prompt-pro-bottom prompt-pro-bottom-yellow">
+        <strong>Prompt Like a Pro</strong>
+        <button id="intro-get-started" class="footer-btn footer-btn-arrow prompt-pro-bottom-cta">
+          <span>Get Started</span>
+          <span class="footer-btn-arrow-bubble">
+            <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+          </span>
+        </button>
+      </footer>
+    </section>
+
+    <section class="stage hidden prompt-pro-stage" id="stage-region-pick">
+      <header class="prompt-pro-topbar">
+        <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+      </header>
+
+      <div class="prompt-pro-region-panel">
+        <div class="prompt-pro-region-grid" id="region-choice-grid">
+          <button type="button" class="prompt-pro-region-card" data-region-choice="australia" aria-pressed="false">
+            <span class="prompt-pro-flag prompt-pro-flag-au" aria-hidden="true"></span>
+            <span>Australia</span>
+          </button>
+          <button type="button" class="prompt-pro-region-card" data-region-choice="singapore" aria-pressed="false">
+            <span class="prompt-pro-flag prompt-pro-flag-sg" aria-hidden="true"></span>
+            <span>Singapore</span>
+          </button>
+          <button type="button" class="prompt-pro-region-card" data-region-choice="india" aria-pressed="false">
+            <span class="prompt-pro-flag prompt-pro-flag-in" aria-hidden="true"></span>
+            <span>India</span>
+          </button>
+        </div>
+      </div>
+
+      <footer class="prompt-pro-bottom prompt-pro-bottom-yellow">
+        <strong>First, select the <span class="prompt-pro-inline-pill">region</span> you would like to recruit for</strong>
+        <button id="region-next-btn" class="footer-btn footer-btn-arrow prompt-pro-bottom-cta" disabled>
+          <span>Next</span>
+          <span class="footer-btn-arrow-bubble">
+            <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+          </span>
+        </button>
+      </footer>
+    </section>
+
+    <section class="stage hidden" id="stage-brief-pick">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div class="liha-frame">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="liha-panel liha-panel-blue brief-pick-panel with-scroll-indicator">
+          <div class="brief-choice-grid" id="brief-choice-grid"></div>
+        </div>
+        <footer class="liha-footer">
+          <strong id="brief-pick-copy">Select the role you would like to recruit for</strong>
+          <div class="prompt-pro-footer-actions">
+            <button id="brief-pick-back-btn" class="ghost prompt-pro-back-btn" type="button">Back</button>
+            <button id="confirm-brief-btn" class="footer-btn footer-btn-arrow">
+              <span>Next</span>
+              <span class="footer-btn-arrow-bubble">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </button>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-brief">
+      <div class="liha-frame no-topbar">
+        <div class="three-col-layout with-scroll-indicator">
+          <aside class="brief-role-card">
+            <p class="eyebrow">The role you're recruiting for is</p>
+            <h2 id="job-brief-role-name">Policy Officer</h2>
+          </aside>
+          <section class="brief-main-card">
+            <div class="brief-main-head">
+              <h2>Job description brief</h2>
+              <button type="button" id="copy-brief-btn" class="brief-copy-btn">
+                <img src="/assets/images/copy.svg" alt="" aria-hidden="true" />
+                <span>Copy brief</span>
+              </button>
+            </div>
+            <div class="brief-copy-body">
+              <div class="subcopy" id="job-brief-subcopy"></div>
+            </div>
+          </section>
+          <aside class="brief-tip-card">
+            <div class="brief-tip-head">
+              <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+              <h3>Pro tip</h3>
+            </div>
+            <p class="brief-tip-lead">The quality of your prompt sets the ceiling for your output.</p>
+            <div class="brief-tip-list">
+              <section class="brief-tip-item">
+                <h4><span>1</span>Role Details</h4>
+                <p>Include employment type, role, location, seniority, hybrid/onsite/remote.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>2</span>Context</h4>
+                <p>Include experience, critical skills, certifications and expected knowledge.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>3</span>Responsibilities</h4>
+                <p>Detail 2 or 3 responsibilities critical for performance.</p>
+              </section>
+            </div>
+          </aside>
+        </div>
+        <footer class="liha-footer">
+          <strong id="brief-footer-label">Prompt Like a Pro</strong>
+          <button id="ready-to-prompt" class="footer-btn footer-btn-arrow">
+            <span>Ready to prompt</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-prompt">
+      <div class="liha-frame no-topbar">
+        <div class="three-col-layout with-scroll-indicator">
+          <aside class="brief-role-card">
+            <p class="eyebrow">The role you're recruiting for is</p>
+            <h2 id="player-summary">-</h2>
+          </aside>
+          <section class="brief-main-card">
+            <div class="brief-main-head">
+              <h2>Enter your prompt below</h2>
+              <button type="button" id="view-brief-btn" class="brief-copy-btn">
+                <img src="/assets/images/view.svg" alt="" aria-hidden="true" />
+                <span>View briefing</span>
+              </button>
+            </div>
+            <div class="prompt-editor-wrap">
+              <textarea id="prompt-input" rows="9" maxlength="2000" placeholder="Write your strongest prompt..."></textarea>
+              <div class="prompt-char-note">
+                <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+                <span class="prompt-char-max">Max 2000 characters</span>
+                <span id="prompt-char-count" class="prompt-char-count">0/2000</span>
+              </div>
+            </div>
+            <p id="submit-result" class="output"></p>
+          </section>
+          <aside class="brief-tip-card">
+            <div class="brief-tip-head">
+              <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+              <h3>A reminder</h3>
+            </div>
+            <p class="brief-tip-lead">Key criteria to make your prompt strong:</p>
+            <div class="brief-tip-list">
+              <section class="brief-tip-item">
+                <h4><span>1</span>Role Details</h4>
+                <p>Include employment type, role, location, seniority, hybrid/onsite/remote.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>2</span>Context</h4>
+                <p>Include experience, critical skills, certifications and expected knowledge.</p>
+              </section>
+              <section class="brief-tip-item">
+                <h4><span>3</span>Responsibilities</h4>
+                <p>Detail 2 or 3 responsibilities critical for performance.</p>
+              </section>
+            </div>
+          </aside>
+        </div>
+        <footer class="liha-footer">
+          <strong id="prompt-footer-label">Prompt Like a Pro</strong>
+          <button id="submit-prompt" class="footer-btn footer-btn-arrow">
+            <span>Submit</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-processing">
+      <div class="liha-frame liha-frame-dark liha-frame-single">
+        <div class="liha-panel liha-panel-blue analyzing-panel">
+          <div class="analyzing-loader-wrap" aria-hidden="true">
+            <img src="/assets/images/loadingShapes.gif" alt="" class="analyzing-loader" />
+            <span class="analyzing-spinner-ring"></span>
+          </div>
+          <h2 class="analyzing-title">Processing your prompt...</h2>
+          <p class="analyzing-subcopy">Scoring quality, clarity, and constraints</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage hidden" id="stage-result">
+      <div class="liha-frame no-topbar">
+        <header class="liha-topbar">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" />
+        </header>
+        <div class="result-screen">
+          <aside class="result-score-orbit" id="result-score-orbit">
+            <span class="prompt-pro-result-icon" aria-hidden="true">%</span>
+            <p class="result-score-label">You scored</p>
+            <div class="result-score-row">
+              <span class="result-score-stripe" id="result-score-stripe" aria-hidden="true"></span>
+              <div class="ring-score" id="ring-score">--</div>
+            </div>
+            <p id="result-title" class="result-score-caption">"You prompt like a pro"</p>
+          </aside>
+
+          <div class="result-right-col">
+            <section class="result-main-card" id="result-main-card">
+              <h2 id="result-main-title">What you did well</h2>
+              <div class="result-pill-grid">
+                <article class="result-pill-card">
+                  <h3><span class="result-pill-dot" id="result-dot-role"></span>Role Details</h3>
+                  <p id="result-copy-role">Include employment type, role, location, seniority, hybrid/onsite/remote.</p>
+                  <p class="result-pill-rating" id="result-rating-role">Amazing</p>
+                </article>
+                <article class="result-pill-card">
+                  <h3><span class="result-pill-dot" id="result-dot-context"></span>Context</h3>
+                  <p id="result-copy-context">Include experience, critical skills, certifications and expected knowledge.</p>
+                  <p class="result-pill-rating" id="result-rating-context">Amazing</p>
+                </article>
+                <article class="result-pill-card">
+                  <h3><span class="result-pill-dot" id="result-dot-responsibilities"></span>Responsibilities</h3>
+                  <p id="result-copy-responsibilities">Detail 2 or 3 responsibilities critical for performance.</p>
+                  <p class="result-pill-rating" id="result-rating-responsibilities">Amazing</p>
+                </article>
+              </div>
+            </section>
+
+            <section class="result-protip-card">
+              <div class="result-protip-head">
+                <h3>How to make your prompt even stronger</h3>
+                <p class="result-protip-brand">
+                  <img src="/assets/images/proTip.gif" alt="" aria-hidden="true" />
+                  <span>Pro tip</span>
+                </p>
+              </div>
+              <p class="result-protip-copy" id="result-subcopy">Could be even more specific about the organisation or sector, which would make the output feel more tailored and less generic.</p>
+            </section>
+          </div>
+        </div>
+        <footer class="liha-footer" id="result-footer">
+          <strong id="result-footer-label">Prompt Like a Pro</strong>
+          <button class="footer-btn footer-btn-arrow" id="result-next-btn">
+            <span id="result-next-label">Try again</span>
+            <span class="footer-btn-arrow-bubble">
+              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+            </span>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <p id="global-error" class="error"></p>
+  </main>
+
+  <script src="/viewport-guard.js"></script>
+  <script src="/scroll-indicators.js"></script>
+  <script src="/prompt-like-a-pro.js"></script>
+</body>
+
+</html>

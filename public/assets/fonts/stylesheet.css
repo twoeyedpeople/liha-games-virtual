@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-MediumItalic.eot');
+    src: local('Community Pro Medium Italic'), local('CommunityPro-MediumItalic'),
+        url('CommunityPro-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-MediumItalic.woff2') format('woff2'),
+        url('CommunityPro-MediumItalic.woff') format('woff'),
+        url('CommunityPro-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-BoldItalic.eot');
+    src: local('Community Pro Bold Italic'), local('CommunityPro-BoldItalic'),
+        url('CommunityPro-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-BoldItalic.woff2') format('woff2'),
+        url('CommunityPro-BoldItalic.woff') format('woff'),
+        url('CommunityPro-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-Regular.eot');
+    src: local('Community Pro Regular'), local('CommunityPro-Regular'),
+        url('CommunityPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-Regular.woff2') format('woff2'),
+        url('CommunityPro-Regular.woff') format('woff'),
+        url('CommunityPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-LightItalic.eot');
+    src: local('Community Pro Light Italic'), local('CommunityPro-LightItalic'),
+        url('CommunityPro-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-LightItalic.woff2') format('woff2'),
+        url('CommunityPro-LightItalic.woff') format('woff'),
+        url('CommunityPro-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-Bold.eot');
+    src: local('Community Pro Bold'), local('CommunityPro-Bold'),
+        url('CommunityPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-Bold.woff2') format('woff2'),
+        url('CommunityPro-Bold.woff') format('woff'),
+        url('CommunityPro-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-Light.eot');
+    src: local('Community Pro Light'), local('CommunityPro-Light'),
+        url('CommunityPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-Light.woff2') format('woff2'),
+        url('CommunityPro-Light.woff') format('woff'),
+        url('CommunityPro-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-Medium.eot');
+    src: local('Community Pro Medium'), local('CommunityPro-Medium'),
+        url('CommunityPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-Medium.woff2') format('woff2'),
+        url('CommunityPro-Medium.woff') format('woff'),
+        url('CommunityPro-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Community Pro';
+    src: url('CommunityPro-RegularItalic.eot');
+    src: local('Community Pro Regular Italic'), local('CommunityPro-RegularItalic'),
+        url('CommunityPro-RegularItalic.eot?#iefix') format('embedded-opentype'),
+        url('CommunityPro-RegularItalic.woff2') format('woff2'),
+        url('CommunityPro-RegularItalic.woff') format('woff'),
+        url('CommunityPro-RegularItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Arena | Control Panel</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="control-page">
+    <main class="app-shell master-shell">
+      <header class="topbar master-topbar">
+        <div class="master-title-wrap">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="master-brand-logo" />
+          <h1>LiHa Games</h1>
+          <p class="tiny-note">Master dashboard for game sessions.</p>
+        </div>
+        <div class="status-bento master-status-bento">
+          <span>Status</span>
+          <strong id="master-status-badge">READY</strong>
+        </div>
+      </header>
+
+      <section id="auth-card" class="panel panel-small master-auth-card">
+        <div class="panel-head">
+          <h2>Authenticate</h2>
+          <p>Only the master can control game state.</p>
+        </div>
+        <div class="actions-row master-auth-row">
+          <input id="master-key" type="password" placeholder="Master key" />
+          <button id="auth-btn">Unlock Controls</button>
+        </div>
+      </section>
+
+      <section id="control-card" class="panel panel-large hidden master-control-card">
+        <section id="master-landing" class="stack-gap master-landing-view"></section>
+
+        <section id="master-game-view" class="hidden stack-gap master-focus-view">
+          <div class="actions-row master-focus-nav">
+            <button id="back-to-portal-btn" class="ghost inline-top">← Back To Dashboard</button>
+          </div>
+
+          <div class="bento-card bento-hero master-focus-hero">
+            <div class="master-focus-hero-copy">
+              <p class="eyebrow" id="master-focus-eyebrow">Group A</p>
+              <h2 id="master-game-title">Prompt Like A Pro - Group A</h2>
+              <p id="master-status">Lobby open for team joining.</p>
+            </div>
+            <div class="status-row master-focus-meta">
+              <div class="timer-card master-timer-card">
+                <span>Shared Timer</span>
+                <strong id="master-timer">15:00</strong>
+              </div>
+              <div id="join-code-wrap" class="master-passcode-block">
+                <p class="tiny-note">Passcode</p>
+                <div class="code-chip" id="master-join-code">------</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions-row master-action-row" id="master-lobby-actions">
+            <button id="start-round-btn">Start Game</button>
+          </div>
+
+          <div class="actions-row hidden master-action-row" id="master-round-actions">
+            <button id="pause-toggle-btn" class="ghost">Pause Timer</button>
+            <button id="end-round-btn" class="danger">End Game</button>
+          </div>
+
+          <div class="stack-gap master-section" id="prompt-view-panel">
+            <h3>Team Slots</h3>
+            <div id="master-team-slots" class="team-slot-grid"></div>
+          </div>
+
+          <div class="stack-gap master-section" id="prompt-leaderboard-panel">
+            <h3 id="master-leaderboard-title">Live Leaderboard</h3>
+            <p class="tiny-note" id="master-leaderboard-copy">Combined points (Prompt Like a Pro + Trust Who + Soft Skills Significance).</p>
+            <div id="master-leaderboard"></div>
+          </div>
+
+          <div id="trust-view-panel" class="stack-gap master-section hidden">
+            <h3 id="challenge-controls-title">Trust Who Controls</h3>
+            <div class="actions-row master-action-row">
+              <button id="challenge-claim-screen-btn" class="ghost">Claim Timer Screen</button>
+              <button id="challenge-toggle-btn">Start</button>
+              <button id="challenge-restart-btn" class="ghost">Restart</button>
+            </div>
+            <div class="actions-row master-action-row master-team-finish-row">
+              <button class="team-red" data-challenge-team="red">Red Finish</button>
+              <button class="team-blue" data-challenge-team="blue">Blue Finish</button>
+              <button class="team-yellow" data-challenge-team="yellow">Yellow Finish</button>
+              <button class="team-green" data-challenge-team="green">Green Finish</button>
+            </div>
+            <div id="challenge-results"></div>
+          </div>
+        </section>
+      </section>
+
+      <p id="master-error" class="error"></p>
+    </main>
+
+    <script src="control.js"></script>
+  </body>
+</html>

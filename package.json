@@ -1,0 +1,16 @@
+{
+  "name": "liha-games",
+  "version": "1.0.0",
+  "description": "Team prompt challenge game",
+  "main": "server.js",
+  "scripts": {
+    "cert": "bash scripts/generate-dev-cert.sh",
+    "start": "node server.js",
+    "start:https": "USE_HTTPS=1 node server.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.42.0",
+    "dotenv": "^17.3.1",
+    "express": "^4.21.2"
+  }
+}

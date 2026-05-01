@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Arena | Prompt Sandbox</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="control-page">
+    <main class="app-shell master-shell">
+      <header class="topbar master-topbar">
+        <div class="master-title-wrap">
+          <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="master-brand-logo" />
+          <h1>Prompt Sandbox</h1>
+          <p class="tiny-note">Score prompts without joining a session.</p>
+        </div>
+      </header>
+
+      <section class="panel panel-large">
+        <div class="stack-gap">
+          <div class="actions-row master-auth-row">
+            <input id="sandbox-master-key" type="password" placeholder="Master key" autocomplete="off" />
+            <select id="sandbox-brief">
+              <option value="policy-officer">Policy Officer</option>
+              <option value="business-analyst">Business Analyst</option>
+              <option value="customer-service-representative">Customer Service Representative</option>
+            </select>
+          </div>
+
+          <div id="sandbox-brief-preview" class="master-section" style="padding:12px 14px;"></div>
+
+          <textarea id="sandbox-prompt" rows="12" placeholder="Paste a prompt to test scoring..."></textarea>
+
+          <div class="actions-row master-action-row">
+            <button id="sandbox-score-btn">Score Prompt</button>
+          </div>
+
+          <p id="sandbox-error" class="error" style="position: static; max-width: 100%;"></p>
+
+          <div id="sandbox-summary" class="hidden"></div>
+          <pre id="sandbox-raw" style="margin:0; white-space:pre-wrap; background:#f5f2ec; color:#0e172e; border-radius:14px; padding:14px; max-height:50vh; overflow:auto;"></pre>
+        </div>
+      </section>
+    </main>
+
+    <script src="prompt-sandbox.js"></script>
+  </body>
+</html>

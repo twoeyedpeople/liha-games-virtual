@@ -1,0 +1,29 @@
+.viewport-guard.hidden {
+  display: none;
+}
+
+.viewport-guard {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: rgba(9, 24, 48, 0.9);
+  backdrop-filter: blur(4px);
+  padding: 24px;
+}
+
+.viewport-guard-card {
+  border-radius: 16px;
+  padding: 20px 24px;
+  background: #f3efe7;
+  color: #112749;
+  font-family: "Community Pro", sans-serif;
+  font-size: clamp(20px, 2.4vw, 34px);
+  font-weight: 700;
+  text-align: center;
+}
+
+body.viewport-guard-active {
+  overflow: hidden;
+}
