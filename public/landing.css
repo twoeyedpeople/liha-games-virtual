@@ -152,6 +152,23 @@ select {
   font-weight: 700;
 }
 
+.landing-hero-copy p {
+  margin: 12px 0 0;
+  font-size: 18px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.landing-hero-highlight {
+  display: inline-block;
+  padding: 4px 12px 6px;
+  border-radius: 12px;
+  background: var(--landing-blue);
+  color: var(--landing-white);
+  line-height: 0.98;
+}
+
 .landing-scroll-btn {
   width: 52px;
   height: 52px;
