@@ -120,7 +120,7 @@ body.liha-demo-body {
 
 .liha-demo-title-pill-wide {
   margin-left: 64px;
-  min-width: 438px;
+  width: fit-content;
   border-radius: 999px;
 }
 
@@ -254,7 +254,7 @@ body.liha-demo-body {
   }
 
   .liha-demo-title-pill-wide {
-    min-width: 0;
+    width: fit-content;
     margin-left: 28px;
   }
 
