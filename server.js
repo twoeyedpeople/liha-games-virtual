@@ -1486,6 +1486,10 @@ function setPhase(session, phase) {
 app.use(express.json());
 app.use(express.static("public"));
 
+app.get("/", (_, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 app.get("/aux", (_, res) => {
   res.sendFile(path.join(__dirname, "public", "aux.html"));
 });
@@ -2475,16 +2479,20 @@ function startHttpsServer() {
   });
 }
 
-if (USE_HTTPS) {
-  if (fs.existsSync(SSL_KEY_PATH) && fs.existsSync(SSL_CERT_PATH)) {
-    startHttpsServer();
+if (require.main === module) {
+  if (USE_HTTPS) {
+    if (fs.existsSync(SSL_KEY_PATH) && fs.existsSync(SSL_CERT_PATH)) {
+      startHttpsServer();
+    } else {
+      console.log("HTTPS requested but certificate files were not found.");
+      console.log(`Missing files: ${SSL_KEY_PATH} and/or ${SSL_CERT_PATH}`);
+      console.log("Run: npm run cert");
+      console.log("Falling back to HTTP for now.");
+      startHttpServer();
+    }
   } else {
-    console.log("HTTPS requested but certificate files were not found.");
-    console.log(`Missing files: ${SSL_KEY_PATH} and/or ${SSL_CERT_PATH}`);
-    console.log("Run: npm run cert");
-    console.log("Falling back to HTTP for now.");
     startHttpServer();
   }
-} else {
-  startHttpServer();
 }
+
+module.exports = app;
