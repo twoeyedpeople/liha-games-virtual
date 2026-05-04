@@ -34,6 +34,41 @@ body.liha-demo-body {
   padding: 18px 18px 20px;
 }
 
+.intro-corner {
+  position: fixed;
+  width: clamp(160px, 18vw, 340px);
+  height: clamp(160px, 18vw, 340px);
+  background: var(--liha-demo-blue-soft);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+  animation: lihaCornerWiggleA 9.2s ease-in-out infinite;
+}
+
+.intro-corner-left {
+  left: calc(clamp(160px, 18vw, 340px) * -0.5);
+  top: calc(clamp(160px, 18vw, 340px) * -0.5);
+}
+
+.intro-corner-right {
+  right: calc(clamp(160px, 18vw, 340px) * -0.5);
+  top: calc(clamp(160px, 18vw, 340px) * -0.5);
+  animation-name: lihaCornerWiggleB;
+  animation-duration: 10.6s;
+  animation-delay: -1.4s;
+}
+
+@keyframes lihaCornerWiggleA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, 8%) scale(1.05); }
+}
+
+@keyframes lihaCornerWiggleB {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8%, 6%) scale(1.1); }
+}
+
 .liha-demo-stage-active {
   display: block;
 }
@@ -58,7 +93,9 @@ body.liha-demo-body {
 }
 
 .liha-demo-logo {
-  width: 108px;
+  width: clamp(132px, 11.4vw, 218px);
+  max-width: 100%;
+  display: block;
   height: auto;
 }
 
