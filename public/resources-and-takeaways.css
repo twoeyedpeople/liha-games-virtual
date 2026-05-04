@@ -213,10 +213,24 @@ body.resources-page-body {
   overflow: hidden;
 }
 
-.champions-card-arrow {
+.champions-card-btn {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 6px 6px 6px 20px;
+  color: #17407e;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.champions-card-btn-arrow {
   width: 34px;
   height: 34px;
+  display: block;
 }
