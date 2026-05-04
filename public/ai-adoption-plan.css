@@ -202,9 +202,9 @@ body.adoption-plan-body {
 
 .adoption-certificate-badge {
   position: absolute;
-  right: -4px;
+  right: 26px;
   top: 26px;
-  width: 228px;
+  width: 171px;
   height: auto;
   display: block;
   z-index: 1;
@@ -270,6 +270,7 @@ body.adoption-plan-body {
   color: #000;
   font-size: 14px;
   line-height: 1;
+  font-family: inherit;
   font-weight: 700;
   cursor: pointer;
 }

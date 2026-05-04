@@ -130,29 +130,15 @@ body.liha-demo-body {
   pointer-events: none;
 }
 
-.liha-demo-shape-blue,
-.liha-demo-shape-yellow {
+.liha-demo-shapes-img {
   position: absolute;
-  display: block;
-}
-
-.liha-demo-shape-blue {
-  right: -22px;
-  top: 70px;
-  width: 208px;
-  height: 112px;
-  border-radius: 28px;
-  background: var(--liha-demo-blue-soft);
-  transform: rotate(29deg);
-}
-
-.liha-demo-shape-yellow {
-  right: -82px;
-  bottom: -74px;
-  width: 284px;
-  height: 284px;
-  border-radius: 999px;
-  background: var(--liha-demo-yellow);
+  right: -5px;
+  bottom: -5px;
+  width: clamp(125px, 25%, 238px);
+  height: auto;
+  max-height: 62.5%;
+  object-fit: contain;
+  object-position: right bottom;
 }
 
 .liha-demo-pill-btn {
