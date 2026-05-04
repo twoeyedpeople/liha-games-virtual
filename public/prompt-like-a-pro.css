@@ -291,3 +291,7 @@
     font-size: 18px;
   }
 }
+
+#job-brief-role-name {
+  font-size: 28px !important;
+}
