@@ -14,9 +14,9 @@ body.skills-page-body {
   --skills-page-side-padding: 40px;
   height: 100vh;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(14px, 2.2vh, 24px);
-  padding: clamp(18px, 2.6vh, 28px) var(--skills-page-side-padding) clamp(16px, 2.2vh, 24px);
+  padding: clamp(14px, 2.2vh, 24px) clamp(16px, 3vw, 40px);
   overflow: hidden;
 }
 
@@ -164,8 +164,7 @@ body.skills-page-body {
   justify-content: space-between;
 }
 
-.skills-play-icon,
-.skills-duration {
+.skills-play-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -179,7 +178,7 @@ body.skills-page-body {
 }
 
 .skills-duration {
-  font-size: clamp(10px, 1.2vh, 14px);
+  display: none;
 }
 
 .skills-card h2 {
@@ -222,4 +221,18 @@ body.skills-page-body {
   .skills-carousel {
     grid-auto-columns: minmax(260px, 280px);
   }
+}
+
+.page-topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.page-logo {
+  width: clamp(66px, 5.7vw, 109px);
+  max-width: 100%;
+  display: block;
+  height: auto;
 }

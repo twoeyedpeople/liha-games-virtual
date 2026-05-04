@@ -12,8 +12,10 @@ body.resources-page-body {
 
 .resources-page-stage {
   display: flex;
-  justify-content: center;
-  padding: 22px 20px 44px;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(14px, 2.2vh, 24px) clamp(16px, 3vw, 40px);
+  gap: clamp(14px, 2.2vh, 24px);
 }
 
 .resources-page-canvas {
@@ -233,4 +235,18 @@ body.resources-page-body {
   width: 34px;
   height: 34px;
   display: block;
+}
+
+.page-topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.page-logo {
+  width: clamp(66px, 5.7vw, 109px);
+  max-width: 100%;
+  display: block;
+  height: auto;
 }

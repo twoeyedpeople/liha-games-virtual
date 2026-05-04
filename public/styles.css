@@ -152,7 +152,7 @@ p {
 }
 
 .liha-logo {
-  width: clamp(132px, 11.4vw, 218px);
+  width: clamp(66px, 5.7vw, 109px);
   height: auto;
   display: block;
 }
@@ -3814,7 +3814,7 @@ body.leaderboard-screen .sr-only {
   z-index: 1;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 24px;
+  gap: clamp(14px, 2.2vh, 24px);
 }
 
 .intro-welcome-topbar {
@@ -3824,7 +3824,7 @@ body.leaderboard-screen .sr-only {
 }
 
 .intro-linkedin-logo {
-  width: clamp(132px, 11.4vw, 218px);
+  width: clamp(66px, 5.7vw, 109px);
   --logo-filter: none;
 }
 

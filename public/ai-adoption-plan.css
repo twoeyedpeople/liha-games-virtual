@@ -12,8 +12,10 @@ body.adoption-plan-body {
 
 .adoption-plan-stage {
   display: flex;
-  justify-content: center;
-  padding: 18px 22px 40px;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(14px, 2.2vh, 24px) clamp(16px, 3vw, 40px);
+  gap: clamp(14px, 2.2vh, 24px);
 }
 
 .adoption-plan-canvas {
@@ -323,4 +325,18 @@ body.adoption-plan-body {
   font-size: 11px;
   line-height: 1;
   font-weight: 700;
+}
+
+.page-topbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.page-logo {
+  width: clamp(66px, 5.7vw, 109px);
+  max-width: 100%;
+  display: block;
+  height: auto;
 }

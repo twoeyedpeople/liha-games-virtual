@@ -76,13 +76,13 @@ body.liha-demo-body {
 #liha-demo-intro.liha-demo-stage-active {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 18px;
+  gap: clamp(14px, 2.2vh, 24px);
 }
 
 #liha-demo-video.liha-demo-stage-active {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 18px;
+  gap: clamp(14px, 2.2vh, 24px);
 }
 
 .liha-demo-topbar {
@@ -93,7 +93,7 @@ body.liha-demo-body {
 }
 
 .liha-demo-logo {
-  width: clamp(132px, 11.4vw, 218px);
+  width: clamp(66px, 5.7vw, 109px);
   max-width: 100%;
   display: block;
   height: auto;
