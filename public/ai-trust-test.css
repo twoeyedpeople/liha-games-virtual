@@ -76,6 +76,44 @@ button {
   display: none;
   min-height: 100vh;
   padding: 18px 16px 16px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.intro-corner {
+  position: absolute;
+  width: clamp(160px, 18vw, 340px);
+  height: clamp(160px, 18vw, 340px);
+  border-radius: 50%;
+  background: rgba(20, 52, 96, 0.45);
+  filter: blur(48px);
+  z-index: 0;
+  pointer-events: none;
+  animation: lihaCornerWiggleA 9.2s infinite ease-in-out;
+}
+
+.intro-corner-left {
+  left: calc(clamp(160px, 18vw, 340px) * -0.5);
+  bottom: calc(clamp(160px, 18vw, 340px) * -0.5);
+}
+
+.intro-corner-right {
+  right: calc(clamp(160px, 18vw, 340px) * -0.5);
+  top: calc(clamp(160px, 18vw, 340px) * -0.5);
+  animation-name: lihaCornerWiggleB;
+  animation-duration: 10.6s;
+  animation-delay: -1.4s;
+}
+
+@keyframes lihaCornerWiggleA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, 8%) scale(1.05); }
+}
+
+@keyframes lihaCornerWiggleB {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-8%, 6%) scale(1.1); }
 }
 
 .trust-stage-active {
@@ -86,7 +124,8 @@ button {
 #trust-stage-intro.trust-stage-active {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 18px;
+  gap: 24px;
+  height: calc(100vh - 60px);
 }
 
 .trust-stage-header {
@@ -103,15 +142,16 @@ button {
 .trust-intro-panel {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(250px, 0.85fr) minmax(320px, 1fr);
+  grid-template-columns: minmax(0px, 44%) minmax(580px, 56%);
   align-items: center;
   gap: 22px;
   min-height: 0;
   height: 100%;
-  padding: 34px 44px;
+  padding: clamp(24px, 2vw, 38px);
   border-radius: 28px;
   background: var(--trust-blue);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .trust-intro-shapes {
@@ -121,14 +161,14 @@ button {
 
 .trust-intro-shapes-gif {
   position: absolute;
-  top: -6%;
-  left: -44px;
-  width: calc(60% + 26px);
-  max-width: none;
-  height: auto;
-  display: block;
+  top: -10%;
+  left: -8%;
+  width: 58%;
+  height: 120%;
   object-fit: contain;
-  object-position: left top;
+  object-position: left center;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .trust-intro-copy {
@@ -174,8 +214,8 @@ button {
 
 .trust-intro-footer {
   justify-content: space-between;
-  min-height: 68px;
-  padding: 0 16px 0 32px;
+  min-height: clamp(84px, 12vh, 128px);
+  padding: 20px clamp(20px, 1.6vw, 30px) 20px clamp(26px, 3vw, 54px);
 }
 
 .trust-footer {
