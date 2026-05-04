@@ -81,40 +81,7 @@ button {
   overflow-x: hidden;
 }
 
-.intro-corner {
-  position: absolute;
-  width: clamp(160px, 18vw, 340px);
-  height: clamp(160px, 18vw, 340px);
-  border-radius: 50%;
-  background: rgba(20, 52, 96, 0.45);
-  filter: blur(48px);
-  z-index: 0;
-  pointer-events: none;
-  animation: lihaCornerWiggleA 9.2s infinite ease-in-out;
-}
 
-.intro-corner-left {
-  left: calc(clamp(160px, 18vw, 340px) * -0.5);
-  bottom: calc(clamp(160px, 18vw, 340px) * -0.5);
-}
-
-.intro-corner-right {
-  right: calc(clamp(160px, 18vw, 340px) * -0.5);
-  top: calc(clamp(160px, 18vw, 340px) * -0.5);
-  animation-name: lihaCornerWiggleB;
-  animation-duration: 10.6s;
-  animation-delay: -1.4s;
-}
-
-@keyframes lihaCornerWiggleA {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(6%, 8%) scale(1.05); }
-}
-
-@keyframes lihaCornerWiggleB {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-8%, 6%) scale(1.1); }
-}
 
 .trust-stage-active {
   display: flex;
@@ -122,10 +89,20 @@ button {
 }
 
 #trust-stage-intro.trust-stage-active {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 30px;
+}
+
+.trust-intro-shell {
+  width: 100%;
+  height: calc(100vh - 60px);
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-rows: auto 1fr auto;
   gap: 24px;
-  height: calc(100vh - 60px);
 }
 
 .trust-stage-header {
@@ -161,10 +138,11 @@ button {
 
 .trust-intro-shapes-gif {
   position: absolute;
-  top: -10%;
-  left: -8%;
-  width: 58%;
-  height: 120%;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+  max-width: 58%;
   object-fit: contain;
   object-position: left center;
   z-index: 0;

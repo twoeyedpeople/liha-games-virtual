@@ -36,7 +36,7 @@ const CARDS = shuffle(
 
 const REQUIRED_TRUE_COUNT = 14;
 
-const introStage = document.getElementById("trust-stage-intro");
+const introStage = document.getElementById("intro-welcome-stage");
 const gameStage = document.getElementById("trust-stage-game");
 const boardEl = document.getElementById("trust-board");
 const progressEl = document.getElementById("trust-progress");
@@ -44,7 +44,7 @@ const footerEl = document.getElementById("trust-footer");
 const footerMessageEl = document.getElementById("trust-footer-message");
 const submitBtn = document.getElementById("trust-submit-btn");
 const submitLabel = document.getElementById("trust-submit-label");
-const startBtn = document.getElementById("trust-start-btn");
+const startBtn = document.getElementById("intro-get-started");
 
 const state = {
   selected: new Set(),
@@ -65,7 +65,7 @@ function shuffle(items) {
 }
 
 function showGameStage() {
-  introStage.classList.remove("trust-stage-active");
+  introStage.classList.add("hidden");
   gameStage.classList.add("trust-stage-active");
   renderAll();
 }
