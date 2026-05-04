@@ -91,7 +91,7 @@
 
 .prompt-pro-bottom strong {
   color: #112749;
-  font-size: clamp(24px, 2.1vw, 40px);
+  font-size: 30px;
   line-height: 1.05;
   letter-spacing: -0.04em;
 }

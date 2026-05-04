@@ -190,7 +190,7 @@ body.liha-demo-body {
 .liha-demo-footer p {
   margin: 0;
   color: var(--liha-demo-white);
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.05;
   letter-spacing: -0.04em;
   font-weight: 700;
@@ -199,7 +199,7 @@ body.liha-demo-body {
 .liha-demo-footer-btn {
   position: static;
   flex-shrink: 0;
-  font-size: clamp(18px, 1.55vw, 28px);
+  font-size: 20px;
 }
 
 .liha-demo-video-card {

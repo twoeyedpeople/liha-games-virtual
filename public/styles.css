@@ -881,7 +881,7 @@ button.danger {
 }
 
 .liha-footer strong {
-  font-size: clamp(28px, 1.95vw, 37px);
+  font-size: 30px;
   font-weight: 700;
   line-height: 1;
 }
@@ -891,7 +891,7 @@ button.danger {
   color: #204c8f;
   min-height: 66px;
   padding: 8px 30px;
-  font-size: clamp(20px, 1.45vw, 28px);
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -4442,7 +4442,7 @@ body.leaderboard-screen .sr-only {
   }
 
   .liha-footer strong {
-    font-size: clamp(22px, 1.45vw, 28px);
+    font-size: 30px;
   }
 }
 
