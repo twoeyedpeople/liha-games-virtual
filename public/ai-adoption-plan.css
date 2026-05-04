@@ -93,7 +93,7 @@ body.adoption-plan-body {
 }
 
 .adoption-hero-copy p {
-  margin: 16px 0 0;
+  margin: 14px 0 0;
   font-size: 19px;
   line-height: 1.08;
   font-weight: 700;
@@ -103,7 +103,7 @@ body.adoption-plan-body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 28px;
+  margin-top: 36px;
   padding: 6px 8px 6px 14px;
   border-radius: 999px;
   background: #fff;
