@@ -150,6 +150,31 @@
       ],
       "result": "Focus plan across 5 stages (Source the candidate, Send follow-ups, Shortlist Applicants, Coordinate interviews, Calibrate candidates). 8 actions selected. Priority first step: Source initial candidates.",
       "unpickedHours": 15.5
+    },
+    {
+      "id": "152d2e40-26e8-4e66-a9ce-fbd3b6831ed6",
+      "createdAt": 1778027515062,
+      "companyName": "Coso",
+      "selections": [
+        {
+          "stage": "Send follow-ups",
+          "task": "Gauge responses to pipeline status"
+        },
+        {
+          "stage": "Send outreach",
+          "task": "Send outreach via different channels"
+        },
+        {
+          "stage": "Calibrate candidates",
+          "task": "Review candidate profiles"
+        },
+        {
+          "stage": "Coordinate interviews",
+          "task": "Debrief with Hiring Manager"
+        }
+      ],
+      "result": "Focus plan across 4 stages (Send follow-ups, Send outreach, Calibrate candidates, Coordinate interviews). 4 actions selected. Priority first step: Gauge responses to pipeline status.",
+      "unpickedHours": 17.8
     }
   ],
   "promptSubmissions": [
@@ -749,5 +774,5 @@
       ]
     }
   ],
-  "updatedAt": 1775949961948
+  "updatedAt": 1778027515062
 }

@@ -8,8 +8,7 @@
   z-index: 9999;
   display: grid;
   place-items: center;
-  background: rgba(9, 24, 48, 0.9);
-  backdrop-filter: blur(4px);
+  background: #0f162c;
   padding: 24px;
 }
 

@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "cert": "bash scripts/generate-dev-cert.sh",
+    "dev": "concurrently \"USE_HTTPS=0 nodemon server.js\" \"browser-sync start --proxy http://localhost:3000 --files 'public/**/*,src/**/*,server.js' --port 3001 --no-open\"",
     "start": "node server.js",
     "start:https": "USE_HTTPS=1 node server.js"
   },
@@ -12,5 +13,10 @@
     "@google/genai": "^1.42.0",
     "dotenv": "^17.3.1",
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14"
   }
 }

@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hiring Assistant Demo</title>
   <link rel="stylesheet" href="/viewport-guard.css" />
+  <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/hiring-assistant-demo.css" />
+  <script src="/ua-flags.js"></script>
 </head>
 
 <body class="liha-demo-body">
@@ -15,39 +17,42 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <header class="liha-demo-topbar">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-demo-logo" /></a>
+        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
       </header>
 
       <div class="liha-demo-card liha-demo-intro-card">
-        <div class="liha-demo-copy">
-          <p class="liha-demo-headline">Experience LinkedIn Hiring Assistant in action - save time sourcing and finding top talent.</p>
+        <div class="liha-demo-art" aria-hidden="true">
+          <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+            <source src="/assets/images/sideShapes.webm" type="video/webm" />
+            <source src="/assets/images/sideShapes.mp4" type='video/mp4; codecs="hvc1"' />
+          </video>
+          <img class="side-shapes-fallback" src="/assets/images/sideShapes.svg" alt="" aria-hidden="true" />
+        </div>
 
-          <div class="liha-demo-title-lockup">
-            <span class="liha-demo-title-pill">The Future</span>
-            <span class="liha-demo-title-pill liha-demo-title-pill-wide">of Recruiting</span>
+        <div class="liha-demo-copy">
+          <h1>The future<br />of recruiting</h1>
+          <p class="liha-demo-headline">Experience LinkedIn Hiring Assistant in action.<br />Save time sourcing and finding top talent.</p>
+
+          <div class="liha-demo-contact">
+            <p>Want to learn more about Hiring Assistant?</p>
+            <a class="liha-demo-inline-link" href="https://business.linkedin.com/hire/hiring-assistant/contact-us" target="_blank" rel="noopener noreferrer">
+              <span>Get in touch</span>
+              <span class="liha-demo-inline-icon">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </a>
           </div>
         </div>
+      </div>
 
-        <div class="liha-demo-art" aria-hidden="true">
-          <img src="/assets/images/liha-demo-shapes.png" alt="" class="liha-demo-shapes-img" />
-        </div>
-
+      <footer class="liha-demo-footer">
+        <strong>Hiring Assistant Demo</strong>
         <button id="liha-demo-start" class="liha-demo-pill-btn" type="button">
           <span>Get Started</span>
           <span class="liha-demo-pill-icon">
             <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
           </span>
         </button>
-      </div>
-
-      <footer class="liha-demo-footer">
-        <p>Want to learn more about Hiring Assistant?</p>
-        <a class="liha-demo-pill-btn liha-demo-footer-btn" href="https://business.linkedin.com/hire/hiring-assistant/contact-us" target="_blank" rel="noopener noreferrer">
-          <span>Get in touch</span>
-          <span class="liha-demo-pill-icon">
-            <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
-          </span>
-        </a>
       </footer>
     </section>
 
@@ -55,7 +60,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <header class="liha-demo-topbar">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-demo-logo" /></a>
+        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
       </header>
 
       <div class="liha-demo-card liha-demo-video-card">
@@ -66,13 +71,13 @@
       </div>
 
       <footer class="liha-demo-footer">
-        <p>Want to learn more about Hiring Assistant?</p>
-        <a class="liha-demo-pill-btn liha-demo-footer-btn" href="https://business.linkedin.com/hire/hiring-assistant/contact-us" target="_blank" rel="noopener noreferrer">
-          <span>Get in touch</span>
+        <strong>Hiring Assistant Demo</strong>
+        <button id="liha-demo-done" class="liha-demo-pill-btn liha-demo-footer-btn" type="button">
+          <span>Done</span>
           <span class="liha-demo-pill-icon">
             <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
           </span>
-        </a>
+        </button>
       </footer>
     </section>
   </main>

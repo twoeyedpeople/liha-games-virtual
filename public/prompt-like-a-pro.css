@@ -6,8 +6,13 @@
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 18px;
-  padding: 18px 16px 16px;
+  gap: var(--stage-padding);
+  padding: var(--stage-padding);
+}
+
+.prompt-pro-stage > :not(.intro-corner) {
+  position: relative;
+  z-index: 1;
 }
 
 #stage-region-pick.prompt-pro-stage {
@@ -15,10 +20,10 @@
 }
 
 .prompt-pro-topbar {
+  height: var(--liha-topbar-height);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2px;
 }
 
 .prompt-pro-hero {
@@ -84,9 +89,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 16px 18px 16px 32px;
-  border-radius: 28px;
+  gap: 20px;
+  min-height: var(--liha-footer-min-height);
+  padding: 20px clamp(20px, 1.6vw, 30px) 20px clamp(26px, 3vw, 54px);
+  border-radius: var(--radius-xl);
 }
 
 .prompt-pro-bottom strong {
@@ -137,6 +143,7 @@
   justify-items: center;
   align-content: center;
   gap: 18px;
+  aspect-ratio: 4 / 3;
   min-height: 230px;
   border: 0;
   border-radius: 22px;
@@ -210,9 +217,26 @@
   gap: 12px;
 }
 
+.prompt-pro-footer-actions > button {
+  flex: 0 0 auto;
+}
+
+.prompt-pro-footer-actions .footer-btn-arrow {
+  white-space: nowrap;
+}
+
+#result-footer[data-mode="complete"] #result-next-btn .footer-btn-arrow-bubble {
+  display: none;
+}
+
+#result-footer[data-mode="complete"] #result-next-btn {
+  padding: 8px 30px;
+}
+
 .prompt-pro-back-btn {
-  min-width: 110px;
-  min-height: 58px;
+  min-width: 0;
+  min-height: 66px;
+  padding: 8px 30px;
   border-radius: 999px;
   border: 2px solid rgba(255, 255, 255, 0.42);
   color: #fff;
@@ -238,6 +262,10 @@
 
   .prompt-pro-region-grid {
     grid-template-columns: 1fr;
+  }
+
+  .prompt-pro-region-card {
+    aspect-ratio: auto;
   }
 }
 
@@ -286,9 +314,16 @@
   }
 
   .prompt-pro-back-btn {
-    min-width: 92px;
-    min-height: 50px;
+    min-width: 0;
+    min-height: 66px;
     font-size: 18px;
+  }
+}
+
+@media (max-height: 700px) {
+  .prompt-pro-bottom {
+    border-radius: 40px;
+    padding: 12px 16px;
   }
 }
 

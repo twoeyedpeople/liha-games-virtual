@@ -1,37 +1,76 @@
+@font-face {
+  font-family: "Community Pro";
+  src:
+    url("/assets/fonts/CommunityPro-Regular.woff2") format("woff2"),
+    url("/assets/fonts/CommunityPro-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Community Pro";
+  src:
+    url("/assets/fonts/CommunityPro-Bold.woff2") format("woff2"),
+    url("/assets/fonts/CommunityPro-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   --liha-demo-bg: #f3efe7;
-  --liha-demo-navy: #111933;
+  --liha-demo-navy: #0f162c;
   --liha-demo-blue: #2d64bc;
   --liha-demo-blue-deep: #173f7e;
   --liha-demo-blue-soft: #7faef0;
   --liha-demo-yellow: #f6cf46;
   --liha-demo-white: #ffffff;
+  --stage-padding: 30px;
+  --liha-topbar-height: clamp(44px, 6.2vh, 64px);
+  --liha-footer-min-height: clamp(84px, 12vh, 128px);
+  --radius-xl: 28px;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body.liha-demo-body {
   margin: 0;
-  min-height: 100vh;
-  background: var(--liha-demo-bg);
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, rgba(127, 179, 244, 0.95) 0, rgba(127, 179, 244, 0.95) 90px, transparent 91px),
+    radial-gradient(circle at top right, rgba(127, 179, 244, 0.95) 0, rgba(127, 179, 244, 0.95) 90px, transparent 91px),
+    var(--liha-demo-bg);
   color: var(--liha-demo-white);
   font-family: "Community Pro", sans-serif;
 }
 
+button {
+  font: inherit;
+}
+
 .liha-demo-app {
   min-height: 100vh;
-  display: grid;
-  align-content: start;
-  padding: 0;
 }
 
 .liha-demo-stage {
   display: none;
-  width: 100%;
   min-height: 100vh;
-  padding: 18px 18px 20px;
+  padding: var(--stage-padding);
+  position: relative;
+  overflow: hidden;
+}
+
+.liha-demo-stage > :not(.intro-corner) {
+  position: relative;
+  z-index: 1;
 }
 
 .intro-corner {
@@ -60,105 +99,126 @@ body.liha-demo-body {
 }
 
 @keyframes lihaCornerWiggleA {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(6%, 8%) scale(1.05); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(6%, 8%) scale(1.05);
+  }
 }
 
 @keyframes lihaCornerWiggleB {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(-8%, 6%) scale(1.1); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-8%, 6%) scale(1.1);
+  }
 }
 
 .liha-demo-stage-active {
-  display: block;
-}
-
-#liha-demo-intro.liha-demo-stage-active {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: clamp(14px, 2.2vh, 24px);
-}
-
-#liha-demo-video.liha-demo-stage-active {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: clamp(14px, 2.2vh, 24px);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--stage-padding);
 }
 
 .liha-demo-topbar {
+  height: var(--liha-topbar-height);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 2px;
-}
-
-.liha-demo-logo {
-  width: clamp(66px, 5.7vw, 109px);
-  max-width: 100%;
-  display: block;
-  height: auto;
 }
 
 .liha-demo-card {
   position: relative;
   min-height: 0;
-  border-radius: 30px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
+  background: var(--liha-demo-navy);
 }
 
 .liha-demo-intro-card {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(270px, 0.78fr) minmax(420px, 1fr);
   align-items: center;
-  justify-content: flex-start;
+  gap: 28px;
+  min-height: min(57vh, 560px);
   height: 100%;
-  padding: 34px 36px 42px;
-  background: var(--liha-demo-navy);
+  padding: clamp(34px, 3.4vw, 62px) clamp(44px, 5vw, 92px);
 }
 
 .liha-demo-copy {
   position: relative;
   z-index: 2;
-  width: 100%;
-  text-align: center;
+  grid-column: 2;
+  max-width: 720px;
+}
+
+.liha-demo-copy h1 {
+  margin: 0;
+  color: var(--liha-demo-white);
+  font-size: clamp(58px, 5.6vw, 86px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 700;
 }
 
 .liha-demo-headline {
-  margin: 0 auto;
-  max-width: min(980px, 64vw);
-  font-size: clamp(30px, 2.7vw, 50px);
-  line-height: 1.22;
-  letter-spacing: -0.02em;
+  margin: clamp(26px, 3vw, 44px) 0 0;
+  color: var(--liha-demo-white);
+  font-size: clamp(25px, 1.9vw, 34px);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+}
+
+.liha-demo-contact {
+  margin-top: clamp(62px, 7vh, 118px);
+}
+
+.liha-demo-contact p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: clamp(21px, 1.65vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
   font-weight: 700;
 }
 
-.liha-demo-title-lockup {
-  display: grid;
-  justify-items: start;
-  gap: 14px;
-  width: fit-content;
-  margin: 46px 0 0;
+.liha-demo-inline-link {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--liha-demo-white);
+  text-decoration: none;
+  font-size: clamp(23px, 1.7vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 700;
 }
 
-.liha-demo-title-pill {
+.liha-demo-inline-icon,
+.liha-demo-pill-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 82px;
-  padding: 0 22px;
-  border-radius: 20px;
-  background: var(--liha-demo-blue);
-  color: var(--liha-demo-white);
-  font-size: clamp(34px, 4.3vw, 66px);
-  line-height: 1;
-  letter-spacing: -0.03em;
-  font-weight: 700;
+  border-radius: 999px;
+  background: #d9e8ff;
 }
 
-.liha-demo-title-pill-wide {
-  margin-left: 64px;
-  width: fit-content;
-  border-radius: 999px;
+.liha-demo-inline-icon {
+  width: 48px;
+  height: 48px;
+}
+
+.liha-demo-inline-icon img {
+  width: 56%;
+  height: 56%;
 }
 
 .liha-demo-art {
@@ -167,94 +227,65 @@ body.liha-demo-body {
   pointer-events: none;
 }
 
-.liha-demo-shapes-img {
-  position: absolute;
-  right: -5px;
-  bottom: -5px;
-  width: clamp(125px, 25%, 238px);
-  height: auto;
-  max-height: 62.5%;
-  object-fit: contain;
-  object-position: right bottom;
-}
-
-.liha-demo-pill-btn {
-  position: absolute;
-  right: 18px;
-  bottom: 46px;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 7px 6px 16px;
-  border: 0;
-  border-radius: 999px;
-  background: var(--liha-demo-white);
-  color: var(--liha-demo-blue-deep);
-  text-decoration: none;
-  font-size: clamp(12px, 1vw, 18px);
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.liha-demo-pill-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: #d7e7fd;
-}
-
-.liha-demo-pill-icon img {
-  width: 15px;
-  height: 15px;
-}
-
 .liha-demo-footer {
-  margin-top: 0;
-  min-height: 80px;
-  padding: 0 22px;
-  border-radius: 30px;
-  background: #17407e;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  min-height: var(--liha-footer-min-height);
+  padding: 20px clamp(20px, 1.6vw, 30px) 20px clamp(26px, 3vw, 54px);
+  border-radius: var(--radius-xl);
+  background: var(--liha-demo-yellow);
 }
 
-.liha-demo-footer p {
-  margin: 0;
-  color: var(--liha-demo-white);
+.liha-demo-footer strong {
+  color: #112749;
   font-size: 30px;
   line-height: 1.05;
   letter-spacing: -0.04em;
   font-weight: 700;
 }
 
-.liha-demo-footer-btn {
-  position: static;
+.liha-demo-pill-btn {
   flex-shrink: 0;
+  min-width: 190px;
+  min-height: 66px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 8px 8px 30px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--liha-demo-white);
+  color: var(--liha-demo-blue-deep);
+  text-decoration: none;
   font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.liha-demo-footer-btn {
+  min-width: 0;
+}
+
+.liha-demo-pill-icon {
+  width: 46.6px;
+  height: 46.6px;
+}
+
+.liha-demo-pill-icon img {
+  width: 56%;
+  height: 56%;
 }
 
 .liha-demo-video-card {
-  background: var(--liha-demo-navy);
-  padding: 0;
   height: 100%;
   min-height: 0;
+  padding: clamp(18px, 2vw, 34px);
   display: grid;
   place-items: center;
-}
-
-#liha-demo-video .liha-demo-footer {
-  min-height: 80px;
-  padding: 0 22px;
-}
-
-#liha-demo-video .liha-demo-footer-btn {
-  position: static;
 }
 
 .liha-demo-video-player {
@@ -265,77 +296,65 @@ body.liha-demo-body {
   max-height: 100%;
   aspect-ratio: 16 / 9;
   border: 0;
-  border-radius: 28px;
+  border-radius: 22px;
   background: #000;
   object-fit: contain;
 }
 
 @media (max-width: 900px) {
-  .liha-demo-intro-card {
-    min-height: 350px;
-    padding: 28px 24px 96px;
+  :root {
+    --stage-padding: 24px;
+    --liha-topbar-height: 40px;
+    --liha-footer-min-height: 78px;
   }
 
-  .liha-demo-title-pill-wide {
-    width: fit-content;
-    margin-left: 28px;
+  .liha-demo-intro-card {
+    grid-template-columns: 1fr;
+    align-items: center;
+    padding: 32px 28px;
+  }
+
+  .liha-demo-copy {
+    grid-column: 1;
+    max-width: 560px;
+    margin-left: auto;
+  }
+
+  .liha-demo-art .side-shapes-video,
+  .liha-demo-art .side-shapes-fallback {
+    width: clamp(260px, 48vw, 520px);
   }
 
   .liha-demo-footer {
-    flex-direction: column;
     align-items: stretch;
-    min-height: 0;
+    flex-direction: column;
     padding: 18px;
   }
 
-  .liha-demo-footer-btn {
+  .liha-demo-pill-btn {
     align-self: flex-end;
   }
 }
 
 @media (max-width: 640px) {
-  .liha-demo-app {
-    padding: 0;
+  .liha-demo-stage {
+    padding: 14px 12px 12px;
   }
 
-  .liha-demo-card {
-    border-radius: 24px;
+  .liha-demo-copy h1 {
+    font-size: 44px;
   }
 
-  .liha-demo-intro-card {
-    min-height: 320px;
-    padding: 24px 20px 92px;
-  }
-
-  .liha-demo-headline {
-    font-size: 24px;
-  }
-
-  .liha-demo-title-lockup {
-    gap: 10px;
-    margin-top: 28px;
-  }
-
-  .liha-demo-title-pill {
-    min-height: 66px;
-    font-size: 30px;
-  }
-
-  .liha-demo-title-pill-wide {
-    margin-left: 18px;
-  }
-
-  .liha-demo-pill-btn {
-    right: 14px;
-    bottom: 18px;
-    font-size: 18px;
-  }
-
-  .liha-demo-footer {
-    padding: 18px;
-  }
-
-  .liha-demo-footer p {
+  .liha-demo-headline,
+  .liha-demo-contact p {
     font-size: 20px;
+  }
+
+  .liha-demo-inline-link {
+    font-size: 22px;
+  }
+
+  .liha-demo-footer strong {
+    font-size: 24px;
   }
 }

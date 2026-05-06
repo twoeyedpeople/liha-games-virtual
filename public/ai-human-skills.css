@@ -12,9 +12,9 @@ body.skills-page-body {
 
 .skills-page {
   --skills-page-side-padding: 40px;
-  height: 100vh;
+  height: calc(100vh - 64px);
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(14px, 2.2vh, 24px);
   padding: clamp(14px, 2.2vh, 24px) clamp(16px, 3vw, 40px);
   overflow: hidden;
@@ -79,7 +79,7 @@ body.skills-page-body {
 }
 
 .skills-section + .skills-section {
-  margin-top: -24px;
+  /* margin-top: -24px; */
 }
 
 .skills-section-labels {

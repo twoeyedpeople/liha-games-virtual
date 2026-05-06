@@ -10,36 +10,36 @@ const briefPreviewEl = document.getElementById("sandbox-brief-preview");
 const KEY_STORAGE = "promptArenaMasterKey";
 const PROMPT_STORAGE = "promptSandboxPrompt";
 const BRIEF_STORAGE = "promptSandboxBrief";
-const BRIEF_DETAILS = {
-  "business-analyst": {
-    name: "Business Analyst",
-    subcopy:
-      "We’re seeking an experienced Business Analyst (Sydney, hybrid) to work with stakeholders to identify needs, define requirements and support the delivery of effective solutions by translating business problems into clear, actionable insights. The role is full-time and involves gathering and documenting requirements, mapping current and future-state processes, collaborating with technical and delivery teams, facilitating workshops, and producing insights and recommendations to inform decision-making. Ideal candidates have a relevant degree, 4–7 years’ experience in business analysis or consulting, strong analytical and communication skills, the ability to simplify complexity, and experience with requirements documentation, data analysis, and Agile or similar delivery frameworks.",
-    goal: "Assess requirement gathering, data interpretation, and stakeholder alignment skills.",
-    include: "Include deliverables, acceptance criteria, assumptions, and measurable decision factors.",
-    success: "Aim for a structured, testable output your hiring panel can score consistently.",
-  },
-  "policy-officer": {
-    name: "Policy Officer",
-    subcopy:
-      "We’re seeking a full-time Policy Officer (Sydney or Canberra, hybrid) to support the development, analysis and delivery of public policy initiatives in a regulated government environment. The role involves researching policy and legislation, drafting briefs and recommendations for senior leaders, coordinating input across internal and external stakeholders, supporting consultations, and assisting with implementation and review. Ideal candidates have a relevant degree, 3–6 years’ experience in government or policy, strong research and writing skills, sound judgement, clear communication, and the ability to collaborate, manage risk and work with attention to detail.",
-    goal: "Assess candidate fit, stakeholder communication, and policy execution strength.",
-    include: "Include output format, evaluation criteria, and clear constraints with measurable outcomes.",
-    success: "Aim for a policy-ready framework with clear trade-offs and decision rationale.",
-  },
-  "customer-service-representative": {
-    name: "Customer Service Representative",
-    subcopy:
-      "We’re seeking a Customer Service Representative (Sydney, on-site, shift-based) to support customers in a fast-paced, high-volume environment, delivering timely, accurate and empathetic service while meeting quality and performance targets. The part-time role involves handling enquiries via phone, chat and email, resolving issues efficiently, escalating complex cases, maintaining accurate customer records, and achieving service and satisfaction goals. Ideal candidates have 1–3 years’ customer-facing experience, strong communication and problem-solving skills, resilience under pressure, attention to detail, and familiarity with CRM or ticketing systems, along with relevant certifications such as ITIL Foundation, a customer service/contact centre certification or product/platform certifications where applicable.",
-    goal: "Assess empathy, issue resolution quality, communication clarity, and escalation judgment.",
-    include: "Include response templates, quality standards, and edge-case handling expectations.",
-    success: "Aim for practical scripts and metrics that improve customer outcomes and consistency.",
-  },
-};
+
+const { REGION_BRIEFS, PROMPT_BRIEF_LIST: FLAT_BRIEFS, PROMPT_BRIEF_BY_ID: BRIEF_BY_ID } = window.PROMPT_BRIEF_DATA;
+const DEFAULT_BRIEF_ID = "policy-officer";
+function escapeHtml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function renderBriefOptions() {
+  briefEl.innerHTML = Object.values(REGION_BRIEFS)
+    .map(
+      (region) => `<optgroup label="${escapeHtml(region.label)}">${region.briefs
+        .map((brief) => `<option value="${escapeHtml(brief.id)}">${escapeHtml(brief.title)}</option>`)
+        .join("")}</optgroup>`
+    )
+    .join("");
+}
+
+function selectedBrief() {
+  return BRIEF_BY_ID[briefEl.value] || BRIEF_BY_ID[DEFAULT_BRIEF_ID] || FLAT_BRIEFS[0];
+}
 
 keyEl.value = sessionStorage.getItem(KEY_STORAGE) || "";
 promptEl.value = localStorage.getItem(PROMPT_STORAGE) || "";
-briefEl.value = localStorage.getItem(BRIEF_STORAGE) || "policy-officer";
+renderBriefOptions();
+briefEl.value = BRIEF_BY_ID[localStorage.getItem(BRIEF_STORAGE)] ? localStorage.getItem(BRIEF_STORAGE) : DEFAULT_BRIEF_ID;
 
 function showError(message = "") {
   errorEl.textContent = message;
@@ -47,13 +47,9 @@ function showError(message = "") {
 
 function renderBriefPreview() {
   if (!briefPreviewEl) return;
-  const key = briefEl.value || "policy-officer";
-  const brief = BRIEF_DETAILS[key] || BRIEF_DETAILS["policy-officer"];
-  briefPreviewEl.innerHTML = `<strong>${brief.name} brief</strong>
-  <p class="tiny-note" style="margin:6px 0 0;">${brief.subcopy}</p>
-  <p class="tiny-note" style="margin:8px 0 0;"><strong>Goal:</strong> ${brief.goal}</p>
-  <p class="tiny-note" style="margin:4px 0 0;"><strong>Include:</strong> ${brief.include}</p>
-  <p class="tiny-note" style="margin:4px 0 0;"><strong>Success:</strong> ${brief.success}</p>`;
+  const brief = selectedBrief();
+  briefPreviewEl.innerHTML = `<strong>${escapeHtml(brief.region)} | ${escapeHtml(brief.title)} brief</strong>
+  <p class="tiny-note" style="margin:6px 0 0; white-space:pre-wrap;">${escapeHtml(brief.subcopy)}</p>`;
 }
 
 async function scorePrompt() {
@@ -97,11 +93,12 @@ async function scorePrompt() {
 
     summaryEl.classList.remove("hidden");
     summaryEl.innerHTML = `<div class="master-section" style="padding:12px 14px;">
-      <strong>Role:</strong> ${data.roleTitle} &nbsp; | &nbsp;
-      <strong>Engine:</strong> ${data.engine} &nbsp; | &nbsp;
-      <strong>Raw:</strong> ${data.rawScore}% &nbsp; | &nbsp;
-      <strong>Curved:</strong> ${data.curvedScore}% &nbsp; | &nbsp;
-      <strong>Status:</strong> ${data.failed ? `Fail (<${data.passThreshold || 80} raw)` : "Pass"}
+      <strong>Role:</strong> ${escapeHtml(data.roleTitle)} &nbsp; | &nbsp;
+      <strong>Brief ID:</strong> ${escapeHtml(data.brief)} &nbsp; | &nbsp;
+      <strong>Engine:</strong> ${escapeHtml(data.engine)} &nbsp; | &nbsp;
+      <strong>Raw:</strong> ${escapeHtml(data.rawScore)}% &nbsp; | &nbsp;
+      <strong>Curved:</strong> ${escapeHtml(data.curvedScore)}% &nbsp; | &nbsp;
+      <strong>Status:</strong> ${data.failed ? `Fail (&lt;${escapeHtml(data.passThreshold || 80)} raw)` : "Pass"}
     </div>`;
 
     rawEl.textContent = JSON.stringify(data, null, 2);

@@ -5,14 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Skills Sprint Virtual Hub</title>
+  <link rel="stylesheet" href="/viewport-guard.css" />
   <link rel="stylesheet" href="/landing.css" />
 </head>
 
-<body class="landing-body">
+<body class="landing-body" data-viewport-guard-min-width="1100">
   <header class="landing-topbar">
     <div class="landing-topbar-inner">
       <a class="landing-logo-link" href="/index.html" aria-label="AI Skills Sprint Virtual Hub home">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="landing-logo" /></a>
+        <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="landing-logo" />
       </a>
 
       <nav class="landing-nav" aria-label="Primary">
@@ -31,17 +32,13 @@
     <div class="landing-main-canvas">
       <section class="landing-hero">
         <div class="landing-hero-copy">
-          <h1>Welcome to <span class="landing-hero-highlight">AI Skills Sprint</span> Challenge Hub.</h1>
+          <h1>Welcome to <span class="landing-hero-highlight">AI Skills Sprint</span> <span class="landing-hero-line">Challenge Hub.</span></h1>
           <p>Build skills today - to stay ahead for tomorrow.</p>
         </div>
-        <button class="landing-scroll-btn" type="button" id="scroll-to-activities" aria-label="Scroll to activities">
-          <span>&darr;</span>
-        </button>
       </section>
 
       <section class="landing-activities" id="activities" aria-label="Activities">
-        <a class="activity-card activity-card-wide activity-card-focus" href="/recruiterfocusfinder.html" target="_blank"
-          rel="noopener noreferrer">
+        <a class="activity-card activity-card-wide activity-card-focus" href="/recruiterfocusfinder.html">
           <div class="activity-card-art activity-card-art-focus">
             <img src="/assets/images/prompt-like-a-pro/prompt-like-a-pro-shapes.gif" alt="" class="activity-card-focus-gif" />
           </div>
@@ -57,9 +54,14 @@
         </a>
 
         <div class="activity-grid">
-          <a class="activity-card activity-card-trust" href="/ai-trust-test" target="_blank" rel="noopener noreferrer">
+          <a class="activity-card activity-card-trust" href="/ai-trust-test">
+            <div class="activity-card-art">
+              <img src="/assets/images/landing/background_shape-01.svg" alt="" class="activity-card-bg" />
+            </div>
             <div class="activity-card-content">
-              <p class="activity-chip">1. AI Trust Test</p>
+              <div class="activity-card-kicker">
+                <p class="activity-chip">1. AI Trust Test</p>
+              </div>
               <h2>Gain confidence to use and scale AI across your organisation.</h2>
               <p class="activity-skill">Skill: Governance, Risk Management &amp; Compliance</p>
             </div>
@@ -69,14 +71,14 @@
             </span>
           </a>
 
-        <a class="activity-card activity-card-prompt" href="/prompt-like-a-pro" target="_blank"
-          rel="noopener noreferrer">
-          <div class="activity-card-art activity-card-art-prompt">
-            <span class="shape-arch-blue"></span>
-            <span class="shape-corner-dark"></span>
+        <a class="activity-card activity-card-prompt" href="/prompt-like-a-pro">
+          <div class="activity-card-art">
+            <img src="/assets/images/landing/background_shape-02.svg" alt="" class="activity-card-bg" />
           </div>
           <div class="activity-card-content">
-            <p class="activity-chip">2. Prompt Like a Pro</p>
+            <div class="activity-card-kicker">
+              <p class="activity-chip">2. Prompt Like a Pro</p>
+            </div>
             <h2>Master AI prompting for stronger results and smarter sourcing.</h2>
             <p class="activity-skill">Skill: Prompt Engineering</p>
           </div>
@@ -86,13 +88,14 @@
           </span>
         </a>
 
-        <a class="activity-card activity-card-dark activity-card-demo-panel" href="/hiring-assistant-demo" target="_blank"
-          rel="noopener noreferrer">
-          <div class="activity-card-art activity-card-art-demo">
-            <img src="/assets/images/landing/background-shape-03.png" alt="" class="activity-card-demo-bg" />
+        <a class="activity-card activity-card-dark activity-card-demo-panel" href="/hiring-assistant-demo">
+          <div class="activity-card-art">
+            <img src="/assets/images/landing/background_shape-03.svg" alt="" class="activity-card-bg" />
           </div>
           <div class="activity-card-content">
-            <p class="activity-chip activity-chip-light">3. The Future of Recruiting</p>
+            <div class="activity-card-kicker">
+              <p class="activity-chip activity-chip-light">3. The Future of Recruiting</p>
+            </div>
             <h2>Save time sourcing and finding top talent with LinkedIn Hiring Assistant.</h2>
             <p class="activity-skill activity-skill-light">Skill: AI for Business</p>
           </div>
@@ -102,12 +105,13 @@
           </span>
         </a>
 
-        <a class="activity-card activity-card-dark" href="/human-skills-in-the-age-of-ai" target="_blank"
-          rel="noopener noreferrer">
+        <a class="activity-card activity-card-dark" href="/human-skills-in-the-age-of-ai">
           <div class="activity-card-content">
-            <div class="activity-chip-stack">
-              <p class="activity-chip activity-chip-light">4. Human Skills</p>
-              <p class="activity-chip activity-chip-light activity-chip-align-right">in the Age of AI</p>
+            <div class="activity-card-kicker">
+              <div class="activity-chip-stack">
+                <p class="activity-chip activity-chip-light">4. Human Skills</p>
+                <p class="activity-chip activity-chip-light activity-chip-align-right">in the Age of AI</p>
+              </div>
             </div>
             <h2>Build the top AI and Human skills needed for the AI era.</h2>
             <p class="activity-skill activity-skill-light">Skill: Strategic Communication, Leadership, Prompt Engineering</p>
@@ -118,13 +122,14 @@
           </span>
         </a>
 
-        <a class="activity-card activity-card-plan activity-card-plan-panel" href="/ai-adoption-plan" target="_blank"
-          rel="noopener noreferrer">
-          <div class="activity-card-art activity-card-art-plan">
-            <img src="/assets/images/landing/background-shape-04.png" alt="" class="activity-card-plan-bg" />
+        <a class="activity-card activity-card-plan activity-card-plan-panel" href="/ai-adoption-plan">
+          <div class="activity-card-art">
+            <img src="/assets/images/landing/background_shape-04.svg" alt="" class="activity-card-bg" />
           </div>
           <div class="activity-card-content">
-            <p class="activity-chip">5. AI Adoption Plan</p>
+            <div class="activity-card-kicker">
+              <p class="activity-chip">5. AI Adoption Plan</p>
+            </div>
             <h2>Build your 90 day AI adoption plan to continue your AI journey.</h2>
             <p class="activity-skill">Skill: AI</p>
           </div>
@@ -134,15 +139,16 @@
           </span>
         </a>
 
-        <a class="activity-card activity-card-resource activity-card-resource-panel" href="/resources-and-takeaways" target="_blank"
-          rel="noopener noreferrer">
-          <div class="activity-card-art activity-card-art-resource">
-            <img src="/assets/images/landing/background-shape-06.png" alt="" class="activity-card-resource-bg" />
+        <a class="activity-card activity-card-resource activity-card-resource-panel" href="/resources-and-takeaways">
+          <div class="activity-card-art">
+            <img src="/assets/images/landing/background_shape-05.svg" alt="" class="activity-card-bg" />
           </div>
           <div class="activity-card-content">
-            <div class="activity-chip-stack activity-chip-stack-resource">
-              <p class="activity-chip activity-chip-light">6. Resources &amp;</p>
-              <p class="activity-chip activity-chip-light activity-chip-align-resource">Takeaways</p>
+            <div class="activity-card-kicker">
+              <div class="activity-chip-stack activity-chip-stack-resource">
+                <p class="activity-chip activity-chip-light">6. Resources &amp;</p>
+                <p class="activity-chip activity-chip-light activity-chip-align-resource">Takeaways</p>
+              </div>
             </div>
             <h2>Explore more resources to improve your AI recruiting skills.</h2>
             <p class="activity-skill activity-skill-light">Skill: AI for Business</p>
@@ -158,7 +164,7 @@
     </div>
   </main>
 
-  <script src="/landing.js"></script>
+  <script src="/viewport-guard.js"></script>
 </body>
 
 </html>

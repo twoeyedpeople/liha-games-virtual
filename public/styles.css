@@ -90,8 +90,7 @@ body {
   z-index: 9999;
   display: grid;
   place-items: center;
-  background: rgba(9, 24, 48, 0.9);
-  backdrop-filter: blur(4px);
+  background: #0f162c;
   padding: 24px;
 }
 
@@ -152,7 +151,7 @@ p {
 }
 
 .liha-logo {
-  width: clamp(66px, 5.7vw, 109px);
+  width: clamp(86px, 27.7vw, 179px);
   height: auto;
   display: block;
 }
@@ -215,11 +214,11 @@ p {
   display: none;
 }
 
-.no-alpha-webm .side-shapes-video {
+.no-side-shapes-video .side-shapes-video {
   display: none;
 }
 
-.no-alpha-webm .side-shapes-fallback {
+.no-side-shapes-video .side-shapes-fallback {
   display: block;
 }
 
@@ -2320,10 +2319,6 @@ background: var(--card-neutral);
 
 #stage-result.result-tone-fail #result-score-stripe {
   background: #f96233;
-}
-
-#stage-result.result-tone-fail .result-pill-dot[data-tone="good"] {
-  background: #f6cf46;
 }
 
 #stage-result.result-tone-fail .result-pill-dot[data-tone="bad"] {

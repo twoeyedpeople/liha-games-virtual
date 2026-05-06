@@ -13,6 +13,8 @@
 <body class="mode-player prompt-pro-body">
   <main class="game-shell">
     <section class="stage prompt-pro-stage" id="stage-intro">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
       <header class="prompt-pro-topbar">
         <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
       </header>
@@ -41,6 +43,8 @@
     </section>
 
     <section class="stage hidden prompt-pro-stage" id="stage-region-pick">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
       <header class="prompt-pro-topbar">
         <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
       </header>
@@ -141,12 +145,15 @@
         </div>
         <footer class="liha-footer">
           <strong id="brief-footer-label">Prompt Like a Pro</strong>
-          <button id="ready-to-prompt" class="footer-btn footer-btn-arrow">
-            <span>Ready to prompt</span>
-            <span class="footer-btn-arrow-bubble">
-              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
-            </span>
-          </button>
+          <div class="prompt-pro-footer-actions">
+            <button id="brief-back-btn" class="ghost prompt-pro-back-btn" type="button">Back</button>
+            <button id="ready-to-prompt" class="footer-btn footer-btn-arrow">
+              <span>Ready to prompt</span>
+              <span class="footer-btn-arrow-bubble">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </button>
+          </div>
         </footer>
       </div>
     </section>
@@ -200,12 +207,15 @@
         </div>
         <footer class="liha-footer">
           <strong id="prompt-footer-label">Prompt Like a Pro</strong>
-          <button id="submit-prompt" class="footer-btn footer-btn-arrow">
-            <span>Submit</span>
-            <span class="footer-btn-arrow-bubble">
-              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
-            </span>
-          </button>
+          <div class="prompt-pro-footer-actions">
+            <button id="prompt-back-btn" class="ghost prompt-pro-back-btn" type="button">Back</button>
+            <button id="submit-prompt" class="footer-btn footer-btn-arrow">
+              <span>Submit</span>
+              <span class="footer-btn-arrow-bubble">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </button>
+          </div>
         </footer>
       </div>
     </section>
@@ -275,12 +285,20 @@
         </div>
         <footer class="liha-footer" id="result-footer">
           <strong id="result-footer-label">Prompt Like a Pro</strong>
-          <button class="footer-btn footer-btn-arrow" id="result-next-btn">
-            <span id="result-next-label">Try again</span>
-            <span class="footer-btn-arrow-bubble">
-              <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
-            </span>
-          </button>
+          <div class="prompt-pro-footer-actions">
+            <button class="footer-btn footer-btn-arrow" id="result-next-btn">
+              <span id="result-next-label">Try again</span>
+              <span class="footer-btn-arrow-bubble">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </button>
+            <button class="footer-btn footer-btn-arrow hidden" id="result-done-btn">
+              <span>Done</span>
+              <span class="footer-btn-arrow-bubble">
+                <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+              </span>
+            </button>
+          </div>
         </footer>
       </div>
     </section>
@@ -290,6 +308,7 @@
 
   <script src="/viewport-guard.js"></script>
   <script src="/scroll-indicators.js"></script>
+  <script src="/prompt-briefs.js"></script>
   <script src="/prompt-like-a-pro.js"></script>
 </body>
 

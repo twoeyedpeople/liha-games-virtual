@@ -34,7 +34,10 @@ const CARDS = shuffle(
   )
 );
 
-const REQUIRED_TRUE_COUNT = 14;
+const TOTAL_INCORRECT_COUNT = FALSE_STATEMENTS.length;
+const FEEDBACK_FLIP_DOWN_MS = 520;
+const FEEDBACK_FLASH_MS = 520;
+const LIMIT_FEEDBACK_MS = 1200;
 
 const introStage = document.getElementById("intro-welcome-stage");
 const gameStage = document.getElementById("trust-stage-game");
@@ -45,15 +48,24 @@ const footerMessageEl = document.getElementById("trust-footer-message");
 const submitBtn = document.getElementById("trust-submit-btn");
 const submitLabel = document.getElementById("trust-submit-label");
 const startBtn = document.getElementById("intro-get-started");
+const boardShellEl = document.querySelector(".trust-board-shell");
+
+const BOARD_DESIGN_WIDTH = 1696;
+const BOARD_DESIGN_HEIGHT = 852;
 
 const state = {
   selected: new Set(),
   knocked: new Set(),
   lockedCorrect: new Set(),
-  lastSubmittedCorrectCount: 0,
+  feedbackFlash: new Set(),
+  isSubmitting: false,
+  lastFoundIncorrectCount: 0,
+  limitFeedbackCardId: null,
   progressMode: "selection",
   solved: false,
 };
+
+let limitFeedbackTimer = null;
 
 function shuffle(items) {
   const copy = [...items];
@@ -68,116 +80,219 @@ function showGameStage() {
   introStage.classList.add("hidden");
   gameStage.classList.add("trust-stage-active");
   renderAll();
+  updateBoardScale();
+}
+
+function showIntroStage() {
+  gameStage.classList.remove("trust-stage-active");
+  introStage.classList.remove("hidden");
+}
+
+function resetGame() {
+  state.selected = new Set();
+  state.knocked = new Set();
+  state.lockedCorrect = new Set();
+  state.feedbackFlash = new Set();
+  state.isSubmitting = false;
+  state.lastFoundIncorrectCount = 0;
+  state.limitFeedbackCardId = null;
+  state.progressMode = "selection";
+  state.solved = false;
+  submitLabel.textContent = "Submit";
+  footerEl.classList.remove("is-complete");
+  renderAll();
+}
+
+function updateBoardScale() {
+  if (!boardShellEl) return;
+
+  const styles = window.getComputedStyle(boardShellEl);
+  const availableWidth = boardShellEl.clientWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight);
+  const availableHeight = boardShellEl.clientHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
+  const scale = Math.min(availableWidth / BOARD_DESIGN_WIDTH, availableHeight / BOARD_DESIGN_HEIGHT, 1);
+
+  boardEl.style.setProperty("--board-scale", String(Math.max(scale, 0.1)));
 }
 
 function toggleCard(id) {
-  if (state.solved) return;
+  if (state.solved || state.isSubmitting) return;
   const card = CARDS.find((item) => item.id === id);
   if (!card) return;
   if (state.knocked.has(id)) return;
+  const remainingIncorrectCount = TOTAL_INCORRECT_COUNT - getFoundIncorrectCount();
 
   if (state.selected.has(id)) {
     state.selected.delete(id);
   } else {
-    if (state.selected.size >= REQUIRED_TRUE_COUNT) return;
+    if (state.selected.size >= remainingIncorrectCount) {
+      showSelectionLimitFeedback(id);
+      return;
+    }
     state.selected.add(id);
   }
 
   state.progressMode = "selection";
   state.lockedCorrect = new Set();
+  state.feedbackFlash = new Set();
+  state.limitFeedbackCardId = null;
   renderAll();
 }
 
-function submitSelection() {
+function showSelectionLimitFeedback(id) {
+  state.limitFeedbackCardId = id;
+  renderAll();
+
+  if (limitFeedbackTimer) {
+    window.clearTimeout(limitFeedbackTimer);
+  }
+
+  limitFeedbackTimer = window.setTimeout(() => {
+    if (state.limitFeedbackCardId === id) {
+      state.limitFeedbackCardId = null;
+      renderAll();
+    }
+  }, LIMIT_FEEDBACK_MS);
+}
+
+async function submitSelection() {
   if (state.solved) {
-    window.location.href = "/index.html";
+    resetGame();
+    showIntroStage();
     return;
   }
 
-  if (state.selected.size !== REQUIRED_TRUE_COUNT) return;
+  const remainingIncorrectCount = TOTAL_INCORRECT_COUNT - getFoundIncorrectCount();
 
-  let correctCount = 0;
+  if (state.isSubmitting || state.selected.size !== remainingIncorrectCount) return;
+
   const nextLockedCorrect = new Set();
+  const foundIncorrectCardIds = [];
+  const incorrectlySelectedCardIds = [];
 
   CARDS.forEach((card) => {
-    if (card.isTrue && state.selected.has(card.id)) {
-      correctCount += 1;
+    const isSelected = state.selected.has(card.id);
+    const isAlreadyFound = state.knocked.has(card.id);
+
+    if (isAlreadyFound || (!card.isTrue && isSelected)) {
       nextLockedCorrect.add(card.id);
     }
 
-    if (!card.isTrue && !state.selected.has(card.id)) {
-      state.knocked.add(card.id);
+    if (!card.isTrue && (isAlreadyFound || isSelected)) {
+      foundIncorrectCardIds.push(card.id);
+    }
+
+    if (card.isTrue && isSelected) {
+      incorrectlySelectedCardIds.push(card.id);
     }
   });
 
   state.lockedCorrect = nextLockedCorrect;
-  state.lastSubmittedCorrectCount = correctCount;
-  state.progressMode = "result";
-  state.solved = correctCount === REQUIRED_TRUE_COUNT;
+  state.lastFoundIncorrectCount = foundIncorrectCardIds.length;
+  state.knocked = new Set([...state.knocked, ...state.selected]);
+  state.solved = foundIncorrectCardIds.length === TOTAL_INCORRECT_COUNT;
 
   if (state.solved) {
+    state.selected = new Set();
+    state.progressMode = "result";
     footerEl.classList.add("is-complete");
     submitLabel.textContent = "Complete";
-  } else {
-    footerEl.classList.remove("is-complete");
-    submitLabel.textContent = "Submit";
+    renderAll();
+    return;
   }
 
+  state.isSubmitting = true;
+  state.limitFeedbackCardId = null;
+  footerEl.classList.remove("is-complete");
+  submitBtn.disabled = true;
+  submitBtn.classList.add("is-disabled");
   renderAll();
+
+  await wait(FEEDBACK_FLIP_DOWN_MS);
+
+  state.knocked = new Set(foundIncorrectCardIds);
+  state.selected = new Set();
+  state.feedbackFlash = new Set(incorrectlySelectedCardIds);
+  state.progressMode = "result";
+  state.isSubmitting = false;
+  renderAll();
+
+  await wait(FEEDBACK_FLASH_MS);
+
+  if (!state.isSubmitting) {
+    state.feedbackFlash = new Set();
+    renderAll();
+  }
+}
+
+function wait(duration) {
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, duration);
+  });
+}
+
+function getFoundIncorrectCount() {
+  return CARDS.filter((card) => !card.isTrue && state.knocked.has(card.id)).length;
 }
 
 function renderBoard() {
-  boardEl.innerHTML = "";
+  if (boardEl.children.length === 0) {
+    CARDS.forEach((card) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "trust-card";
+      button.dataset.cardId = card.id;
+      button.addEventListener("click", () => toggleCard(card.id));
+
+      const inner = document.createElement("div");
+      inner.className = "trust-card-inner";
+
+      const text = document.createElement("p");
+      text.className = "trust-card-text";
+      text.textContent = card.text;
+
+      inner.appendChild(text);
+      button.appendChild(inner);
+      boardEl.appendChild(button);
+    });
+  }
 
   CARDS.forEach((card) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "trust-card";
-    button.dataset.cardId = card.id;
-    button.setAttribute("aria-pressed", String(state.selected.has(card.id)));
+    const button = boardEl.querySelector(`[data-card-id="${card.id}"]`);
+    const isSelected = state.selected.has(card.id);
+    const isKnocked = state.knocked.has(card.id);
+    const isFeedbackFlash = state.feedbackFlash.has(card.id);
+    const isLimitFeedback = state.limitFeedbackCardId === card.id;
 
-    if (state.selected.has(card.id)) {
-      button.classList.add("is-selected");
-    }
+    button.setAttribute("aria-pressed", String(isSelected));
+    button.classList.toggle("is-selected", isSelected);
+    button.classList.remove("is-correct");
+    button.classList.toggle("is-knocked", isKnocked);
+    button.classList.toggle("is-feedback-flash", isFeedbackFlash);
+    button.classList.toggle("is-limit-feedback", isLimitFeedback);
+    button.disabled = isKnocked || state.isSubmitting;
 
-    if (state.solved && state.lockedCorrect.has(card.id)) {
-      button.classList.add("is-correct");
-    }
-
-    if (state.knocked.has(card.id)) {
-      button.classList.add("is-knocked");
-      button.disabled = true;
+    if (isKnocked || state.isSubmitting) {
       button.setAttribute("aria-disabled", "true");
     } else {
-      button.addEventListener("click", () => toggleCard(card.id));
+      button.removeAttribute("aria-disabled");
     }
-
-    const inner = document.createElement("div");
-    inner.className = "trust-card-inner";
-
-    const text = document.createElement("p");
-    text.className = "trust-card-text";
-    text.textContent = card.text;
-
-    inner.appendChild(text);
-    button.appendChild(inner);
-    boardEl.appendChild(button);
   });
 }
 
 function renderProgress() {
   progressEl.innerHTML = "";
 
-  for (let index = 0; index < REQUIRED_TRUE_COUNT; index += 1) {
+  for (let index = 0; index < TOTAL_INCORRECT_COUNT; index += 1) {
     const slot = document.createElement("span");
     slot.className = "trust-progress-slot";
 
-    if (state.progressMode === "selection" && index < state.selected.size) {
-      slot.classList.add("is-selected");
-    }
+    const foundCount = getFoundIncorrectCount();
+    const selectedCount = state.selected.size;
 
-    if (state.progressMode === "result" && index < state.lastSubmittedCorrectCount) {
-      slot.classList.add("is-correct");
+    if (index < foundCount) {
+      slot.classList.add("is-found");
+    } else if (index < foundCount + selectedCount) {
+      slot.classList.add("is-selected");
     }
 
     progressEl.appendChild(slot);
@@ -186,27 +301,31 @@ function renderProgress() {
 
 function renderFooter() {
   if (state.solved) {
-    footerMessageEl.innerHTML = "Amazing work. You’ve selected all the correct 14 AI statement cards.";
+    footerMessageEl.innerHTML = "Amazing work. You’ve found all 10 incorrect AI statement cards.";
     submitBtn.disabled = false;
     submitBtn.classList.remove("is-disabled");
     submitLabel.textContent = "Complete";
     footerEl.classList.add("is-complete");
-    progressEl.setAttribute("aria-label", "Completed with all 14 correct cards");
+    progressEl.setAttribute("aria-label", "Completed with all 10 incorrect cards found");
     return;
   }
 
   footerEl.classList.remove("is-complete");
+  const foundCount = getFoundIncorrectCount();
+  const remainingIncorrectCount = TOTAL_INCORRECT_COUNT - foundCount;
 
   if (state.progressMode === "result") {
-    const remaining = REQUIRED_TRUE_COUNT - state.lastSubmittedCorrectCount;
-    footerMessageEl.innerHTML = `Keep trying. You have <span class="trust-highlight-pill">${remaining}</span> cards to correct.`;
-    progressEl.setAttribute("aria-label", `${state.lastSubmittedCorrectCount} correct cards identified`);
+    footerMessageEl.innerHTML = `Keep trying. You found <span class="trust-highlight-pill">${foundCount}</span> out of ${TOTAL_INCORRECT_COUNT} incorrect statements.`;
+    progressEl.setAttribute("aria-label", `${foundCount} of ${TOTAL_INCORRECT_COUNT} incorrect statements found`);
   } else {
-    footerMessageEl.textContent = "Select the 14 correct AI statement cards.";
-    progressEl.setAttribute("aria-label", `${state.selected.size} of 14 cards selected`);
+    footerMessageEl.textContent =
+      foundCount > 0
+        ? `Select the ${remainingIncorrectCount} remaining incorrect AI statement cards.`
+        : "Select the 10 incorrect AI statement cards.";
+    progressEl.setAttribute("aria-label", `${state.selected.size} of ${remainingIncorrectCount} remaining incorrect cards selected`);
   }
 
-  const canSubmit = state.selected.size === REQUIRED_TRUE_COUNT;
+  const canSubmit = !state.isSubmitting && remainingIncorrectCount > 0 && state.selected.size === remainingIncorrectCount;
   submitBtn.disabled = !canSubmit;
   submitBtn.classList.toggle("is-disabled", !canSubmit);
   submitLabel.textContent = "Submit";
@@ -220,5 +339,12 @@ function renderAll() {
 
 startBtn.addEventListener("click", showGameStage);
 submitBtn.addEventListener("click", submitSelection);
+window.addEventListener("resize", updateBoardScale);
+
+if (window.ResizeObserver && boardShellEl) {
+  const boardResizeObserver = new ResizeObserver(updateBoardScale);
+  boardResizeObserver.observe(boardShellEl);
+}
 
 renderAll();
+updateBoardScale();
