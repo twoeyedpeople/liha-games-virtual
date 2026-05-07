@@ -43,6 +43,59 @@
   --landing-card-height: clamp(330px, 22vw, 430px);
   --landing-card-kicker-height: clamp(82px, 5.7vw, 110px);
   --landing-page-width: min(1440px, calc(100vw - 64px));
+  --landing-topbar-height: 86px;
+  --landing-topbar-padding-y: 14px;
+  --landing-logo-width: 88px;
+  --landing-nav-font-size: 13px;
+  --landing-nav-link-padding: 14px;
+  --landing-stage-padding-block: clamp(14px, 2.2vh, 24px);
+  --landing-stage-padding-inline: clamp(16px, 3vw, 40px);
+  --landing-stage-gap: clamp(14px, 2.2vh, 24px);
+}
+
+@media (max-width: 1920px), (max-height: 1080px) {
+  :root {
+    --landing-radius: 26px;
+    --landing-page-width: min(1440px, calc(100vw - 52px));
+    --landing-topbar-height: 62px;
+    --landing-topbar-padding-y: 6px;
+    --landing-logo-width: 78px;
+    --landing-nav-font-size: 12px;
+    --landing-nav-link-padding: 12px;
+    --landing-stage-padding-block: clamp(12px, 1.8vh, 20px);
+    --landing-stage-padding-inline: clamp(14px, 2.4vw, 32px);
+    --landing-stage-gap: clamp(8px, 1.2vh, 12px);
+  }
+}
+
+@media (max-width: 1680px), (max-height: 945px) {
+  :root {
+    --landing-radius: 24px;
+    --landing-page-width: min(1440px, calc(100vw - 48px));
+    --landing-topbar-height: 56px;
+    --landing-topbar-padding-y: 5px;
+    --landing-logo-width: 70px;
+    --landing-nav-font-size: 11px;
+    --landing-nav-link-padding: 10px;
+    --landing-stage-padding-block: clamp(10px, 1.5vh, 16px);
+    --landing-stage-padding-inline: clamp(12px, 2vw, 26px);
+    --landing-stage-gap: clamp(6px, 1vh, 10px);
+  }
+}
+
+@media (max-width: 1440px), (max-height: 810px) {
+  :root {
+    --landing-radius: 22px;
+    --landing-page-width: min(1440px, calc(100vw - 40px));
+    --landing-topbar-height: 50px;
+    --landing-topbar-padding-y: 4px;
+    --landing-logo-width: 62px;
+    --landing-nav-font-size: 10px;
+    --landing-nav-link-padding: 8px;
+    --landing-stage-padding-block: clamp(8px, 1.3vh, 14px);
+    --landing-stage-padding-inline: clamp(10px, 1.7vw, 22px);
+    --landing-stage-gap: clamp(5px, 0.8vh, 8px);
+  }
 }
 
 * {
@@ -78,10 +131,13 @@ select {
   position: sticky;
   top: 0;
   z-index: 20;
-  padding: 22px 0 18px;
+  min-height: var(--landing-topbar-height);
+  padding: var(--landing-topbar-padding-y) 0;
   background: rgba(255, 255, 255, 0.94);
   border-bottom: 1px solid rgba(23, 64, 126, 0.08);
   backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
 }
 
 .landing-topbar-inner {
@@ -94,7 +150,7 @@ select {
 }
 
 .landing-logo {
-  width: 88px;
+  width: var(--landing-logo-width);
   height: auto;
   display: block;
 }
@@ -106,13 +162,13 @@ select {
   gap: 0;
   flex-wrap: wrap;
   color: var(--landing-blue-deep);
-  font-size: 13px;
+  font-size: var(--landing-nav-font-size);
   font-weight: 700;
 }
 
 .landing-nav a {
   position: relative;
-  padding: 0 14px;
+  padding: 0 var(--landing-nav-link-padding);
 }
 
 .landing-nav a + a::before {

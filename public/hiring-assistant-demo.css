@@ -26,10 +26,6 @@
   --liha-demo-blue-soft: #7faef0;
   --liha-demo-yellow: #f6cf46;
   --liha-demo-white: #ffffff;
-  --stage-padding: 30px;
-  --liha-topbar-height: clamp(44px, 6.2vh, 64px);
-  --liha-footer-min-height: clamp(84px, 12vh, 128px);
-  --radius-xl: 28px;
 }
 
 * {
@@ -123,7 +119,7 @@ button {
 .liha-demo-stage-active {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: var(--stage-padding);
+  gap: var(--liha-frame-gap);
 }
 
 .liha-demo-topbar {
@@ -233,14 +229,14 @@ button {
   justify-content: space-between;
   gap: 20px;
   min-height: var(--liha-footer-min-height);
-  padding: 20px clamp(20px, 1.6vw, 30px) 20px clamp(26px, 3vw, 54px);
+  padding: var(--liha-footer-block-padding) var(--liha-footer-inline-end) var(--liha-footer-block-padding) var(--liha-footer-inline-start);
   border-radius: var(--radius-xl);
   background: var(--liha-demo-yellow);
 }
 
 .liha-demo-footer strong {
   color: #112749;
-  font-size: 30px;
+  font-size: var(--liha-footer-title-size);
   line-height: 1.05;
   letter-spacing: -0.04em;
   font-weight: 700;
@@ -249,7 +245,7 @@ button {
 .liha-demo-pill-btn {
   flex-shrink: 0;
   min-width: 190px;
-  min-height: 66px;
+  min-height: var(--liha-pill-min-height);
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -260,7 +256,7 @@ button {
   background: var(--liha-demo-white);
   color: var(--liha-demo-blue-deep);
   text-decoration: none;
-  font-size: 20px;
+  font-size: var(--liha-pill-font-size);
   line-height: 1;
   font-weight: 700;
   cursor: pointer;
@@ -271,8 +267,8 @@ button {
 }
 
 .liha-demo-pill-icon {
-  width: 46.6px;
-  height: 46.6px;
+  width: calc(var(--liha-pill-min-height) - 16px);
+  height: calc(var(--liha-pill-min-height) - 16px);
 }
 
 .liha-demo-pill-icon img {
@@ -302,12 +298,6 @@ button {
 }
 
 @media (max-width: 900px) {
-  :root {
-    --stage-padding: 24px;
-    --liha-topbar-height: 40px;
-    --liha-footer-min-height: 78px;
-  }
-
   .liha-demo-intro-card {
     grid-template-columns: 1fr;
     align-items: center;
@@ -328,7 +318,7 @@ button {
   .liha-demo-footer {
     align-items: stretch;
     flex-direction: column;
-    padding: 18px;
+    padding: var(--liha-footer-block-padding);
   }
 
   .liha-demo-pill-btn {
@@ -355,6 +345,6 @@ button {
   }
 
   .liha-demo-footer strong {
-    font-size: 24px;
+    font-size: var(--liha-footer-title-size);
   }
 }

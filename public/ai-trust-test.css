@@ -100,17 +100,17 @@ button {
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-  padding: 30px;
+  padding: var(--stage-padding);
 }
 
 .trust-intro-shell {
   width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - var(--stage-padding) - var(--stage-padding));
   position: relative;
   z-index: 1;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: 24px;
+  gap: var(--liha-frame-gap);
 }
 
 .trust-stage-header {
@@ -179,7 +179,7 @@ button {
   align-items: center;
   gap: 20px;
   min-height: var(--liha-footer-min-height);
-  padding: 20px clamp(20px, 1.6vw, 30px) 20px clamp(26px, 3vw, 54px);
+  padding: var(--liha-footer-block-padding) var(--liha-footer-inline-end) var(--liha-footer-block-padding) var(--liha-footer-inline-start);
   border-radius: var(--radius-xl);
   background: var(--trust-yellow);
 }
@@ -187,7 +187,7 @@ button {
 .trust-intro-footer strong,
 .trust-footer-copy p {
   margin: 0;
-  font-size: 30px;
+  font-size: clamp(20px, 1.4vw, var(--liha-footer-title-size));
   line-height: 1.05;
   letter-spacing: -0.04em;
   font-weight: 700;
@@ -228,8 +228,8 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 54px;
-  height: 54px;
+  min-width: calc(var(--liha-pill-min-height) - 12px);
+  height: calc(var(--liha-pill-min-height) - 12px);
   padding: 0 16px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.78);
@@ -241,14 +241,14 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  min-height: 66px;
-  padding: 8px 8px 8px 30px;
+  min-height: var(--liha-pill-min-height);
+  padding: 8px 8px 8px clamp(20px, 1.6vw, 30px);
   border: 0;
   border-radius: 999px;
   background: var(--trust-white);
   color: var(--trust-blue-deep);
   cursor: pointer;
-  font-size: 20px;
+  font-size: var(--liha-pill-font-size);
   font-weight: 700;
 }
 
@@ -260,8 +260,8 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46.6px;
-  height: 46.6px;
+  width: calc(var(--liha-pill-min-height) - 16px);
+  height: calc(var(--liha-pill-min-height) - 16px);
   border-radius: 999px;
   background: #d9e8ff;
 }
@@ -281,7 +281,7 @@ button {
 }
 
 .trust-stage-game {
-  gap: var(--stage-padding);
+  gap: var(--liha-frame-gap);
 }
 
 .trust-stage-game.trust-stage-active {
@@ -295,8 +295,8 @@ button {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  padding: 20px 18px;
-  border-radius: 28px;
+  padding: clamp(10px, 1.2vw, 18px);
+  border-radius: var(--radius-xl);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(17, 39, 73, 0.05) 58%, rgba(17, 39, 73, 0.08)),
     var(--trust-board-bg);
@@ -312,7 +312,11 @@ button {
 
 .trust-board {
   --board-scale: 1;
-  --board-offset-compensation: -110px;
+  --board-offset-compensation: 0px;
+  --board-design-height: 852;
+  --board-fit-width: 1696;
+  --board-visible-top: 126;
+  --board-visible-bottom: 872;
   width: 1696px;
   height: 852px;
   flex: 0 0 auto;
@@ -361,9 +365,14 @@ button {
   transition: box-shadow 220ms ease, opacity 220ms ease;
 }
 
+.is-safari .trust-card {
+  height: 195px;
+  aspect-ratio: auto;
+}
+
 .trust-card:nth-child(-n + 6) {
-  --card-row-scale: 0.729;
-  --card-row-rise: 146px;
+  --card-row-scale: 0.86;
+  --card-row-rise: 126px;
   --card-face-tilt: -1deg;
   --card-gap-inner: 18px;
   --card-gap-mid: 44px;
@@ -372,8 +381,8 @@ button {
 }
 
 .trust-card:nth-child(n + 7):nth-child(-n + 12) {
-  --card-row-scale: 0.81;
-  --card-row-rise: 80px;
+  --card-row-scale: 0.9;
+  --card-row-rise: 70px;
   --card-face-tilt: -3deg;
   --card-gap-inner: 12px;
   --card-gap-mid: 30px;
@@ -382,7 +391,7 @@ button {
 }
 
 .trust-card:nth-child(n + 13):nth-child(-n + 18) {
-  --card-row-scale: 0.9;
+  --card-row-scale: 0.95;
   --card-row-rise: 30px;
   --card-face-tilt: -5deg;
   --card-gap-inner: 6px;
@@ -396,6 +405,27 @@ button {
   --card-row-rise: 0px;
   --card-face-tilt: -7deg;
   --card-knocked-tilt: 48deg;
+}
+
+.is-safari .trust-board {
+  --board-design-height: 812;
+  --board-visible-top: 96;
+  --board-visible-bottom: 800;
+  height: 812px;
+  grid-template-rows: repeat(4, 195px);
+  gap: 10px 24px;
+}
+
+.is-safari .trust-card:nth-child(-n + 6) {
+  --card-row-rise: 96px;
+}
+
+.is-safari .trust-card:nth-child(n + 7):nth-child(-n + 12) {
+  --card-row-rise: 54px;
+}
+
+.is-safari .trust-card:nth-child(n + 13):nth-child(-n + 18) {
+  --card-row-rise: 24px;
 }
 
 .trust-card:nth-child(6n + 1) {
@@ -478,7 +508,7 @@ button {
   margin: 0;
   color: var(--trust-white);
   max-width: 100%;
-  font-size: clamp(8px, 5.6cqw, 16px);
+  font-size: clamp(9px, 7.6cqw, 17px);
   line-height: 1.12;
   font-weight: 700;
   overflow-wrap: break-word;
@@ -577,15 +607,15 @@ button {
 .trust-progress {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 7px;
-  width: min(286px, 100%);
-  min-width: 196px;
+  gap: clamp(4px, 0.45vw, 7px);
+  width: min(clamp(210px, 16vw, 286px), 100%);
+  min-width: 170px;
 }
 
 .trust-progress-slot {
-  height: 29px;
+  height: clamp(20px, 1.7vw, 29px);
   border-radius: 4px;
-  border: 3px solid rgba(255, 255, 255, 0.92);
+  border: clamp(2px, 0.18vw, 3px) solid rgba(255, 255, 255, 0.92);
   background: transparent;
 }
 
@@ -727,18 +757,18 @@ button {
   .trust-footer {
     align-items: stretch;
     flex-direction: column;
-    padding: 16px;
+    padding: var(--liha-footer-block-padding);
   }
 
   .trust-intro-footer strong,
   .trust-footer-copy p {
-    font-size: 30px;
+    font-size: var(--liha-footer-title-size);
   }
 
   .trust-pill-btn {
     justify-content: space-between;
     width: 100%;
-    font-size: 20px;
+    font-size: var(--liha-pill-font-size);
   }
 
   .trust-board {
@@ -765,7 +795,7 @@ button {
   .trust-intro-footer,
   .trust-footer {
     border-radius: 40px;
-    padding: 12px 16px;
+    padding: var(--liha-footer-block-padding) var(--liha-footer-inline-end) var(--liha-footer-block-padding) var(--liha-footer-inline-start);
   }
 }
 

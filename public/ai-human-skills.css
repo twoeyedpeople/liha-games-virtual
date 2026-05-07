@@ -12,11 +12,11 @@ body.skills-page-body {
 
 .skills-page {
   --skills-page-side-padding: 40px;
-  height: calc(100vh - 64px);
+  height: calc(100vh - var(--landing-topbar-height, 64px));
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(14px, 2.2vh, 24px);
-  padding: clamp(14px, 2.2vh, 24px) clamp(16px, 3vw, 40px);
+  gap: var(--landing-stage-gap, clamp(14px, 2.2vh, 24px));
+  padding: var(--landing-stage-padding-block, clamp(14px, 2.2vh, 24px)) var(--landing-stage-padding-inline, clamp(16px, 3vw, 40px));
   overflow: hidden;
 }
 

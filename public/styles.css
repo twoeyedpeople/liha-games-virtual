@@ -37,7 +37,85 @@
   --stage-padding: 30px;
   --liha-topbar-height: clamp(44px, 6.2vh, 64px);
   --liha-footer-min-height: clamp(84px, 12vh, 128px);
+  --liha-footer-block-padding: 20px;
+  --liha-footer-inline-start: clamp(26px, 3vw, 54px);
+  --liha-footer-inline-end: clamp(20px, 1.6vw, 30px);
+  --liha-footer-title-size: 30px;
+  --liha-pill-min-height: 66px;
+  --liha-pill-font-size: 20px;
   --liha-frame-gap: 14px;
+}
+
+@media (max-width: 1920px), (max-height: 1080px) {
+  :root {
+    --radius-xl: 26px;
+    --radius-lg: 19px;
+    --radius-md: 13px;
+    --stage-padding: 26px;
+    --liha-topbar-height: clamp(34px, 4.2vh, 48px);
+    --liha-footer-min-height: clamp(74px, 9vh, 102px);
+    --liha-footer-block-padding: 16px;
+    --liha-footer-inline-start: clamp(24px, 2.4vw, 44px);
+    --liha-footer-inline-end: clamp(18px, 1.3vw, 26px);
+    --liha-footer-title-size: 26px;
+    --liha-pill-min-height: 56px;
+    --liha-pill-font-size: 18px;
+    --liha-frame-gap: 10px;
+  }
+}
+
+@media (max-width: 1680px), (max-height: 945px) {
+  :root {
+    --radius-xl: 24px;
+    --radius-lg: 18px;
+    --radius-md: 13px;
+    --stage-padding: 24px;
+    --liha-topbar-height: clamp(32px, 4vh, 42px);
+    --liha-footer-min-height: clamp(64px, 8vh, 88px);
+    --liha-footer-block-padding: 14px;
+    --liha-footer-inline-start: clamp(22px, 2vw, 38px);
+    --liha-footer-inline-end: clamp(16px, 1.2vw, 22px);
+    --liha-footer-title-size: 24px;
+    --liha-pill-min-height: 52px;
+    --liha-pill-font-size: 17px;
+    --liha-frame-gap: 8px;
+  }
+}
+
+@media (max-width: 1440px), (max-height: 810px) {
+  :root {
+    --radius-xl: 22px;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --stage-padding: 20px;
+    --liha-topbar-height: clamp(28px, 3.7vh, 38px);
+    --liha-footer-min-height: clamp(58px, 7.2vh, 76px);
+    --liha-footer-block-padding: 12px;
+    --liha-footer-inline-start: clamp(18px, 1.7vw, 30px);
+    --liha-footer-inline-end: clamp(14px, 1vw, 18px);
+    --liha-footer-title-size: 22px;
+    --liha-pill-min-height: 48px;
+    --liha-pill-font-size: 16px;
+    --liha-frame-gap: 6px;
+  }
+}
+
+@media (max-width: 1280px), (max-height: 720px) {
+  :root {
+    --radius-xl: 20px;
+    --radius-lg: 15px;
+    --radius-md: 11px;
+    --stage-padding: 12px;
+    --liha-topbar-height: clamp(26px, 3.4vh, 34px);
+    --liha-footer-min-height: clamp(52px, 6.5vh, 66px);
+    --liha-footer-block-padding: 10px;
+    --liha-footer-inline-start: 18px;
+    --liha-footer-inline-end: 14px;
+    --liha-footer-title-size: 20px;
+    --liha-pill-min-height: 44px;
+    --liha-pill-font-size: 15px;
+    --liha-frame-gap: 12px;
+  }
 }
 
 * {
@@ -135,7 +213,7 @@ p {
   min-height: 0;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: var(--stage-padding);
+  gap: var(--liha-frame-gap);
 }
 
 .liha-topbar {
@@ -151,7 +229,7 @@ p {
 }
 
 .liha-logo {
-  width: clamp(86px, 27.7vw, 179px);
+  width: clamp(86px, 9vw, 179px);
   height: auto;
   display: block;
 }
@@ -837,7 +915,7 @@ button.danger {
   background: var(--yellow);
   border-radius: var(--radius-xl);
   min-height: var(--liha-footer-min-height);
-  padding: 20px clamp(20px, 1.6vw, 30px) 20px clamp(26px, 3vw, 54px);
+  padding: var(--liha-footer-block-padding) var(--liha-footer-inline-end) var(--liha-footer-block-padding) var(--liha-footer-inline-start);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -880,7 +958,7 @@ button.danger {
 }
 
 .liha-footer strong {
-  font-size: 30px;
+  font-size: var(--liha-footer-title-size);
   font-weight: 700;
   line-height: 1;
 }
@@ -888,14 +966,14 @@ button.danger {
 .footer-btn {
   background: #f2f5f9;
   color: #204c8f;
-  min-height: 66px;
-  padding: 8px 30px;
-  font-size: 20px;
+  min-height: var(--liha-pill-min-height);
+  padding: 8px clamp(18px, 1.6vw, 30px);
+  font-size: var(--liha-pill-font-size);
   font-weight: 700;
 }
 
 .footer-btn-arrow {
-  padding: 8px 8px 8px 30px;
+  padding: 8px 8px 8px clamp(18px, 1.6vw, 30px);
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -903,8 +981,8 @@ button.danger {
 }
 
 .footer-btn-arrow-bubble {
-  width: 46.6px;
-  height: 46.6px;
+  width: calc(var(--liha-pill-min-height) - 16px);
+  height: calc(var(--liha-pill-min-height) - 16px);
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -1604,10 +1682,15 @@ button.danger {
 
 #stage-brief {
   background: var(--bg);
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
 }
 
 #stage-brief .liha-frame {
   grid-template-rows: 1fr auto;
+  height: 100%;
+  min-height: 0;
 }
 
 #stage-brief .three-col-layout {
@@ -1615,6 +1698,7 @@ button.danger {
   gap: clamp(14px, 1.3vw, 24px);
   min-height: 0;
   height: 100%;
+  overflow: hidden;
 }
 
 #stage-brief .brief-role-card,
@@ -1622,6 +1706,7 @@ button.danger {
 #stage-brief .brief-tip-card {
   border-radius: var(--radius-xl);
   padding: clamp(24px, 2vw, 38px);
+  min-height: 0;
 }
 
 #stage-brief .brief-role-card {
@@ -1651,6 +1736,10 @@ button.danger {
 
 #stage-brief .brief-main-card {
   gap: clamp(26px, 4.2vw, 46px);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  overflow: hidden;
 }
 
 #stage-brief .brief-main-head {
@@ -1695,8 +1784,14 @@ button.danger {
 
 #stage-brief .brief-copy-body {
   display: flex;
-      flex-direction: column;
+  flex-direction: column;
   gap: clamp(14px, 1.1vw, 24px);
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: clamp(8px, 0.6vw, 14px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(18, 47, 95, 0.35) transparent;
 }
 
 #stage-brief .brief-copy-body p {
@@ -3748,7 +3843,7 @@ body.leaderboard-screen .sr-only {
   position: relative;
   overflow: hidden;
   background: var(--bg);
-  padding: 30px;
+  padding: var(--stage-padding);
   display: flex;
   align-items: stretch;
   justify-content: stretch;
@@ -3804,12 +3899,12 @@ body.leaderboard-screen .sr-only {
 
 .intro-welcome-shell {
   width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100vh - var(--stage-padding) - var(--stage-padding));
   position: relative;
   z-index: 1;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  gap: clamp(14px, 2.2vh, 24px);
+  gap: var(--liha-frame-gap);
 }
 
 .intro-welcome-topbar {
@@ -3831,7 +3926,7 @@ body.leaderboard-screen .sr-only {
   position: relative;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: clamp(24px, 2vw, 38px);
+  padding: var(--stage-padding);
   display: grid;
   grid-template-columns: minmax(0px, 44%) minmax(580px, 56%);
   align-items: center;
@@ -4080,15 +4175,6 @@ body.leaderboard-screen .sr-only {
 }
 
 @media (max-height: 700px) {
-  .stage.intro-welcome-stage {
-    padding: 24px;
-  }
-
-  .intro-welcome-shell {
-    height: calc(100vh - 48px);
-    gap: 12px;
-  }
-
   .intro-welcome-copy h1 {
     font-size: clamp(38px, 4.1vw, 60px);
   }
@@ -4106,8 +4192,8 @@ body.leaderboard-screen .sr-only {
   }
 
   .footer-btn {
-    min-height: 56px;
-    font-size: clamp(18px, 1.2vw, 24px);
+    min-height: var(--liha-pill-min-height);
+    font-size: var(--liha-pill-font-size);
   }
 
   .footer-btn-arrow {
@@ -4116,9 +4202,6 @@ body.leaderboard-screen .sr-only {
 }
 
 @media (max-height: 620px) {
-  .intro-welcome-shell {
-    gap: 10px;
-  }
 }
 
 .output {
@@ -4424,20 +4507,13 @@ body.leaderboard-screen .sr-only {
 }
 
 @media (max-height: 700px) {
-  :root {
-    --stage-padding: 24px;
-    --liha-topbar-height: 40px;
-    --liha-footer-min-height: 62px;
-    --liha-frame-gap: 10px;
-  }
-
   .liha-footer {
     border-radius: 40px;
-    padding: 12px 16px;
+    padding: var(--liha-footer-block-padding) var(--liha-footer-inline-end) var(--liha-footer-block-padding) var(--liha-footer-inline-start);
   }
 
   .liha-footer strong {
-    font-size: 30px;
+    font-size: var(--liha-footer-title-size);
   }
 }
 

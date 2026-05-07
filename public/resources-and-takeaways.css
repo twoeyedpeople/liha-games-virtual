@@ -14,8 +14,9 @@ body.resources-page-body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: clamp(14px, 2.2vh, 24px) clamp(16px, 3vw, 40px);
-  gap: clamp(14px, 2.2vh, 24px);
+  min-height: calc(100vh - var(--landing-topbar-height, 64px));
+  padding: var(--landing-stage-padding-block, clamp(14px, 2.2vh, 24px)) var(--landing-stage-padding-inline, clamp(16px, 3vw, 40px));
+  gap: var(--landing-stage-gap, clamp(14px, 2.2vh, 24px));
 }
 
 .resources-page-canvas {

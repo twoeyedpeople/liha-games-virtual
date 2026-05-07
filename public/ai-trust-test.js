@@ -107,11 +107,21 @@ function updateBoardScale() {
   if (!boardShellEl) return;
 
   const styles = window.getComputedStyle(boardShellEl);
+  const boardStyles = window.getComputedStyle(boardEl);
   const availableWidth = boardShellEl.clientWidth - parseFloat(styles.paddingLeft) - parseFloat(styles.paddingRight);
   const availableHeight = boardShellEl.clientHeight - parseFloat(styles.paddingTop) - parseFloat(styles.paddingBottom);
-  const scale = Math.min(availableWidth / BOARD_DESIGN_WIDTH, availableHeight / BOARD_DESIGN_HEIGHT, 1);
+  const fitWidth = parseFloat(boardStyles.getPropertyValue("--board-fit-width")) || BOARD_DESIGN_WIDTH;
+  const designHeight = parseFloat(boardStyles.getPropertyValue("--board-design-height")) || BOARD_DESIGN_HEIGHT;
+  const visibleTop = parseFloat(boardStyles.getPropertyValue("--board-visible-top")) || 0;
+  const visibleBottom = parseFloat(boardStyles.getPropertyValue("--board-visible-bottom")) || designHeight;
+  const visibleHeight = Math.max(visibleBottom - visibleTop, 1);
+  const scale = Math.min(availableWidth / fitWidth, availableHeight / visibleHeight);
+  const visibleCenter = (visibleTop + visibleBottom) / 2;
+  const boardCenter = designHeight / 2;
+  const offset = (boardCenter - visibleCenter) * scale;
 
   boardEl.style.setProperty("--board-scale", String(Math.max(scale, 0.1)));
+  boardEl.style.setProperty("--board-offset-compensation", `${offset}px`);
 }
 
 function toggleCard(id) {
