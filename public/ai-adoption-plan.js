@@ -1,4 +1,4 @@
-const copyButton = document.getElementById("copy-share-text");
+const shareButton = document.getElementById("share-on-linkedin-btn");
 const copyStatus = document.getElementById("copy-status");
 const shareSource = document.getElementById("share-copy-source");
 
@@ -8,16 +8,12 @@ const shareText = shareSource
       .join("\n\n")
   : "";
 
-if (copyButton && copyStatus) {
-  copyButton.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(shareText);
-      copyStatus.textContent = "Copied to clipboard";
-      window.setTimeout(() => {
-        copyStatus.textContent = "";
-      }, 2400);
-    } catch (_error) {
-      copyStatus.textContent = "Could not copy text";
-    }
+const imageLink = "https://liha-games-virtual.vercel.app/assets/downloads/linkedin-share-badge.png";
+const fullText = shareText + "\n\n" + imageLink;
+
+if (shareButton) {
+  shareButton.addEventListener("click", () => {
+    const linkedInUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(fullText)}`;
+    window.open(linkedInUrl, "_blank");
   });
 }
