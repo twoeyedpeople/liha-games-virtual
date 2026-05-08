@@ -97,6 +97,17 @@
     </section>
   </main>
 
+  <div id="linkedin-share-modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: white; padding: 32px; border-radius: 12px; max-width: 400px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.15); margin: 20px;">
+      <h3 style="font-size: 20px; color: #0a66c2; margin-top: 0; margin-bottom: 12px;">Share your Certificate!</h3>
+      <p style="font-size: 15px; color: #444; margin-bottom: 24px; line-height: 1.5;">Remember to click "Download now" to save your certificate first, so you can easily attach it natively to your new LinkedIn post.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button id="modal-cancel-btn" style="padding: 10px 20px; border: 1px solid #ccc; background: white; border-radius: 20px; font-weight: 600; cursor: pointer; color: #666;">Go back & Download</button>
+        <button id="modal-continue-btn" style="padding: 10px 20px; border: none; background: #0a66c2; border-radius: 20px; font-weight: 600; cursor: pointer; color: white;">Continue to LinkedIn</button>
+      </div>
+    </div>
+  </div>
+
   <script src="/ai-adoption-plan.js"></script>
   <script src="/viewport-guard.js"></script>
 <script src="/analytics.js"></script>

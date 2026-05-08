@@ -516,6 +516,7 @@ doneBtn.addEventListener("click", () => {
   if (typeof window.Analytics !== "undefined") {
     window.Analytics.markModuleComplete("Focus Finder");
     const company = document.getElementById("companyNameInput")?.value || "";
+    if (company) window.Analytics.setDemographics(null, null, company);
     window.Analytics.logEvent("Focus Finder", "module_complete", "", company);
   }
   window.location.href = "/";
