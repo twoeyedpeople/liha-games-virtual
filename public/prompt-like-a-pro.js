@@ -305,6 +305,10 @@ async function submitPrompt() {
   state.isProcessing = true;
   setStage("processing");
   const startedAt = Date.now();
+  
+  if (typeof window.Analytics !== "undefined") {
+    window.Analytics.logEvent("Prompt Like a Pro", "milestone_reached", "Prompt Submitted", state.selectedBrief);
+  }
 
   try {
     const response = await fetch("/api/prompt-like-a-pro/score", {
@@ -410,9 +414,21 @@ resultNextBtn.addEventListener("click", () => {
   setStage("prompt");
 });
 
-resultDoneBtn.addEventListener("click", resetExperience);
+resultDoneBtn.addEventListener("click", () => {
+  if (typeof window.Analytics !== "undefined") {
+    window.Analytics.markModuleComplete("Prompt Like a Pro");
+    window.Analytics.logEvent("Prompt Like a Pro", "module_complete", "", state.selectedBrief);
+  }
+  window.location.href = "/";
+});
 
 promptInputEl.addEventListener("input", updatePromptCharCounter);
 updatePromptCharCounter();
 renderRegionCards();
 setStage("intro");
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof window.Analytics !== "undefined") {
+    window.Analytics.logEvent("Prompt Like a Pro", "module_start");
+  }
+});

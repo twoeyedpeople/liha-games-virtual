@@ -6,3 +6,7 @@ if (scrollTrigger && activities) {
     activities.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 }
+
+if (typeof window.Analytics !== "undefined") {
+  window.Analytics.logEvent("Landing Page", "session_start");
+}

@@ -507,9 +507,17 @@ if (clearAllBtn) {
 nextBtn.addEventListener("click", () => {
   renderSavingsPipeline();
   setIntroStage("savings");
+  if (typeof window.Analytics !== "undefined") {
+    window.Analytics.logEvent("Focus Finder", "milestone_reached", "Savings stage");
+  }
 });
 
 doneBtn.addEventListener("click", () => {
+  if (typeof window.Analytics !== "undefined") {
+    window.Analytics.markModuleComplete("Focus Finder");
+    const company = document.getElementById("companyNameInput")?.value || "";
+    window.Analytics.logEvent("Focus Finder", "module_complete", "", company);
+  }
   window.location.href = "/";
 });
 
@@ -544,6 +552,12 @@ async function loadWorkflowData() {
   const data = await response.json();
   hydratePipelineFromWorkflow(data);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof window.Analytics !== "undefined") {
+    window.Analytics.logEvent("Focus Finder", "module_start");
+  }
+});
 
 async function initIntro() {
   await loadIntroConfig();

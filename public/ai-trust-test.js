@@ -201,6 +201,10 @@ async function submitSelection() {
   state.solved = foundIncorrectCardIds.length === TOTAL_INCORRECT_COUNT;
 
   if (state.solved) {
+    if (typeof window.Analytics !== "undefined") {
+      window.Analytics.markModuleComplete("AI Trust Test");
+      window.Analytics.logEvent("AI Trust Test", "module_complete");
+    }
     state.selected = new Set();
     state.progressMode = "result";
     footerEl.classList.add("is-complete");
@@ -357,3 +361,9 @@ if (window.ResizeObserver && boardShellEl) {
 
 renderAll();
 updateBoardScale();
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (typeof window.Analytics !== "undefined") {
+    window.Analytics.logEvent("AI Trust Test", "module_start");
+  }
+});

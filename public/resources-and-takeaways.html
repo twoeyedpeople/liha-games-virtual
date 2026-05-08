@@ -100,6 +100,31 @@
     </section>
   </main>
   <script src="/viewport-guard.js"></script>
+<script src="/analytics.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof window.Analytics !== "undefined") {
+      window.Analytics.logEvent("Resources & Takeaways", "module_start");
+      window.Analytics.markModuleComplete("Resources & Takeaways");
+      window.Analytics.logEvent("Resources & Takeaways", "module_complete");
+      
+      document.querySelectorAll('a[download]').forEach(link => {
+        link.addEventListener('click', () => {
+          const fileName = link.getAttribute('download') || "file";
+          window.Analytics.logEvent("Resources & Takeaways", "pdf_download", fileName);
+        });
+      });
+      
+      document.querySelectorAll('a[target="_blank"]').forEach(link => {
+        if (!link.hasAttribute('download')) {
+          link.addEventListener('click', () => {
+            window.Analytics.logEvent("Resources & Takeaways", "outbound_click", link.href);
+          });
+        }
+      });
+    }
+  });
+</script>
 </body>
 
 </html>

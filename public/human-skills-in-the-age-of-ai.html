@@ -167,6 +167,32 @@
     </section>
   </main>
   <script src="/viewport-guard.js"></script>
+<script src="/analytics.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof window.Analytics !== "undefined") {
+      window.Analytics.logEvent("Human Skills in the Age of AI", "module_start");
+      
+      const skillLinks = document.querySelectorAll('.skills-card');
+      const clickedLinks = new Set();
+      
+      skillLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          const url = link.getAttribute('href');
+          if (!clickedLinks.has(url)) {
+            clickedLinks.add(url);
+            window.Analytics.logEvent("Human Skills in the Age of AI", "milestone_reached", `Clicked Video ${clickedLinks.size}`);
+            
+            if (clickedLinks.size === skillLinks.length) {
+              window.Analytics.markModuleComplete("Human Skills in the Age of AI");
+              window.Analytics.logEvent("Human Skills in the Age of AI", "module_complete");
+            }
+          }
+        });
+      });
+    }
+  });
+</script>
 </body>
 
 </html>
