@@ -175,6 +175,90 @@
       ],
       "result": "Focus plan across 4 stages (Send follow-ups, Send outreach, Calibrate candidates, Coordinate interviews). 4 actions selected. Priority first step: Gauge responses to pipeline status.",
       "unpickedHours": 17.8
+    },
+    {
+      "id": "d715cbcb-b264-4742-95f9-34bd8cda13e1",
+      "createdAt": 1778214334543,
+      "companyName": "twoeyedpeople",
+      "selections": [
+        {
+          "stage": "Schedule phone screen",
+          "task": "Build candidate relationships"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Schedule the InMail send"
+        },
+        {
+          "stage": "Send outreach",
+          "task": "Send outreach via different channels"
+        }
+      ],
+      "result": "Focus plan across 3 stages (Schedule phone screen, Send follow-ups, Send outreach). 3 actions selected. Priority first step: Build candidate relationships.",
+      "unpickedHours": 19.8
+    },
+    {
+      "id": "ff80efee-8e8e-4a3d-8203-6a7caa5c4079",
+      "createdAt": 1778214350253,
+      "companyName": "sdffs",
+      "selections": [
+        {
+          "stage": "Send outreach",
+          "task": "Send outreach via different channels"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Gauge responses to pipeline status"
+        },
+        {
+          "stage": "Schedule phone screen",
+          "task": "Communicate with candidates"
+        }
+      ],
+      "result": "Focus plan across 3 stages (Send outreach, Send follow-ups, Schedule phone screen). 3 actions selected. Priority first step: Send outreach via different channels.",
+      "unpickedHours": 19.2
+    },
+    {
+      "id": "f7ac1041-8bcc-4cfb-a6de-dcfb74d7abf6",
+      "createdAt": 1778214505719,
+      "companyName": "fdsf",
+      "selections": [
+        {
+          "stage": "Send outreach",
+          "task": "Send outreach via different channels"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Gauge responses to pipeline status"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Schedule the InMail send"
+        }
+      ],
+      "result": "Focus plan across 2 stages (Send outreach, Send follow-ups). 3 actions selected. Priority first step: Send outreach via different channels.",
+      "unpickedHours": 18.5
+    },
+    {
+      "id": "2e00d897-42e2-44f2-9652-6b4b0ae6253c",
+      "createdAt": 1778214505721,
+      "companyName": "fdsf",
+      "selections": [
+        {
+          "stage": "Send outreach",
+          "task": "Send outreach via different channels"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Gauge responses to pipeline status"
+        },
+        {
+          "stage": "Send follow-ups",
+          "task": "Schedule the InMail send"
+        }
+      ],
+      "result": "Focus plan across 2 stages (Send outreach, Send follow-ups). 3 actions selected. Priority first step: Send outreach via different channels.",
+      "unpickedHours": 18.5
     }
   ],
   "promptSubmissions": [
@@ -774,5 +858,5 @@
       ]
     }
   ],
-  "updatedAt": 1778027515062
+  "updatedAt": 1778214505721
 }

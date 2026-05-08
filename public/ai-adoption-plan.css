@@ -40,15 +40,14 @@ body.adoption-plan-body {
 .adoption-page-kicker {
   position: absolute;
   top: 18px;
-  right: 0;
-  width: 505px;
-  max-width: calc(100% - 400px);
+  right: 17px;
   margin: 0;
   color: rgba(0, 0, 0, 0.5);
   font-size: clamp(11px, 1.05vw, 18px);
   line-height: 1.15;
   text-align: right;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .adoption-hero-panel,

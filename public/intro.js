@@ -510,10 +510,7 @@ nextBtn.addEventListener("click", () => {
 });
 
 doneBtn.addEventListener("click", () => {
-  resetFormFields();
-  companyNameInput.value = "";
-  companyName = "";
-  setIntroStage("welcome");
+  window.location.href = "/";
 });
 
 function hydratePipelineFromWorkflow(data) {

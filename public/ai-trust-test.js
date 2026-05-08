@@ -166,8 +166,7 @@ function showSelectionLimitFeedback(id) {
 
 async function submitSelection() {
   if (state.solved) {
-    resetGame();
-    showIntroStage();
+    window.location.href = "/";
     return;
   }
 
