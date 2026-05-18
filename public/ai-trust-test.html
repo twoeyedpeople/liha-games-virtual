@@ -5,9 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Trust Test</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/viewport-guard.css" />
+  <link rel="stylesheet" href="/landing.css" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/ai-trust-test.css" />
+  <script src="/landing-topbar.js" defer></script>
   <script src="/ua-flags.js"></script>
 
   <!-- Google tag (gtag.js) -->
@@ -27,9 +32,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="intro-welcome-shell">
-        <header class="liha-topbar intro-welcome-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="screen-logo liha-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
 
         <div class="intro-welcome-hero with-scroll-indicator">
           <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
@@ -63,9 +66,7 @@
     <section class="trust-stage trust-stage-game" id="trust-stage-game" aria-live="polite">
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
-      <header class="trust-stage-header">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="screen-logo liha-logo" /></a>
-      </header>
+      <div data-landing-topbar></div>
 
       <div class="trust-board-shell">
         <div class="trust-board" id="trust-board"></div>
@@ -73,7 +74,7 @@
 
       <footer class="trust-footer" id="trust-footer">
         <div class="trust-footer-copy">
-          <p id="trust-footer-message">Select the 10 incorrect AI statement cards.</p>
+          <p id="trust-footer-message">Select the 14 correct AI statement cards.</p>
         </div>
 
         <div class="trust-progress" id="trust-progress" aria-label="Selection progress"></div>

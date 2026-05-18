@@ -38,8 +38,8 @@
   --trust-yellow: #f6cf46;
   --trust-red: #e04848;
   --trust-red-deep: #c93c3c;
-  --trust-green: #14ae74;
-  --trust-green-deep: #11a36c;
+  --trust-green: #03a670;
+  --trust-green-deep: #028c5f;
   --trust-white: #ffffff;
   --trust-muted: #d8cfbf;
   --trust-grey: #d6d2ca;
@@ -114,7 +114,7 @@ button {
 }
 
 .trust-stage-header {
-  height: var(--liha-topbar-height);
+  height: var(--game-topbar-height);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -516,38 +516,33 @@ button {
 }
 
 .trust-card.is-selected .trust-card-inner {
-  outline: 4px solid var(--trust-red);
+  outline: 4px solid var(--trust-green);
   outline-offset: 0;
   animation: trustPulse 1.8s infinite ease-in-out;
 }
 
-.trust-card.is-correct::after {
+.trust-card.is-correct {
+  z-index: 20;
+}
+
+.trust-card.is-correct .trust-card-inner {
+  z-index: 3;
+}
+
+.trust-card.is-correct .trust-card-inner::before {
   content: "";
   position: absolute;
-  top: -10px;
+  top: -18px;
   left: 50%;
+  z-index: 10;
   width: 26px;
   height: 26px;
   border-radius: 999px;
-  background: var(--trust-green);
+  background:
+    url("/assets/images/tick.svg") center / 14px auto no-repeat,
+    var(--trust-green);
   transform: translateX(-50%);
   box-shadow: 0 6px 12px rgba(20, 174, 116, 0.24);
-}
-
-.trust-card.is-correct::before {
-  content: "✓";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  z-index: 2;
-  width: 26px;
-  height: 26px;
-  display: grid;
-  place-items: center;
-  color: var(--trust-white);
-  font-size: 15px;
-  font-weight: 700;
-  transform: translateX(-50%);
 }
 
 .trust-card.is-knocked {
@@ -606,10 +601,10 @@ button {
 
 .trust-progress {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
+  grid-template-columns: repeat(14, 1fr);
   gap: clamp(4px, 0.45vw, 7px);
-  width: min(clamp(210px, 16vw, 286px), 100%);
-  min-width: 170px;
+  width: min(clamp(260px, 21vw, 386px), 100%);
+  min-width: 230px;
 }
 
 .trust-progress-slot {
@@ -636,11 +631,11 @@ button {
 @keyframes trustPulse {
   0%,
   100% {
-    outline-color: var(--trust-red);
+    outline-color: var(--trust-green);
   }
 
   50% {
-    outline-color: rgba(224, 72, 72, 0.72);
+    outline-color: rgba(3, 166, 112, 0.72);
   }
 }
 
@@ -776,7 +771,7 @@ button {
   }
 
   .trust-progress {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
   }
 
   .trust-progress-slot {

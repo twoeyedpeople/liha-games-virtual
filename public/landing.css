@@ -131,6 +131,8 @@ select {
   position: sticky;
   top: 0;
   z-index: 20;
+  width: 100%;
+  margin: 0;
   min-height: var(--landing-topbar-height);
   padding: var(--landing-topbar-padding-y) 0;
   background: rgba(255, 255, 255, 0.94);
@@ -138,6 +140,17 @@ select {
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
+}
+
+.stage .landing-topbar,
+.trust-stage .landing-topbar,
+.liha-demo-stage .landing-topbar {
+  position: relative;
+  top: auto;
+  width: 100vw;
+  margin-top: calc(var(--stage-padding, 0px) * -1);
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
 }
 
 .landing-topbar-inner {
@@ -194,9 +207,9 @@ select {
 .landing-hero {
   display: grid;
   justify-items: center;
-  gap: 30px;
-  min-height: clamp(330px, 31vw, 470px);
-  padding: clamp(72px, 7vw, 126px) 0 clamp(54px, 5vw, 92px);
+  gap: clamp(14px, 1.4vw, 22px);
+  min-height: clamp(230px, 23vw, 340px);
+  padding: clamp(30px, 3.6vw, 64px) 0 clamp(24px, 3vw, 50px);
   text-align: center;
   align-content: center;
 }
@@ -211,10 +224,11 @@ select {
 }
 
 .landing-hero-copy p {
-  margin: 22px 0 0;
-  font-size: clamp(28px, 2.45vw, 44px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  max-width: 1180px;
+  margin: 18px auto 0;
+  font-size: clamp(20px, 1.7vw, 30px);
+  line-height: 1.18;
+  letter-spacing: 0;
   font-weight: 400;
 }
 

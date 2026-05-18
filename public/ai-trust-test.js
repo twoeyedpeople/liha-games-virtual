@@ -34,6 +34,7 @@ const CARDS = shuffle(
   )
 );
 
+const TOTAL_CORRECT_COUNT = TRUE_STATEMENTS.length;
 const TOTAL_INCORRECT_COUNT = FALSE_STATEMENTS.length;
 const FEEDBACK_FLIP_DOWN_MS = 520;
 const FEEDBACK_FLASH_MS = 520;
@@ -59,7 +60,7 @@ const state = {
   lockedCorrect: new Set(),
   feedbackFlash: new Set(),
   isSubmitting: false,
-  lastFoundIncorrectCount: 0,
+  lastCorrectPickedCount: 0,
   limitFeedbackCardId: null,
   progressMode: "selection",
   solved: false,
@@ -94,7 +95,7 @@ function resetGame() {
   state.lockedCorrect = new Set();
   state.feedbackFlash = new Set();
   state.isSubmitting = false;
-  state.lastFoundIncorrectCount = 0;
+  state.lastCorrectPickedCount = 0;
   state.limitFeedbackCardId = null;
   state.progressMode = "selection";
   state.solved = false;
@@ -129,12 +130,11 @@ function toggleCard(id) {
   const card = CARDS.find((item) => item.id === id);
   if (!card) return;
   if (state.knocked.has(id)) return;
-  const remainingIncorrectCount = TOTAL_INCORRECT_COUNT - getFoundIncorrectCount();
 
   if (state.selected.has(id)) {
     state.selected.delete(id);
   } else {
-    if (state.selected.size >= remainingIncorrectCount) {
+    if (state.selected.size >= TOTAL_CORRECT_COUNT) {
       showSelectionLimitFeedback(id);
       return;
     }
@@ -166,38 +166,37 @@ function showSelectionLimitFeedback(id) {
 
 async function submitSelection() {
   if (state.solved) {
-    window.location.href = "/";
+    resetGame();
+    showIntroStage();
     return;
   }
 
-  const remainingIncorrectCount = TOTAL_INCORRECT_COUNT - getFoundIncorrectCount();
+  if (state.isSubmitting || state.selected.size !== TOTAL_CORRECT_COUNT) return;
 
-  if (state.isSubmitting || state.selected.size !== remainingIncorrectCount) return;
-
-  const nextLockedCorrect = new Set();
   const foundIncorrectCardIds = [];
-  const incorrectlySelectedCardIds = [];
+  const selectedCorrectCardIds = [];
+  const missedCorrectCardIds = [];
 
   CARDS.forEach((card) => {
     const isSelected = state.selected.has(card.id);
     const isAlreadyFound = state.knocked.has(card.id);
 
-    if (isAlreadyFound || (!card.isTrue && isSelected)) {
-      nextLockedCorrect.add(card.id);
-    }
-
-    if (!card.isTrue && (isAlreadyFound || isSelected)) {
-      foundIncorrectCardIds.push(card.id);
-    }
-
     if (card.isTrue && isSelected) {
-      incorrectlySelectedCardIds.push(card.id);
+      selectedCorrectCardIds.push(card.id);
+    }
+
+    if (card.isTrue && !isSelected) {
+      missedCorrectCardIds.push(card.id);
+    }
+
+    if (!card.isTrue && (isAlreadyFound || !isSelected)) {
+      foundIncorrectCardIds.push(card.id);
     }
   });
 
-  state.lockedCorrect = nextLockedCorrect;
-  state.lastFoundIncorrectCount = foundIncorrectCardIds.length;
-  state.knocked = new Set([...state.knocked, ...state.selected]);
+  state.lockedCorrect = new Set(selectedCorrectCardIds);
+  state.lastCorrectPickedCount = selectedCorrectCardIds.length;
+  state.knocked = new Set([...state.knocked, ...CARDS.filter((card) => !state.selected.has(card.id)).map((card) => card.id)]);
   state.solved = foundIncorrectCardIds.length === TOTAL_INCORRECT_COUNT;
 
   if (state.solved) {
@@ -224,7 +223,8 @@ async function submitSelection() {
 
   state.knocked = new Set(foundIncorrectCardIds);
   state.selected = new Set();
-  state.feedbackFlash = new Set(incorrectlySelectedCardIds);
+  state.lockedCorrect = new Set();
+  state.feedbackFlash = new Set(missedCorrectCardIds);
   state.progressMode = "result";
   state.isSubmitting = false;
   renderAll();
@@ -272,13 +272,14 @@ function renderBoard() {
   CARDS.forEach((card) => {
     const button = boardEl.querySelector(`[data-card-id="${card.id}"]`);
     const isSelected = state.selected.has(card.id);
+    const isCorrect = state.lockedCorrect.has(card.id);
     const isKnocked = state.knocked.has(card.id);
     const isFeedbackFlash = state.feedbackFlash.has(card.id);
     const isLimitFeedback = state.limitFeedbackCardId === card.id;
 
     button.setAttribute("aria-pressed", String(isSelected));
     button.classList.toggle("is-selected", isSelected);
-    button.classList.remove("is-correct");
+    button.classList.toggle("is-correct", isCorrect);
     button.classList.toggle("is-knocked", isKnocked);
     button.classList.toggle("is-feedback-flash", isFeedbackFlash);
     button.classList.toggle("is-limit-feedback", isLimitFeedback);
@@ -295,17 +296,14 @@ function renderBoard() {
 function renderProgress() {
   progressEl.innerHTML = "";
 
-  for (let index = 0; index < TOTAL_INCORRECT_COUNT; index += 1) {
+  const visibleCount = state.progressMode === "result" ? state.lastCorrectPickedCount : state.selected.size;
+
+  for (let index = 0; index < TOTAL_CORRECT_COUNT; index += 1) {
     const slot = document.createElement("span");
     slot.className = "trust-progress-slot";
 
-    const foundCount = getFoundIncorrectCount();
-    const selectedCount = state.selected.size;
-
-    if (index < foundCount) {
-      slot.classList.add("is-found");
-    } else if (index < foundCount + selectedCount) {
-      slot.classList.add("is-selected");
+    if (index < visibleCount) {
+      slot.classList.add(state.progressMode === "result" ? "is-correct" : "is-selected");
     }
 
     progressEl.appendChild(slot);
@@ -314,31 +312,27 @@ function renderProgress() {
 
 function renderFooter() {
   if (state.solved) {
-    footerMessageEl.innerHTML = "Amazing work. You’ve found all 10 incorrect AI statement cards.";
+    footerMessageEl.innerHTML = "Amazing work. You found all 14 correct AI statement cards.";
     submitBtn.disabled = false;
     submitBtn.classList.remove("is-disabled");
     submitLabel.textContent = "Complete";
     footerEl.classList.add("is-complete");
-    progressEl.setAttribute("aria-label", "Completed with all 10 incorrect cards found");
+    progressEl.setAttribute("aria-label", "Completed with all 14 correct cards selected");
     return;
   }
 
   footerEl.classList.remove("is-complete");
   const foundCount = getFoundIncorrectCount();
-  const remainingIncorrectCount = TOTAL_INCORRECT_COUNT - foundCount;
 
   if (state.progressMode === "result") {
-    footerMessageEl.innerHTML = `Keep trying. You found <span class="trust-highlight-pill">${foundCount}</span> out of ${TOTAL_INCORRECT_COUNT} incorrect statements.`;
-    progressEl.setAttribute("aria-label", `${foundCount} of ${TOTAL_INCORRECT_COUNT} incorrect statements found`);
+    footerMessageEl.innerHTML = `Keep trying. You picked <span class="trust-highlight-pill">${state.lastCorrectPickedCount}</span> out of ${TOTAL_CORRECT_COUNT} correct statements.`;
+    progressEl.setAttribute("aria-label", `${state.lastCorrectPickedCount} of ${TOTAL_CORRECT_COUNT} correct statements selected`);
   } else {
-    footerMessageEl.textContent =
-      foundCount > 0
-        ? `Select the ${remainingIncorrectCount} remaining incorrect AI statement cards.`
-        : "Select the 10 incorrect AI statement cards.";
-    progressEl.setAttribute("aria-label", `${state.selected.size} of ${remainingIncorrectCount} remaining incorrect cards selected`);
+    footerMessageEl.textContent = "Select the 14 correct AI statement cards.";
+    progressEl.setAttribute("aria-label", `${state.selected.size} of ${TOTAL_CORRECT_COUNT} correct cards selected`);
   }
 
-  const canSubmit = !state.isSubmitting && remainingIncorrectCount > 0 && state.selected.size === remainingIncorrectCount;
+  const canSubmit = !state.isSubmitting && foundCount < TOTAL_INCORRECT_COUNT && state.selected.size === TOTAL_CORRECT_COUNT;
   submitBtn.disabled = !canSubmit;
   submitBtn.classList.toggle("is-disabled", !canSubmit);
   submitLabel.textContent = "Submit";

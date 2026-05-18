@@ -5,8 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Skills Sprint Virtual Hub</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/viewport-guard.css" />
   <link rel="stylesheet" href="/landing.css" />
+  <script src="/landing-topbar.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TYWTZBGTQH"></script>
@@ -20,30 +24,14 @@
 </head>
 
 <body class="landing-body" data-viewport-guard-min-width="1100">
-  <header class="landing-topbar">
-    <div class="landing-topbar-inner">
-      <a class="landing-logo-link" href="/index.html" aria-label="AI Skills Sprint Virtual Hub home">
-        <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="landing-logo" />
-      </a>
-
-      <nav class="landing-nav" aria-label="Primary">
-        <a href="/recruiterfocusfinder.html" target="_blank" rel="noopener noreferrer">Focus Finder</a>
-        <a href="/ai-trust-test" target="_blank" rel="noopener noreferrer">AI Trust Test</a>
-        <a href="/prompt-like-a-pro" target="_blank" rel="noopener noreferrer">Prompt Like a Pro</a>
-        <a href="/hiring-assistant-demo" target="_blank" rel="noopener noreferrer">Hiring Assistant Demo</a>
-        <a href="/human-skills-in-the-age-of-ai" target="_blank" rel="noopener noreferrer">Human Skills</a>
-        <a href="/ai-adoption-plan" target="_blank" rel="noopener noreferrer">AI Adoption Plan</a>
-        <a href="/resources-and-takeaways" target="_blank" rel="noopener noreferrer">Resources</a>
-      </nav>
-    </div>
-  </header>
+  <div data-landing-topbar></div>
 
   <main class="landing-main">
     <div class="landing-main-canvas">
       <section class="landing-hero">
         <div class="landing-hero-copy">
           <h1>Welcome to <span class="landing-hero-highlight">AI Skills Sprint</span> <span class="landing-hero-line">Challenge Hub.</span></h1>
-          <p>Build skills today - to stay ahead for tomorrow.</p>
+          <p>Develop skills to become an AI-first talent professional. Complete each challenge to upskill on how AI can help you boost productivity in the hiring workflow.</p>
         </div>
       </section>
 
@@ -123,7 +111,7 @@
                 <p class="activity-chip activity-chip-light activity-chip-align-right">in the Age of AI</p>
               </div>
             </div>
-            <h2>Build the top AI and Human skills needed for the AI era.</h2>
+            <h2>Build the top AI and human skills needed for the AI era.</h2>
             <p class="activity-skill activity-skill-light">Skill: Strategic Communication, Leadership, Prompt Engineering</p>
           </div>
           <span class="activity-cta">
@@ -149,7 +137,7 @@
           </span>
         </a>
 
-        <a class="activity-card activity-card-resource activity-card-resource-panel" href="/resources-and-takeaways">
+        <a class="activity-card activity-card-resource activity-card-resource-panel" href="/resources">
           <div class="activity-card-art">
             <img src="/assets/images/landing/background_shape-05.svg" alt="" class="activity-card-bg" />
           </div>

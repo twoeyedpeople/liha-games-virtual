@@ -4,10 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Build AI &amp; Human Skills</title>
+  <title>Upskill on AI and human skills with LinkedIn Learning</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/viewport-guard.css" />
   <link rel="stylesheet" href="/landing.css" />
   <link rel="stylesheet" href="/ai-human-skills.css" />
+  <script src="/landing-topbar.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TYWTZBGTQH"></script>
@@ -21,50 +25,42 @@
 </head>
 
 <body class="skills-page-body" data-viewport-guard-min-width="1024">
-  <header class="landing-topbar">
-    <div class="landing-topbar-inner">
-      <a class="landing-logo-link" href="/index.html" aria-label="AI Skills Sprint Virtual Hub home">
-        <img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="landing-logo" />
-      </a>
-
-      <nav class="landing-nav" aria-label="Primary">
-        <a href="/recruiterfocusfinder.html">Focus Finder</a>
-        <a href="/ai-trust-test">AI Trust Test</a>
-        <a href="/prompt-like-a-pro">Prompt Like a Pro</a>
-        <a href="/hiring-assistant-demo">Hiring Assistant Demo</a>
-        <a href="/human-skills-in-the-age-of-ai">Human Skills</a>
-        <a href="/ai-adoption-plan">AI Adoption Plan</a>
-        <a href="/resources-and-takeaways">Resources</a>
-      </nav>
-    </div>
-  </header>
+  <div data-landing-topbar></div>
 
   <main class="skills-page">
     <header class="skills-header">
       <div>
-        <h1>Build AI &amp; Human Skills</h1>
-      </div>
-      <div class="skills-header-copy">
-        <p>Upskill on the top AI and Human skills with these short LinkedIn Learning courses.</p>
+        <h1>Upskill on AI and human skills with LinkedIn Learning</h1>
       </div>
     </header>
 
     <section class="skills-section" aria-labelledby="skills-ai-title">
       <div class="skills-section-labels">
         <span class="skills-tag skills-tag-primary" id="skills-ai-title">AI Skills</span>
-        <span class="skills-tag skills-tag-count">5 videos</span>
+        <span class="skills-tag skills-tag-count">5 LinkedIn Learning Courses</span>
       </div>
 
-      <div class="skills-carousel" role="region" aria-label="AI Skills videos">
+      <div class="skills-carousel" role="region" aria-label="AI Skills LinkedIn Learning Courses">
+        <a class="skills-card" href="https://opportunity.linkedin.com/skills-for-in-demand-jobs" target="_blank" rel="noopener noreferrer">
+          <div class="skills-card-image-wrap">
+            <img src="/assets/images/ai-human-skills/learn-skills-for-in-demand-jobs.jpeg" alt="7 AI learning paths" class="skills-card-image" />
+            <div class="skills-card-meta">
+              <span class="skills-play-icon">&#9654;</span>
+              <span class="skills-duration">1:06</span>
+            </div>
+          </div>
+          <h2>7 AI learning paths</h2>
+        </a>
+
         <a class="skills-card" href="https://www.linkedin.com/learning/microsoft-copilot-the-art-of-prompt-writing-24554232" target="_blank" rel="noopener noreferrer">
           <div class="skills-card-image-wrap">
-            <img src="/assets/images/ai-human-skills/microsoft-copilot-the-art-of-prompt-writing.jpeg" alt="Microsoft Copilot: The Art of Prompt Writing" class="skills-card-image" />
+            <img src="/assets/images/ai-human-skills/microsoft-copilot-the-art-of-prompt-writing.jpeg" alt="Microsoft Copilot: The Art of Prompting" class="skills-card-image" />
             <div class="skills-card-meta">
               <span class="skills-play-icon">&#9654;</span>
               <span class="skills-duration">0:38</span>
             </div>
           </div>
-          <h2>Microsoft Copilot: The Art of Prompt Writing</h2>
+          <h2>Microsoft Copilot: The Art of Prompting</h2>
         </a>
 
         <a class="skills-card" href="https://www.linkedin.com/learning/prompt-engineering-how-to-talk-to-the-ais-high-visibility" target="_blank" rel="noopener noreferrer">
@@ -78,37 +74,26 @@
           <h2>Prompt Engineering: How to Talk to the AIs</h2>
         </a>
 
-        <a class="skills-card" href="https://www.linkedin.com/learning/learn-ai-agents-in-15-minutes" target="_blank" rel="noopener noreferrer">
-          <div class="skills-card-image-wrap">
-            <img src="/assets/images/ai-human-skills/learn-ai-agents-in-15-minutes.jpeg" alt="Learn AI Agents in 15 minutes" class="skills-card-image" />
-            <div class="skills-card-meta">
-              <span class="skills-play-icon">&#9654;</span>
-              <span class="skills-duration">2:33</span>
-            </div>
-          </div>
-          <h2>Learn AI Agents in 15 minutes</h2>
-        </a>
-
         <a class="skills-card" href="https://www.linkedin.com/learning/nano-tips-for-using-ai-to-boost-productivity-for-any-role-with-rachel-woods" target="_blank" rel="noopener noreferrer">
           <div class="skills-card-image-wrap">
-            <img src="/assets/images/ai-human-skills/nano-tips-using-ai-to-boost-productivity-rachel-woods.jpeg" alt="Nano tips for using AI to boost productivity for any role with Rachel Woods" class="skills-card-image" />
+            <img src="/assets/images/ai-human-skills/nano-tips-using-ai-to-boost-productivity-rachel-woods.jpeg" alt="Nano tips for using AI" class="skills-card-image" />
             <div class="skills-card-meta">
               <span class="skills-play-icon">&#9654;</span>
               <span class="skills-duration">1:06</span>
             </div>
           </div>
-          <h2>Nano tips for using AI to boost productivity for any role with Rachel Woods</h2>
+          <h2>Nano tips for using AI</h2>
         </a>
 
         <a class="skills-card" href="https://www.linkedin.com/learning/top-ten-ai-prompts" target="_blank" rel="noopener noreferrer">
           <div class="skills-card-image-wrap">
-            <img src="/assets/images/ai-human-skills/top-ten-ai-prompts.jpeg" alt="Top ten AI Prompts" class="skills-card-image" />
+            <img src="/assets/images/ai-human-skills/top-ten-ai-prompts.jpeg" alt="Top ten AI prompts" class="skills-card-image" />
             <div class="skills-card-meta">
               <span class="skills-play-icon">&#9654;</span>
               <span class="skills-duration">0:38</span>
             </div>
           </div>
-          <h2>Top ten AI Prompts</h2>
+          <h2>Top ten AI prompts</h2>
         </a>
       </div>
     </section>
@@ -116,10 +101,32 @@
     <section class="skills-section" aria-labelledby="skills-human-title">
       <div class="skills-section-labels">
         <span class="skills-tag skills-tag-primary" id="skills-human-title">Human Skills</span>
-        <span class="skills-tag skills-tag-count">4 videos</span>
+        <span class="skills-tag skills-tag-count">5 LinkedIn Learning Courses</span>
       </div>
 
-      <div class="skills-carousel" role="region" aria-label="Human Skills videos">
+      <div class="skills-carousel" role="region" aria-label="Human Skills LinkedIn Learning Courses">
+        <a class="skills-card" href="https://www.linkedin.com/learning/paths/human-skills-in-the-age-of-ai-by-microsoft-and-linkedin?u=104" target="_blank" rel="noopener noreferrer">
+          <div class="skills-card-image-wrap">
+            <img src="/assets/images/ai-human-skills/humanSkills.png" alt="Human Skills in the Age of AI Professional Certificate" class="skills-card-image" />
+            <div class="skills-card-meta">
+              <span class="skills-play-icon">&#9654;</span>
+              <span class="skills-duration">1:06</span>
+            </div>
+          </div>
+          <h2>Human Skills in the Age of AI Professional Certificate</h2>
+        </a>
+
+        <a class="skills-card" href="https://www.linkedin.com/learning/microsoft-365-copilot-shorts-20-skills-in-20-minutes/setting-custom-instructions-in-copilot?u=0" target="_blank" rel="noopener noreferrer">
+          <div class="skills-card-image-wrap">
+            <img src="/assets/images/ai-human-skills/copilot.png" alt="Microsoft Copilot: 20 skills in 20 minutes" class="skills-card-image" />
+            <div class="skills-card-meta">
+              <span class="skills-play-icon">&#9654;</span>
+              <span class="skills-duration">1:06</span>
+            </div>
+          </div>
+          <h2>Microsoft Copilot: 20 skills in 20 minutes</h2>
+        </a>
+
         <a class="skills-card" href="https://www.linkedin.com/learning/nano-tips-for-communicating-with-confidence-with-selena-rezvani" target="_blank" rel="noopener noreferrer">
           <div class="skills-card-image-wrap">
             <img src="/assets/images/ai-human-skills/nano-tips-communicating-with-confidence-selena-rezvani.jpeg" alt="Nano tips for communicating with confidence with Selena Rezvani" class="skills-card-image" />
@@ -153,16 +160,6 @@
           <h2>Nano tips to sharpen your critical thinking with Shafe Zahari</h2>
         </a>
 
-        <a class="skills-card" href="https://opportunity.linkedin.com/skills-for-in-demand-jobs" target="_blank" rel="noopener noreferrer">
-          <div class="skills-card-image-wrap">
-            <img src="/assets/images/ai-human-skills/learn-skills-for-in-demand-jobs.jpeg" alt="Learn skills for today's in-demand jobs" class="skills-card-image" />
-            <div class="skills-card-meta">
-              <span class="skills-play-icon">&#9654;</span>
-              <span class="skills-duration">1:06</span>
-            </div>
-          </div>
-          <h2>Learn skills for today's in-demand jobs</h2>
-        </a>
       </div>
     </section>
   </main>
@@ -181,7 +178,7 @@
           const url = link.getAttribute('href');
           if (!clickedLinks.has(url)) {
             clickedLinks.add(url);
-            window.Analytics.logEvent("Human Skills in the Age of AI", "milestone_reached", `Clicked Video ${clickedLinks.size}`);
+            window.Analytics.logEvent("Human Skills in the Age of AI", "milestone_reached", `Clicked Course ${clickedLinks.size}`);
             
             if (clickedLinks.size === skillLinks.length) {
               window.Analytics.markModuleComplete("Human Skills in the Age of AI");

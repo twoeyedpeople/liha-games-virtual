@@ -5,7 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt Arena | Player</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/landing.css" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="/landing-topbar.js" defer></script>
   <script src="ua-flags.js"></script>
 
   <!-- Google tag (gtag.js) -->
@@ -24,9 +29,7 @@
     <section class="stage hidden" id="stage-passcode-entry">
       <div class="liha-frame liha-frame-dark liha-frame-single passcode-launch-frame">
         <div class="liha-panel liha-panel-blue passcode-launch-panel">
-          <header class="passcode-launch-header">
-            <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-          </header>
+          <div data-landing-topbar></div>
 
           <div class="passcode-launch-main">
             <img src="/assets/images/appIcon.svg" alt="" aria-hidden="true" class="passcode-app-icon" />
@@ -59,19 +62,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="liha-frame">
-        <header class="liha-topbar">
-          <div class="team-mini-board" id="team-mini-board">
-            <div class="team-mini-item"><img class="team-mini-dot team-mini-red" data-mini-icon="red"
-                alt="Red team" /><strong data-mini-score="red">230pt</strong></div>
-            <div class="team-mini-item"><img class="team-mini-dot team-mini-green" data-mini-icon="green"
-                alt="Green team" /><strong data-mini-score="green">230pt</strong></div>
-            <div class="team-mini-item"><img class="team-mini-dot team-mini-blue" data-mini-icon="blue"
-                alt="Blue team" /><strong data-mini-score="blue">230pt</strong></div>
-            <div class="team-mini-item"><img class="team-mini-dot team-mini-yellow" data-mini-icon="yellow"
-                alt="Yellow team" /><strong data-mini-score="yellow">230pt</strong></div>
-          </div>
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-blue liha-panel-hero with-scroll-indicator">
           <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
             <source src="/assets/images/sideShapes.webm" type="video/webm" />
@@ -119,9 +110,7 @@
 
     <section class="stage hidden" id="stage-lobby">
       <div class="liha-frame liha-frame-dark">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-blue liha-panel-lobby with-scroll-indicator">
           <button id="lobby-change-team-btn" class="lobby-change-team-btn" type="button">Exit</button>
           <h1 id="lobby-title">Waiting for other teams...</h1>
@@ -142,9 +131,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="liha-frame">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-blue liha-panel-hero with-scroll-indicator">
           <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
             <source src="/assets/images/sideShapes.webm" type="video/webm" />
@@ -176,9 +163,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="liha-frame">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-blue brief-pick-panel with-scroll-indicator">
           <div class="brief-choice-grid" id="brief-choice-grid">
             <button type="button" class="brief-choice" data-brief-choice="business-analyst">Business Analyst</button>
@@ -328,9 +313,7 @@
 
     <section class="stage hidden" id="stage-result">
       <div class="liha-frame no-topbar">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="result-screen">
           <aside class="result-score-orbit" id="result-score-orbit">
             <img id="result-team-icon" class="result-team-icon" src="/assets/images/team-A_01.png" alt="Team icon" />
@@ -408,9 +391,7 @@
 
     <section class="stage hidden" id="stage-blocked">
       <div class="liha-frame liha-frame-dark">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-blue analyzing-panel with-scroll-indicator">
           <h2 id="blocked-title">Round is not active.</h2>
           <p class="subcopy centered" id="blocked-copy">Wait for your session to start the next game round.</p>

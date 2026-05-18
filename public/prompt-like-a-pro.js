@@ -411,7 +411,8 @@ document.getElementById("submit-prompt").addEventListener("click", () => {
 });
 
 resultNextBtn.addEventListener("click", () => {
-  setStage("prompt");
+  updateJobBriefContent();
+  setStage("brief");
 });
 
 resultDoneBtn.addEventListener("click", () => {

@@ -20,7 +20,7 @@
 }
 
 .prompt-pro-topbar {
-  height: var(--liha-topbar-height);
+  height: var(--game-topbar-height);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -200,6 +200,7 @@ const state = createInitialRootState();
 function createInitialAnalyticsState() {
   return {
     version: 1,
+    events: [],
     introSubmissions: [],
     promptSubmissions: [],
     promptRounds: [],
@@ -219,6 +220,7 @@ function loadAnalytics() {
     return {
       ...createInitialAnalyticsState(),
       ...parsed,
+      events: Array.isArray(parsed?.events) ? parsed.events : [],
       introSubmissions: Array.isArray(parsed?.introSubmissions) ? parsed.introSubmissions : [],
       promptSubmissions: Array.isArray(parsed?.promptSubmissions) ? parsed.promptSubmissions : [],
       promptRounds: Array.isArray(parsed?.promptRounds) ? parsed.promptRounds : [],
@@ -473,6 +475,69 @@ function buildStatsSummary() {
       softSkillsRuns,
     },
   };
+}
+
+function safeAnalyticsText(value, maxLength = 240) {
+  return String(value ?? "").trim().slice(0, maxLength);
+}
+
+function normalizeAnalyticsEvent(payload) {
+  const timestampInput = safeAnalyticsText(payload?.timestamp, 80);
+  const timestampMs = Date.parse(timestampInput);
+  const timestamp = Number.isFinite(timestampMs) ? new Date(timestampMs).toISOString() : new Date().toISOString();
+  const modulesCompletedCount = Math.max(0, Math.round(Number(payload?.modules_completed_count) || 0));
+
+  return {
+    id: safeAnalyticsText(payload?.id, 80) || crypto.randomUUID(),
+    timestamp,
+    createdAt: Date.now(),
+    session_id: safeAnalyticsText(payload?.session_id, 120) || crypto.randomUUID(),
+    module_name: safeAnalyticsText(payload?.module_name, 160),
+    event_type: safeAnalyticsText(payload?.event_type, 120),
+    event_detail: safeAnalyticsText(payload?.event_detail, 600),
+    country: safeAnalyticsText(payload?.country, 120),
+    region: safeAnalyticsText(payload?.region, 120),
+    company: safeAnalyticsText(payload?.company, 160),
+    modules_completed_count: modulesCompletedCount,
+  };
+}
+
+function analyticsEventsForQuery(query = {}) {
+  const startDate = safeAnalyticsText(query.startDate, 20);
+  const endDate = safeAnalyticsText(query.endDate, 20);
+  const country = safeAnalyticsText(query.country, 120);
+  const startMs = startDate ? Date.parse(`${startDate}T00:00:00`) : null;
+  const endMs = endDate ? Date.parse(`${endDate}T23:59:59.999`) : null;
+
+  return (analytics.events || []).filter((event) => {
+    const eventMs = Date.parse(event.timestamp);
+    if (Number.isFinite(startMs) && Number.isFinite(eventMs) && eventMs < startMs) return false;
+    if (Number.isFinite(endMs) && Number.isFinite(eventMs) && eventMs > endMs) return false;
+    if (country && country !== "All" && String(event.country || "") !== country) return false;
+    return true;
+  });
+}
+
+function csvCell(value) {
+  const text = String(value ?? "");
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
+function buildAnalyticsCsv(events) {
+  const columns = [
+    "id",
+    "timestamp",
+    "session_id",
+    "module_name",
+    "event_type",
+    "event_detail",
+    "country",
+    "region",
+    "company",
+    "modules_completed_count",
+  ];
+  const rows = events.map((event) => columns.map((column) => csvCell(event[column])).join(","));
+  return [columns.join(","), ...rows].join("\n");
 }
 
 function escapeHtml(input) {
@@ -1457,8 +1522,12 @@ function assignUniqueJoinCode(sessionId) {
   return code;
 }
 
+function masterKeyFromRequest(req) {
+  return req.header("x-master-key") || req.body?.masterKey || req.query?.masterKey;
+}
+
 function requireMaster(req, res, next) {
-  const key = req.header("x-master-key") || req.body?.masterKey;
+  const key = masterKeyFromRequest(req);
   if (key !== MASTER_KEY) {
     return res.status(401).json({ error: "Unauthorized master access." });
   }
@@ -1484,6 +1553,15 @@ function setPhase(session, phase) {
 }
 
 app.use(express.json());
+
+app.get("/admin-analytics", (_, res) => {
+  res.sendFile(path.join(__dirname, "public", "admin-analytics.html"));
+});
+
+app.get("/admin-analytics.html", (_, res) => {
+  res.redirect(301, "/admin-analytics");
+});
+
 app.use(express.static("public"));
 
 app.get("/", (_, res) => {
@@ -1538,8 +1616,12 @@ app.get("/ai-adoption-plan", (_, res) => {
   res.sendFile(path.join(__dirname, "public", "ai-adoption-plan.html"));
 });
 
-app.get("/resources-and-takeaways", (_, res) => {
+app.get("/resources", (_, res) => {
   res.sendFile(path.join(__dirname, "public", "resources-and-takeaways.html"));
+});
+
+app.get("/resources-and-takeaways", (_, res) => {
+  res.redirect(301, "/resources");
 });
 
 app.get("/dev-cert.pem", (req, res) => {
@@ -2435,6 +2517,31 @@ app.get("/api/stats/export.xls", (req, res) => {
   res.setHeader("Content-Type", "application/vnd.ms-excel; charset=UTF-8");
   res.setHeader("Content-Disposition", `attachment; filename="liha-game-stats-${Date.now()}.xls"`);
   res.send(`\uFEFF${xls}`);
+});
+
+app.post("/api/analytics/event", (req, res) => {
+  const event = normalizeAnalyticsEvent(req.body || {});
+  if (!event.event_type) {
+    return res.status(400).json({ error: "event_type is required." });
+  }
+
+  analytics.events.push(event);
+  persistAnalytics();
+  res.json({ ok: true, event });
+});
+
+app.get("/api/analytics/data", requireMaster, (req, res) => {
+  res.json({
+    events: analyticsEventsForQuery(req.query),
+    summary: buildStatsSummary(),
+  });
+});
+
+app.get("/api/analytics/export.csv", requireMaster, (req, res) => {
+  const events = analyticsEventsForQuery(req.query);
+  res.setHeader("Content-Type", "text/csv; charset=UTF-8");
+  res.setHeader("Content-Disposition", `attachment; filename="liha-analytics-${Date.now()}.csv"`);
+  res.send(`\uFEFF${buildAnalyticsCsv(events)}`);
 });
 
 app.use("/api", (req, res) => {

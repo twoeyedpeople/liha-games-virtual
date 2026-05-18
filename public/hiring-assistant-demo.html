@@ -5,9 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hiring Assistant Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
   <link rel="stylesheet" href="/viewport-guard.css" />
+  <link rel="stylesheet" href="/landing.css" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/hiring-assistant-demo.css" />
+  <script src="/landing-topbar.js" defer></script>
   <script src="/ua-flags.js"></script>
 
   <!-- Google tag (gtag.js) -->
@@ -23,12 +28,10 @@
 
 <body class="liha-demo-body">
   <main class="liha-demo-app">
-    <section class="liha-demo-stage liha-demo-stage-active" id="liha-demo-intro">
+    <section class="liha-demo-stage liha-demo-stage-active liha-demo-intro-stage" id="liha-demo-intro">
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
-      <header class="liha-demo-topbar">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-      </header>
+      <div data-landing-topbar></div>
 
       <div class="liha-demo-card liha-demo-intro-card">
         <div class="liha-demo-art" aria-hidden="true">
@@ -66,28 +69,92 @@
       </footer>
     </section>
 
-    <section class="liha-demo-stage" id="liha-demo-video">
+    <section class="liha-demo-stage liha-demo-region-stage" id="liha-demo-region">
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
-      <header class="liha-demo-topbar">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-      </header>
+      <div data-landing-topbar></div>
 
-      <div class="liha-demo-card liha-demo-video-card">
-        <video class="liha-demo-video-player" controls preload="metadata" playsinline>
-          <source src="/assets/videos/hiring-assistant-demo.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+      <div class="liha-demo-region-panel">
+        <div class="liha-demo-region-grid" id="liha-demo-region-grid" aria-label="Choose a region">
+          <button type="button" class="liha-demo-region-card" data-demo-region="anz" aria-pressed="false">
+            <span class="liha-demo-flag liha-demo-flag-anz" aria-hidden="true"></span>
+            <span>ANZ</span>
+          </button>
+          <button type="button" class="liha-demo-region-card" data-demo-region="asia" aria-pressed="false">
+            <span class="liha-demo-flag liha-demo-flag-asia" aria-hidden="true"></span>
+            <span>Asia</span>
+          </button>
+          <button type="button" class="liha-demo-region-card" data-demo-region="india" aria-pressed="false">
+            <span class="liha-demo-flag liha-demo-flag-india" aria-hidden="true"></span>
+            <span>India</span>
+          </button>
+        </div>
       </div>
 
       <footer class="liha-demo-footer">
-        <strong>Hiring Assistant Demo</strong>
-        <button id="liha-demo-done" class="liha-demo-pill-btn liha-demo-footer-btn" type="button">
-          <span>Done</span>
+        <strong>First, select the <span class="liha-demo-inline-pill">region</span> you would like to recruit for</strong>
+        <button id="liha-demo-next" class="liha-demo-pill-btn" type="button" disabled>
+          <span>Next</span>
           <span class="liha-demo-pill-icon">
             <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
           </span>
         </button>
+      </footer>
+    </section>
+
+    <section class="liha-demo-stage liha-demo-clickthrough-stage" id="liha-demo-clickthrough">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div data-landing-topbar></div>
+
+      <div class="liha-demo-screen-stage">
+        <div class="liha-demo-screen-wrap" id="liha-demo-screen-wrap" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="liha-demo-stage liha-demo-end-stage" id="liha-demo-end">
+      <div class="intro-corner intro-corner-left"></div>
+      <div class="intro-corner intro-corner-right"></div>
+      <div data-landing-topbar></div>
+
+      <div class="liha-demo-end-content">
+        <section class="liha-demo-end-banner">
+          <span class="liha-demo-end-spark" aria-hidden="true">
+            <img src="/assets/images/aiIcon.svg" alt="" />
+          </span>
+          <p>Built on trusted, real time signals from over 1 billion members, Hiring Assistant helps uncover qualified candidates you’d otherwise miss.</p>
+        </section>
+
+        <section class="liha-demo-stats-panel" aria-label="Hiring Assistant results">
+          <div class="liha-demo-stats-grid">
+            <article class="liha-demo-stat-card">
+              <h2>81%</h2>
+              <h3>Fewer profiles viewed</h3>
+              <p>Recruiters using Hiring Assistant reviewed <span>81% fewer</span> profiles to find a qualified match.</p>
+            </article>
+            <article class="liha-demo-stat-card">
+              <h2>66%</h2>
+              <h3>Higher InMail acceptance rates</h3>
+              <p>Recruiters see <span>66% higher</span> InMail acceptance rates with Hiring Assistant vs. traditional sourcing methods.</p>
+            </article>
+            <article class="liha-demo-stat-card">
+              <h2>1.5</h2>
+              <h3>Hours saved reviewing applicants</h3>
+              <p>On average, Hiring Assistant can save recruiters <span>1.5 hours</span> per role in identifying top-qualified applicants.</p>
+            </article>
+          </div>
+          <p class="liha-demo-stat-footnote">*Based on LinkedIn data (January 2026)</p>
+        </section>
+      </div>
+
+      <footer class="liha-demo-footer liha-demo-end-footer">
+        <strong>Want to learn more about Hiring Assistant? Get in touch here</strong>
+        <a class="liha-demo-pill-btn liha-demo-view-btn" href="https://business.linkedin.com/hire/hiring-assistant/contact-us?src=re-other&veh=statics.teams.cdn.office.net%7Cre-other" target="_blank" rel="noopener noreferrer">
+          <span>View</span>
+          <span class="liha-demo-pill-icon">
+            <img src="/assets/images/arrow.svg" alt="" aria-hidden="true" />
+          </span>
+        </a>
       </footer>
     </section>
   </main>

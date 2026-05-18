@@ -69,6 +69,12 @@ button {
   z-index: 1;
 }
 
+.liha-demo-stage-active {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--liha-frame-gap);
+}
+
 .intro-corner {
   position: fixed;
   width: clamp(160px, 18vw, 340px);
@@ -116,19 +122,6 @@ button {
   }
 }
 
-.liha-demo-stage-active {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  gap: var(--liha-frame-gap);
-}
-
-.liha-demo-topbar {
-  height: var(--liha-topbar-height);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .liha-demo-card {
   position: relative;
   min-height: 0;
@@ -145,6 +138,12 @@ button {
   min-height: min(57vh, 560px);
   height: 100%;
   padding: clamp(34px, 3.4vw, 62px) clamp(44px, 5vw, 92px);
+}
+
+.liha-demo-art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .liha-demo-copy {
@@ -173,7 +172,11 @@ button {
 }
 
 .liha-demo-contact {
-  margin-top: clamp(62px, 7vh, 118px);
+  width: min(100%, 860px);
+  margin-top: clamp(30px, 3.8vh, 56px);
+  padding: clamp(24px, 2.2vw, 38px) clamp(26px, 2.6vw, 48px) clamp(28px, 2.6vw, 44px);
+  border-radius: clamp(22px, 2vw, 34px);
+  background: #1c2645;
 }
 
 .liha-demo-contact p {
@@ -198,8 +201,9 @@ button {
   font-weight: 700;
 }
 
-.liha-demo-inline-icon,
-.liha-demo-pill-icon {
+.liha-demo-inline-icon {
+  width: 48px;
+  height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -207,20 +211,73 @@ button {
   background: #d9e8ff;
 }
 
-.liha-demo-inline-icon {
-  width: 48px;
-  height: 48px;
-}
-
 .liha-demo-inline-icon img {
   width: 56%;
   height: 56%;
 }
 
-.liha-demo-art {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.liha-demo-region-panel {
+  display: grid;
+  align-items: center;
+  min-height: min(58vh, 510px);
+  padding: 28px;
+  border-radius: 28px;
+  background: #264d92;
+}
+
+.liha-demo-region-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: center;
+}
+
+.liha-demo-region-card {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 18px;
+  aspect-ratio: 4 / 3;
+  min-height: 230px;
+  border: 0;
+  border-radius: 22px;
+  background: var(--liha-demo-blue-deep);
+  color: var(--liha-demo-white);
+  cursor: pointer;
+  font-size: clamp(26px, 2.3vw, 42px);
+  font-weight: 700;
+  box-shadow: inset 0 0 0 3px transparent;
+  transition: box-shadow 160ms ease, transform 160ms ease, background 160ms ease;
+}
+
+.liha-demo-region-card:hover {
+  transform: translateY(-1px);
+}
+
+.liha-demo-region-card.is-selected {
+  background: #12366d;
+  box-shadow: inset 0 0 0 4px var(--liha-demo-yellow);
+}
+
+.liha-demo-flag {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+}
+
+.liha-demo-flag-anz {
+  background: url("/assets/images/flags/australia.png") center/cover no-repeat;
+}
+
+.liha-demo-flag-asia {
+  background: url("/assets/images/flags/singapore.svg") center/cover no-repeat;
+}
+
+.liha-demo-flag-india {
+  background: url("/assets/images/flags/india.svg") center/cover no-repeat;
 }
 
 .liha-demo-footer {
@@ -242,9 +299,17 @@ button {
   font-weight: 700;
 }
 
+.liha-demo-inline-pill {
+  display: inline-block;
+  padding: 4px 16px;
+  margin: 0 8px;
+  border-radius: 999px;
+  background: #c1d9f5;
+  color: #102d5c;
+}
+
 .liha-demo-pill-btn {
   flex-shrink: 0;
-  min-width: 190px;
   min-height: var(--liha-pill-min-height);
   display: inline-flex;
   align-items: center;
@@ -262,13 +327,19 @@ button {
   cursor: pointer;
 }
 
-.liha-demo-footer-btn {
-  min-width: 0;
+.liha-demo-pill-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
 }
 
 .liha-demo-pill-icon {
   width: calc(var(--liha-pill-min-height) - 16px);
   height: calc(var(--liha-pill-min-height) - 16px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #d9e8ff;
 }
 
 .liha-demo-pill-icon img {
@@ -276,25 +347,218 @@ button {
   height: 56%;
 }
 
-.liha-demo-video-card {
-  height: 100%;
-  min-height: 0;
-  padding: clamp(18px, 2vw, 34px);
-  display: grid;
-  place-items: center;
+.liha-demo-clickthrough-stage.liha-demo-stage-active {
+  --stage-padding: 0px;
+  --demo-screen-margin: clamp(32px, 15.5vw, 64px);
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100vh;
+  padding: 0;
+  gap: 0;
 }
 
-.liha-demo-video-player {
-  display: block;
-  width: auto;
-  max-width: 100%;
+.liha-demo-screen-stage {
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: var(--demo-screen-margin);
+  overflow: visible;
+}
+
+.liha-demo-screen-wrap {
+  width: 100%;
   height: 100%;
-  max-height: 100%;
-  aspect-ratio: 16 / 9;
-  border: 0;
-  border-radius: 22px;
-  background: #000;
-  object-fit: contain;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.liha-demo-screen-frame {
+  position: relative;
+  width: auto;
+  height: min(100%, calc((100vw - (var(--demo-screen-margin) * 2)) / var(--demo-screen-ratio-number, 1.678)));
+  max-width: 100%;
+  aspect-ratio: var(--demo-screen-ratio, 1440 / 930);
+  flex: 0 1 auto;
+  margin-inline: auto;
+  overflow: visible;
+}
+
+.liha-demo-screen-mask {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.liha-demo-screen-svg,
+.liha-demo-hotspot-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: calc(100% * var(--demo-screen-scale-y, 1));
+}
+
+.liha-demo-screen-svg {
+  background: #fff;
+}
+
+.liha-demo-hotspot-overlay {
+  overflow: visible;
+  pointer-events: none;
+}
+
+.liha-demo-screen-wrap .liha-demo-hotspot,
+.liha-demo-screen-wrap [id="hotspot"],
+.liha-demo-screen-wrap [id^="hotspot_"] {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.liha-demo-screen-wrap .liha-demo-hotspot > *,
+.liha-demo-screen-wrap [id="hotspot"] > *,
+.liha-demo-screen-wrap [id^="hotspot_"] > * {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lihaDemoHotspotPulse 1.25s ease-in-out infinite;
+}
+
+@keyframes lihaDemoHotspotPulse {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: scale(0.96);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: scale(1.08);
+  }
+}
+
+.liha-demo-end-stage.liha-demo-stage-active {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.liha-demo-end-content {
+  min-height: 0;
+  display: grid;
+  align-content: center;
+  gap: clamp(22px, 3vh, 38px);
+}
+
+.liha-demo-end-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 3vw, 40px);
+  min-height: clamp(116px, 15vh, 170px);
+  padding: clamp(24px, 2.5vw, 44px);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(22.69% 50% at 50% 50%, var(--Purple-purple-30, rgba(239, 224, 255, 0.60)) 0%, rgba(239, 224, 255, 0.00) 100%),
+    radial-gradient(50% 36.15% at 31.7% 50%, var(--Blue-blue-30, rgba(210, 233, 255, 0.60)) 0%, rgba(210, 233, 255, 0.00) 100%),
+    radial-gradient(50% 37.26% at 69.44% 50%, var(--System-Green-system-green-20, rgba(214, 250, 238, 0.60)) 0%, rgba(214, 250, 238, 0.00) 100%),
+    linear-gradient(0deg, var(--Background-color-background, #fff) 0%, var(--Background-color-background, #fff) 100%),
+    #17407e;
+  color: #202124;
+  backdrop-filter: blur(18px);
+}
+
+.liha-demo-end-spark {
+  width: clamp(68px, 6.5vw, 106px);
+  height: clamp(68px, 6.5vw, 106px);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.liha-demo-end-spark img {
+  width: 58%;
+  height: 58%;
+  display: block;
+}
+
+.liha-demo-end-banner p {
+  max-width: 1140px;
+  margin: 0;
+  color: #202124;
+  font-size: clamp(24px, 2.2vw, 40px);
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+}
+
+.liha-demo-stats-panel {
+  display: grid;
+  gap: clamp(18px, 2.2vh, 28px);
+  padding: clamp(28px, 3.4vw, 58px);
+  border-radius: var(--radius-xl);
+  background: #214f93;
+}
+
+.liha-demo-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 36px);
+}
+
+.liha-demo-stat-card {
+  min-height: clamp(260px, 32vh, 420px);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  padding: clamp(26px, 3vw, 52px);
+  border-radius: clamp(18px, 1.8vw, 30px);
+  background: #103b78;
+}
+
+.liha-demo-stat-card h2 {
+  margin: 0;
+  color: #8abaff;
+  font-size: clamp(72px, 6vw, 116px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.liha-demo-stat-card h3 {
+  margin: clamp(18px, 2vh, 28px) 0 0;
+  color: #8abaff;
+  font-size: clamp(23px, 2vw, 34px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.liha-demo-stat-card p {
+  max-width: 420px;
+  margin: clamp(30px, 5vh, 58px) 0 0;
+  color: var(--liha-demo-white);
+  font-size: clamp(19px, 1.55vw, 27px);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+.liha-demo-stat-card span {
+  display: inline-block;
+  padding: 0 12px 2px;
+  border-radius: 999px;
+  background: #3e7ed4;
+}
+
+.liha-demo-stat-footnote {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  font-size: clamp(14px, 1.1vw, 18px);
+  font-style: italic;
 }
 
 @media (max-width: 900px) {
@@ -315,20 +579,49 @@ button {
     width: clamp(260px, 48vw, 520px);
   }
 
-  .liha-demo-footer {
+  .liha-demo-region-grid,
+  .liha-demo-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .liha-demo-region-panel {
+    align-items: stretch;
+    overflow: auto;
+  }
+
+  .liha-demo-region-card {
+    min-height: 150px;
+    aspect-ratio: auto;
+  }
+
+  .liha-demo-footer,
+  .liha-demo-end-banner {
     align-items: stretch;
     flex-direction: column;
-    padding: var(--liha-footer-block-padding);
   }
 
   .liha-demo-pill-btn {
     align-self: flex-end;
+  }
+
+  .liha-demo-end-banner {
+    justify-content: center;
   }
 }
 
 @media (max-width: 640px) {
   .liha-demo-stage {
     padding: 14px 12px 12px;
+  }
+
+  .liha-demo-region-panel,
+  .liha-demo-stats-panel {
+    padding: 18px;
+    /* border-radius: 22px; */
+  }
+
+  .liha-demo-footer strong {
+    font-size: var(--liha-footer-title-size);
   }
 
   .liha-demo-copy h1 {
@@ -344,7 +637,7 @@ button {
     font-size: 22px;
   }
 
-  .liha-demo-footer strong {
-    font-size: var(--liha-footer-title-size);
+  .liha-demo-stat-card {
+    min-height: 230px;
   }
 }

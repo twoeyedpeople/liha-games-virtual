@@ -1,13 +1,56 @@
 let leadChartInstance = null;
 let funnelChartInstance = null;
+let analyticsPassword = "";
+
+const AUTH_STORAGE_KEY = "lihaAnalyticsPassword";
+
+function setAuthState(isAuthed) {
+  document.getElementById("authScreen").classList.toggle("is-hidden", isAuthed);
+  document.getElementById("analyticsDashboard").classList.toggle("is-hidden", !isAuthed);
+}
+
+async function verifyPassword(password) {
+  const res = await fetch("/api/master/auth", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ masterKey: password }),
+  });
+  return res.ok;
+}
+
+async function unlockAnalytics(password) {
+  analyticsPassword = password;
+  const isValid = await verifyPassword(password);
+  if (!isValid) {
+    analyticsPassword = "";
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
+    document.getElementById("analyticsAuthError").textContent = "That password is not right.";
+    return;
+  }
+
+  sessionStorage.setItem(AUTH_STORAGE_KEY, password);
+  document.getElementById("analyticsAuthError").textContent = "";
+  setAuthState(true);
+  await loadData();
+}
 
 async function loadData() {
+  if (!analyticsPassword) return;
   const startDate = document.getElementById("startDate").value;
   const endDate = document.getElementById("endDate").value;
   const country = document.getElementById("country").value;
   
   const query = new URLSearchParams({ startDate, endDate, country }).toString();
-  const res = await fetch(`/api/analytics/data?${query}`);
+  const res = await fetch(`/api/analytics/data?${query}`, {
+    headers: { "x-master-key": analyticsPassword },
+  });
+  if (res.status === 401) {
+    analyticsPassword = "";
+    sessionStorage.removeItem(AUTH_STORAGE_KEY);
+    setAuthState(false);
+    document.getElementById("analyticsAuthError").textContent = "Please enter the analytics password again.";
+    return;
+  }
   const { events } = await res.json();
   
   // 1. Top Level Metrics
@@ -176,11 +219,26 @@ async function loadData() {
 document.getElementById("applyFilters").addEventListener("click", loadData);
 
 document.getElementById("downloadCsv").addEventListener("click", () => {
+  if (!analyticsPassword) return;
   const startDate = document.getElementById("startDate").value;
   const endDate = document.getElementById("endDate").value;
   const country = document.getElementById("country").value;
-  const query = new URLSearchParams({ startDate, endDate, country }).toString();
+  const query = new URLSearchParams({ startDate, endDate, country, masterKey: analyticsPassword }).toString();
   window.open(`/api/analytics/export.csv?${query}`, "_blank");
 });
 
-loadData();
+document.getElementById("analyticsAuthForm").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const password = document.getElementById("analyticsPassword").value.trim();
+  if (!password) {
+    document.getElementById("analyticsAuthError").textContent = "Enter the password to continue.";
+    return;
+  }
+  unlockAnalytics(password);
+});
+
+setAuthState(false);
+const savedPassword = sessionStorage.getItem(AUTH_STORAGE_KEY);
+if (savedPassword) {
+  unlockAnalytics(savedPassword);
+}

@@ -5,8 +5,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt Like a Pro</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/landing.css" />
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/prompt-like-a-pro.css" />
+  <script src="/landing-topbar.js" defer></script>
   <script src="/ua-flags.js"></script>
 
   <!-- Google tag (gtag.js) -->
@@ -25,9 +30,7 @@
     <section class="stage prompt-pro-stage" id="stage-intro">
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
-      <header class="prompt-pro-topbar">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-      </header>
+      <div data-landing-topbar></div>
 
       <div class="prompt-pro-hero">
         <div class="prompt-pro-shapes" aria-hidden="true">
@@ -55,19 +58,17 @@
     <section class="stage hidden prompt-pro-stage" id="stage-region-pick">
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
-      <header class="prompt-pro-topbar">
-        <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-      </header>
+      <div data-landing-topbar></div>
 
       <div class="prompt-pro-region-panel">
         <div class="prompt-pro-region-grid" id="region-choice-grid">
           <button type="button" class="prompt-pro-region-card" data-region-choice="australia" aria-pressed="false">
             <span class="prompt-pro-flag prompt-pro-flag-au" aria-hidden="true"></span>
-            <span>Australia</span>
+            <span>ANZ</span>
           </button>
           <button type="button" class="prompt-pro-region-card" data-region-choice="singapore" aria-pressed="false">
             <span class="prompt-pro-flag prompt-pro-flag-sg" aria-hidden="true"></span>
-            <span>Singapore</span>
+            <span>Asia</span>
           </button>
           <button type="button" class="prompt-pro-region-card" data-region-choice="india" aria-pressed="false">
             <span class="prompt-pro-flag prompt-pro-flag-in" aria-hidden="true"></span>
@@ -91,9 +92,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="liha-frame">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-blue brief-pick-panel with-scroll-indicator">
           <div class="brief-choice-grid" id="brief-choice-grid"></div>
         </div>
@@ -154,7 +153,7 @@
           </aside>
         </div>
         <footer class="liha-footer">
-          <strong id="brief-footer-label">Prompt Like a Pro</strong>
+          <strong id="brief-footer-label">Use this JD to craft your prompt</strong>
           <div class="prompt-pro-footer-actions">
             <button id="brief-back-btn" class="ghost prompt-pro-back-btn" type="button">Back</button>
             <button id="ready-to-prompt" class="footer-btn footer-btn-arrow">
@@ -245,9 +244,7 @@
 
     <section class="stage hidden" id="stage-result">
       <div class="liha-frame no-topbar">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="result-screen">
           <aside class="result-score-orbit" id="result-score-orbit">
             <span class="prompt-pro-result-icon" aria-hidden="true">%</span>

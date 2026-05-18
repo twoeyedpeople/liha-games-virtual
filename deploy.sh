@@ -17,7 +17,7 @@ set -e
 # === CONFIGURATION (edit these if needed) ===
 A2_USER="vanessas"
 A2_HOST="vanessasaporito.com"
-APP_PATH="liha"          # Upload target in home directory: ~/liha
+APP_PATH="liha-portal"   # Upload target in home directory: ~/liha-portal
 NODE_VERSION="20"        # Major version only
 
 # === COLORS FOR OUTPUT ===

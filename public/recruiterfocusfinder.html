@@ -5,7 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt Arena | Recruiter Focus Finder</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/landing.css" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="/landing-topbar.js" defer></script>
   <script src="ua-flags.js"></script>
 
   <!-- Google tag (gtag.js) -->
@@ -25,9 +30,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="intro-welcome-shell">
-        <header class="liha-topbar intro-welcome-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
 
         <div class="intro-welcome-hero with-scroll-indicator">
           <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
@@ -69,9 +72,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="liha-frame">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-white intro-select-panel">
           <p class="subcopy intro-company" id="intro-company-title">Select as many focus actions as you want, then
             generate your result.</p>
@@ -113,9 +114,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="liha-frame">
-        <header class="liha-topbar">
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-blue liha-panel-hero with-scroll-indicator">
           <video class="side-shapes-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
             <source src="/assets/images/sideShapes.webm" type="video/webm" />
@@ -149,16 +148,7 @@
       <div class="intro-corner intro-corner-left"></div>
       <div class="intro-corner intro-corner-right"></div>
       <div class="liha-frame">
-        <header class="liha-topbar intro-savings-topbar">
-          <div class="intro-savings-legend" aria-label="Chart legend">
-            <span class="intro-legend-item"><i class="intro-legend-dot intro-legend-love"></i>Tasks you love</span>
-            <span class="intro-legend-item"><i class="intro-legend-dot intro-legend-optimised"></i>Tasks optimised by AI
-              agent</span>
-            <span class="intro-legend-item"><i class="intro-legend-dot intro-legend-people"></i>People-centric
-              work</span>
-          </div>
-          <a href="/"><img src="/assets/images/linkedinLogo.svg" alt="LinkedIn" class="liha-logo screen-logo" /></a>
-        </header>
+        <div data-landing-topbar></div>
         <div class="liha-panel liha-panel-white intro-select-panel">
           <h2 id="intro-savings-title">AI can save you -- per week</h2>
           <p class="subcopy" id="intro-savings-copy">Estimated weekly savings across selected actions.</p>
