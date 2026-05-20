@@ -17,6 +17,7 @@ set -e
 # === CONFIGURATION (edit these if needed) ===
 A2_USER="vanessas"
 A2_HOST="vanessasaporito.com"
+SSH_TARGET="liha-portal" # Host alias in ~/.ssh/config
 APP_PATH="liha-portal"   # Upload target in home directory: ~/liha-portal
 NODE_VERSION="20"        # Major version only
 
@@ -54,7 +55,7 @@ rsync -avz --progress --delete \
     --exclude 'tmp' \
     --exclude 'certs' \
     --exclude 'data/game-analytics.json' \
-    ./ ${A2_USER}@${A2_HOST}:~/${APP_PATH}/
+    ./ ${SSH_TARGET}:~/${APP_PATH}/
 
 echo -e "${GREEN}✓ Files uploaded${NC}"
 echo ""
@@ -62,7 +63,7 @@ echo ""
 # Step 3: Install dependencies and restart app on server
 echo -e "${YELLOW}🔄 Installing dependencies & restarting app...${NC}"
 
-ssh ${A2_USER}@${A2_HOST} << EOF
+ssh ${SSH_TARGET} << EOF
     set -e
     cd ~/${APP_PATH}
 

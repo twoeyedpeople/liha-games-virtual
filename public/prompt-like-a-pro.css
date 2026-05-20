@@ -2,6 +2,19 @@
   background: #f3efe7;
 }
 
+.prompt-pro-event-mode .landing-topbar a {
+  cursor: default;
+  pointer-events: none;
+}
+
+.prompt-pro-event-topbar-label {
+  color: #16396f;
+  font-size: var(--landing-nav-font-size);
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .prompt-pro-stage {
   min-height: 100vh;
   display: grid;

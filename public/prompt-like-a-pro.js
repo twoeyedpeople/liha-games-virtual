@@ -2,6 +2,7 @@ const REGION_BRIEFS = window.PROMPT_BRIEF_DATA.REGION_BRIEFS;
 
 const PROMPT_MAX_CHARS = 2000;
 const PROMPT_WARN_CHARS = 1700;
+const isEventMode = new URLSearchParams(window.location.search).has("event");
 
 const state = {
   region: "",
@@ -63,6 +64,35 @@ function setStage(name) {
   stages[name].classList.remove("hidden");
 }
 
+function simplifyTopbarForEventMode() {
+  if (!isEventMode) return;
+
+  document.querySelectorAll(".landing-topbar a").forEach((link) => {
+    link.removeAttribute("href");
+    link.removeAttribute("target");
+    link.removeAttribute("rel");
+    link.setAttribute("aria-disabled", "true");
+    link.setAttribute("tabindex", "-1");
+  });
+
+  document.querySelectorAll(".landing-nav").forEach((nav) => {
+    if (nav.dataset.eventModeSimplified === "true") return;
+    nav.dataset.eventModeSimplified = "true";
+    nav.replaceChildren();
+    const label = document.createElement("span");
+    label.className = "prompt-pro-event-topbar-label";
+    label.textContent = "Prompt Like a Pro";
+    nav.appendChild(label);
+  });
+}
+
+if (isEventMode) {
+  document.documentElement.classList.add("prompt-pro-event-mode");
+  const topbarObserver = new MutationObserver(simplifyTopbarForEventMode);
+  topbarObserver.observe(document.documentElement, { childList: true, subtree: true });
+  document.addEventListener("DOMContentLoaded", simplifyTopbarForEventMode);
+}
+
 function currentBriefs() {
   return REGION_BRIEFS[state.region]?.briefs || [];
 }
@@ -73,6 +103,12 @@ function currentBrief() {
 
 function showError(message = "") {
   globalError.textContent = message;
+}
+
+function clearPromptDraft() {
+  promptInputEl.value = "";
+  submitResult.textContent = "";
+  updatePromptCharCounter();
 }
 
 function renderRegionCards() {
@@ -98,7 +134,11 @@ function renderBriefChoices() {
   briefChoiceGrid.querySelectorAll("[data-brief-choice]").forEach((button) => {
     button.addEventListener("click", () => {
       showError("");
-      state.selectedBrief = button.dataset.briefChoice || "";
+      const nextBrief = button.dataset.briefChoice || "";
+      if (nextBrief !== state.selectedBrief) {
+        clearPromptDraft();
+      }
+      state.selectedBrief = nextBrief;
       renderBriefChoices();
       updateJobBriefContent();
     });
@@ -348,8 +388,12 @@ document.getElementById("intro-get-started").addEventListener("click", () => {
 
 regionCards.forEach((card) => {
   card.addEventListener("click", () => {
-    state.region = card.dataset.regionChoice || "";
-    state.selectedBrief = "";
+    const nextRegion = card.dataset.regionChoice || "";
+    if (nextRegion !== state.region) {
+      clearPromptDraft();
+      state.selectedBrief = "";
+    }
+    state.region = nextRegion;
     renderRegionCards();
   });
 });
@@ -411,8 +455,13 @@ document.getElementById("submit-prompt").addEventListener("click", () => {
 });
 
 resultNextBtn.addEventListener("click", () => {
-  updateJobBriefContent();
-  setStage("brief");
+  if (isEventMode && state.lastScore >= 80) {
+    renderBriefChoices();
+    setStage("briefPick");
+  } else {
+    updateJobBriefContent();
+    setStage("brief");
+  }
 });
 
 resultDoneBtn.addEventListener("click", () => {
@@ -420,7 +469,7 @@ resultDoneBtn.addEventListener("click", () => {
     window.Analytics.markModuleComplete("Prompt Like a Pro");
     window.Analytics.logEvent("Prompt Like a Pro", "module_complete", "", state.selectedBrief);
   }
-  window.location.href = "/";
+  window.location.href = isEventMode ? "/prompt-like-a-pro?event" : "/";
 });
 
 promptInputEl.addEventListener("input", updatePromptCharCounter);
