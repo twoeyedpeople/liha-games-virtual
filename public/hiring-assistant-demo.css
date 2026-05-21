@@ -156,19 +156,19 @@ button {
 .liha-demo-copy h1 {
   margin: 0;
   color: var(--liha-demo-white);
-  font-size: clamp(58px, 5.6vw, 86px);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
-  font-weight: 700;
+  font-size: var(--liha-landing-heading-size);
+  line-height: var(--liha-landing-heading-line-height);
+  letter-spacing: var(--liha-landing-heading-letter-spacing);
+  font-weight: var(--liha-landing-heading-weight);
 }
 
 .liha-demo-headline {
   margin: clamp(26px, 3vw, 44px) 0 0;
   color: var(--liha-demo-white);
-  font-size: clamp(25px, 1.9vw, 34px);
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  font-weight: 400;
+  font-size: var(--liha-landing-subheading-size);
+  line-height: var(--liha-landing-subheading-line-height);
+  letter-spacing: var(--liha-landing-subheading-letter-spacing);
+  font-weight: var(--liha-landing-subheading-weight);
 }
 
 .liha-demo-contact {
@@ -506,17 +506,17 @@ button {
 
 .liha-demo-stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(18px, 2.4vw, 36px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.5vw, 26px);
 }
 
 .liha-demo-stat-card {
-  min-height: clamp(260px, 32vh, 420px);
+  min-height: clamp(240px, 30vh, 390px);
   display: grid;
   align-content: center;
   justify-items: center;
   text-align: center;
-  padding: clamp(26px, 3vw, 52px);
+  padding: clamp(22px, 2.2vw, 42px);
   border-radius: clamp(18px, 1.8vw, 30px);
   background: #103b78;
 }
@@ -524,7 +524,7 @@ button {
 .liha-demo-stat-card h2 {
   margin: 0;
   color: #8abaff;
-  font-size: clamp(72px, 6vw, 116px);
+  font-size: clamp(60px, 4.8vw, 102px);
   line-height: 0.9;
   letter-spacing: -0.04em;
 }
@@ -532,16 +532,16 @@ button {
 .liha-demo-stat-card h3 {
   margin: clamp(18px, 2vh, 28px) 0 0;
   color: #8abaff;
-  font-size: clamp(23px, 2vw, 34px);
+  font-size: clamp(20px, 1.55vw, 30px);
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
 
 .liha-demo-stat-card p {
-  max-width: 420px;
-  margin: clamp(30px, 5vh, 58px) 0 0;
+  max-width: 360px;
+  margin: clamp(24px, 3.6vh, 46px) 0 0;
   color: var(--liha-demo-white);
-  font-size: clamp(19px, 1.55vw, 27px);
+  font-size: clamp(17px, 1.25vw, 24px);
   line-height: 1.28;
   letter-spacing: -0.02em;
 }

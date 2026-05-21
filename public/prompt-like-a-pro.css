@@ -77,17 +77,20 @@
 
 .prompt-pro-copy h1 {
   margin: 0;
-  font-size: clamp(44px, 5.1vw, 66px);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  font-size: var(--liha-landing-heading-size);
+  line-height: var(--liha-landing-heading-line-height);
+  letter-spacing: var(--liha-landing-heading-letter-spacing);
+  font-weight: var(--liha-landing-heading-weight);
 }
 
 .prompt-pro-lead {
-  margin: 18px 0 0;
+  margin: clamp(26px, 3vw, 44px) 0 0;
   max-width: 560px;
   color: #fff;
-  font-size: clamp(22px, 2vw, 34px);
-  line-height: 1.22;
+  font-size: var(--liha-landing-subheading-size);
+  line-height: var(--liha-landing-subheading-line-height);
+  letter-spacing: var(--liha-landing-subheading-letter-spacing);
+  font-weight: var(--liha-landing-subheading-weight);
 }
 
 .prompt-pro-detail {
@@ -96,6 +99,8 @@
   color: rgba(219, 228, 247, 0.78);
   font-size: clamp(20px, 1.6vw, 29px);
   line-height: 1.35;
+  letter-spacing: var(--liha-landing-subheading-letter-spacing);
+  font-weight: var(--liha-landing-subheading-weight);
 }
 
 .prompt-pro-bottom {
@@ -299,7 +304,7 @@
   }
 
   .prompt-pro-copy h1 {
-    font-size: 40px;
+    font-size: 44px;
   }
 
   .prompt-pro-lead,

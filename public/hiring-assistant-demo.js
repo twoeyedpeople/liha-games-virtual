@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (viewLink) {
     viewLink.addEventListener("click", () => {
-      logEvent("sales_cta_click", "View");
+      logEvent("sales_cta_click", "Find out more");
     });
   }
 });

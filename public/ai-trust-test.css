@@ -493,6 +493,7 @@ button {
 .trust-card-inner::after {
   content: "";
   position: absolute;
+  z-index: -1;
   left: 8%;
   right: 8%;
   bottom: -14px;
@@ -505,6 +506,8 @@ button {
 }
 
 .trust-card-text {
+  position: relative;
+  z-index: 2;
   margin: 0;
   color: var(--trust-white);
   max-width: 100%;
@@ -522,27 +525,45 @@ button {
 }
 
 .trust-card.is-correct {
-  z-index: 20;
+  z-index: 80;
+  opacity: 1;
 }
 
 .trust-card.is-correct .trust-card-inner {
-  z-index: 3;
+  z-index: 30;
+  outline: 4px solid var(--trust-green);
+  outline-offset: 0;
+  opacity: 1;
+  cursor: default;
+  pointer-events: none;
 }
 
-.trust-card.is-correct .trust-card-inner::before {
-  content: "";
+.trust-card.is-correct .trust-card-text {
+  opacity: 1;
+  -webkit-text-fill-color: var(--trust-white);
+}
+
+.trust-card-tick-layer {
   position: absolute;
-  top: -18px;
-  left: 50%;
-  z-index: 10;
-  width: 26px;
-  height: 26px;
+  inset: 0;
+  z-index: 3000;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.trust-card-tick {
+  position: absolute;
+  z-index: 1;
+  width: var(--trust-tick-size, 26px);
+  height: var(--trust-tick-size, 26px);
   border-radius: 999px;
   background:
-    url("/assets/images/tick.svg") center / 14px auto no-repeat,
+    url("/assets/images/tick.svg") center / calc(var(--trust-tick-size, 26px) * 0.54) auto no-repeat,
     var(--trust-green);
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
   box-shadow: 0 6px 12px rgba(20, 174, 116, 0.24);
+  pointer-events: none;
 }
 
 .trust-card.is-knocked {
@@ -597,6 +618,10 @@ button {
 
 .trust-card[disabled] {
   cursor: default;
+}
+
+.trust-card.is-correct[aria-disabled="true"] {
+  opacity: 1;
 }
 
 .trust-progress {

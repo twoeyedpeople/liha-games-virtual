@@ -1592,6 +1592,10 @@ app.get("/recruiter-focus-finder", (_, res) => {
   res.sendFile(path.join(__dirname, "public", "recruiterfocusfinder.html"));
 });
 
+app.get("/recruiterfocusfinder", (_, res) => {
+  res.sendFile(path.join(__dirname, "public", "recruiterfocusfinder.html"));
+});
+
 app.get("/ai-trust-test", (_, res) => {
   res.sendFile(path.join(__dirname, "public", "ai-trust-test.html"));
 });

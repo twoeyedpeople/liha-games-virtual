@@ -1,6 +1,16 @@
 @font-face {
   font-family: "Community Pro";
   src:
+    url("/assets/fonts/CommunityPro-Regular.woff2") format("woff2"),
+    url("/assets/fonts/CommunityPro-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Community Pro";
+  src:
     url("/assets/fonts/CommunityPro-Medium.woff2") format("woff2"),
     url("/assets/fonts/CommunityPro-Medium.woff") format("woff");
   font-style: normal;
@@ -44,6 +54,14 @@
   --liha-pill-min-height: 66px;
   --liha-pill-font-size: 20px;
   --liha-frame-gap: 14px;
+  --liha-landing-heading-size: clamp(58px, 5.6vw, 86px);
+  --liha-landing-heading-line-height: 0.98;
+  --liha-landing-heading-letter-spacing: -0.055em;
+  --liha-landing-heading-weight: 700;
+  --liha-landing-subheading-size: clamp(25px, 1.9vw, 34px);
+  --liha-landing-subheading-line-height: 1.25;
+  --liha-landing-subheading-letter-spacing: -0.03em;
+  --liha-landing-subheading-weight: 400;
 }
 
 @media (max-width: 1920px), (max-height: 1080px) {
@@ -3967,15 +3985,18 @@ body.leaderboard-screen .sr-only {
 }
 
 .intro-welcome-copy h1 {
-  font-size: clamp(46px, 4.35vw, 84px);
-  line-height: 0.96;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  margin: 0;
+  font-size: var(--liha-landing-heading-size);
+  line-height: var(--liha-landing-heading-line-height);
+  font-weight: var(--liha-landing-heading-weight);
+  letter-spacing: var(--liha-landing-heading-letter-spacing);
 }
 
 .intro-welcome-copy p {
-  font-size: clamp(24px, 1.7vw, 32px);
-  line-height: 1.2;
+  font-size: var(--liha-landing-subheading-size);
+  line-height: var(--liha-landing-subheading-line-height);
+  letter-spacing: var(--liha-landing-subheading-letter-spacing);
+  font-weight: var(--liha-landing-subheading-weight);
   color: rgba(255, 255, 255, 0.94);
 }
 
@@ -4160,11 +4181,11 @@ body.leaderboard-screen .sr-only {
 
 @media (max-height: 700px) {
   .intro-welcome-copy h1 {
-    font-size: clamp(38px, 4.1vw, 60px);
+    font-size: clamp(44px, 5.1vw, 64px);
   }
 
   .intro-welcome-copy p {
-    font-size: clamp(20px, 1.4vw, 27px);
+    font-size: clamp(20px, 1.55vw, 28px);
   }
 
   .ui-field-label {

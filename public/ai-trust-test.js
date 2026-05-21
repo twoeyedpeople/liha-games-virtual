@@ -50,6 +50,8 @@ const submitBtn = document.getElementById("trust-submit-btn");
 const submitLabel = document.getElementById("trust-submit-label");
 const startBtn = document.getElementById("intro-get-started");
 const boardShellEl = document.querySelector(".trust-board-shell");
+let tickLayerEl = null;
+let tickRenderFrame = null;
 
 const BOARD_DESIGN_WIDTH = 1696;
 const BOARD_DESIGN_HEIGHT = 852;
@@ -123,18 +125,19 @@ function updateBoardScale() {
 
   boardEl.style.setProperty("--board-scale", String(Math.max(scale, 0.1)));
   boardEl.style.setProperty("--board-offset-compensation", `${offset}px`);
+  scheduleTickOverlayRender();
 }
 
 function toggleCard(id) {
   if (state.solved || state.isSubmitting) return;
   const card = CARDS.find((item) => item.id === id);
   if (!card) return;
-  if (state.knocked.has(id)) return;
+  if (state.knocked.has(id) || state.lockedCorrect.has(id)) return;
 
   if (state.selected.has(id)) {
     state.selected.delete(id);
   } else {
-    if (state.selected.size >= TOTAL_CORRECT_COUNT) {
+    if (state.lockedCorrect.size + state.selected.size >= TOTAL_CORRECT_COUNT) {
       showSelectionLimitFeedback(id);
       return;
     }
@@ -142,7 +145,6 @@ function toggleCard(id) {
   }
 
   state.progressMode = "selection";
-  state.lockedCorrect = new Set();
   state.feedbackFlash = new Set();
   state.limitFeedbackCardId = null;
   renderAll();
@@ -166,23 +168,22 @@ function showSelectionLimitFeedback(id) {
 
 async function submitSelection() {
   if (state.solved) {
-    resetGame();
-    showIntroStage();
+    window.location.href = "/";
     return;
   }
 
-  if (state.isSubmitting || state.selected.size !== TOTAL_CORRECT_COUNT) return;
+  if (state.isSubmitting || state.lockedCorrect.size + state.selected.size !== TOTAL_CORRECT_COUNT) return;
 
   const foundIncorrectCardIds = [];
-  const selectedCorrectCardIds = [];
+  const nextLockedCorrectCardIds = new Set(state.lockedCorrect);
   const missedCorrectCardIds = [];
 
   CARDS.forEach((card) => {
-    const isSelected = state.selected.has(card.id);
+    const isSelected = state.selected.has(card.id) || state.lockedCorrect.has(card.id);
     const isAlreadyFound = state.knocked.has(card.id);
 
-    if (card.isTrue && isSelected) {
-      selectedCorrectCardIds.push(card.id);
+    if (card.isTrue && state.selected.has(card.id)) {
+      nextLockedCorrectCardIds.add(card.id);
     }
 
     if (card.isTrue && !isSelected) {
@@ -194,9 +195,12 @@ async function submitSelection() {
     }
   });
 
-  state.lockedCorrect = new Set(selectedCorrectCardIds);
-  state.lastCorrectPickedCount = selectedCorrectCardIds.length;
-  state.knocked = new Set([...state.knocked, ...CARDS.filter((card) => !state.selected.has(card.id)).map((card) => card.id)]);
+  state.lockedCorrect = nextLockedCorrectCardIds;
+  state.lastCorrectPickedCount = state.lockedCorrect.size;
+  state.knocked = new Set([
+    ...state.knocked,
+    ...CARDS.filter((card) => !state.selected.has(card.id) && !state.lockedCorrect.has(card.id)).map((card) => card.id),
+  ]);
   state.solved = foundIncorrectCardIds.length === TOTAL_INCORRECT_COUNT;
 
   if (state.solved) {
@@ -223,7 +227,6 @@ async function submitSelection() {
 
   state.knocked = new Set(foundIncorrectCardIds);
   state.selected = new Set();
-  state.lockedCorrect = new Set();
   state.feedbackFlash = new Set(missedCorrectCardIds);
   state.progressMode = "result";
   state.isSubmitting = false;
@@ -245,6 +248,55 @@ function wait(duration) {
 
 function getFoundIncorrectCount() {
   return CARDS.filter((card) => !card.isTrue && state.knocked.has(card.id)).length;
+}
+
+function ensureTickLayer() {
+  if (!boardShellEl) return null;
+  if (!tickLayerEl) {
+    tickLayerEl = document.createElement("div");
+    tickLayerEl.className = "trust-card-tick-layer";
+    tickLayerEl.setAttribute("aria-hidden", "true");
+    boardShellEl.appendChild(tickLayerEl);
+  }
+  return tickLayerEl;
+}
+
+function scheduleTickOverlayRender() {
+  if (tickRenderFrame) {
+    window.cancelAnimationFrame(tickRenderFrame);
+  }
+
+  tickRenderFrame = window.requestAnimationFrame(() => {
+    tickRenderFrame = null;
+    renderTickOverlay();
+  });
+}
+
+function renderTickOverlay() {
+  const layer = ensureTickLayer();
+  if (!layer) return;
+
+  layer.innerHTML = "";
+  if (!state.lockedCorrect.size) return;
+
+  const shellRect = boardShellEl.getBoundingClientRect();
+
+  state.lockedCorrect.forEach((id) => {
+    const cardEl = boardEl.querySelector(`[data-card-id="${id}"]`);
+    const faceEl = cardEl?.querySelector(".trust-card-inner");
+    if (!faceEl) return;
+
+    const faceRect = faceEl.getBoundingClientRect();
+    if (!faceRect.width || !faceRect.height) return;
+
+    const tickSize = Math.max(18, Math.min(30, 26 * (faceRect.width / faceEl.offsetWidth)));
+    const tick = document.createElement("span");
+    tick.className = "trust-card-tick";
+    tick.style.left = `${faceRect.left - shellRect.left + faceRect.width / 2}px`;
+    tick.style.top = `${faceRect.top - shellRect.top}px`;
+    tick.style.setProperty("--trust-tick-size", `${tickSize}px`);
+    layer.appendChild(tick);
+  });
 }
 
 function renderBoard() {
@@ -277,15 +329,16 @@ function renderBoard() {
     const isFeedbackFlash = state.feedbackFlash.has(card.id);
     const isLimitFeedback = state.limitFeedbackCardId === card.id;
 
-    button.setAttribute("aria-pressed", String(isSelected));
+    button.setAttribute("aria-pressed", String(isSelected || isCorrect));
     button.classList.toggle("is-selected", isSelected);
     button.classList.toggle("is-correct", isCorrect);
     button.classList.toggle("is-knocked", isKnocked);
     button.classList.toggle("is-feedback-flash", isFeedbackFlash);
     button.classList.toggle("is-limit-feedback", isLimitFeedback);
     button.disabled = isKnocked || state.isSubmitting;
+    button.tabIndex = isCorrect ? -1 : 0;
 
-    if (isKnocked || state.isSubmitting) {
+    if (isKnocked || isCorrect || state.isSubmitting) {
       button.setAttribute("aria-disabled", "true");
     } else {
       button.removeAttribute("aria-disabled");
@@ -296,14 +349,19 @@ function renderBoard() {
 function renderProgress() {
   progressEl.innerHTML = "";
 
-  const visibleCount = state.progressMode === "result" ? state.lastCorrectPickedCount : state.selected.size;
+  const lockedCount = state.lockedCorrect.size;
+  const selectedCount = state.selected.size;
+  const visibleCount =
+    state.progressMode === "result" ? state.lastCorrectPickedCount : Math.min(lockedCount + selectedCount, TOTAL_CORRECT_COUNT);
 
   for (let index = 0; index < TOTAL_CORRECT_COUNT; index += 1) {
     const slot = document.createElement("span");
     slot.className = "trust-progress-slot";
 
-    if (index < visibleCount) {
-      slot.classList.add(state.progressMode === "result" ? "is-correct" : "is-selected");
+    if (index < lockedCount) {
+      slot.classList.add("is-correct");
+    } else if (index < visibleCount) {
+      slot.classList.add("is-selected");
     }
 
     progressEl.appendChild(slot);
@@ -323,16 +381,24 @@ function renderFooter() {
 
   footerEl.classList.remove("is-complete");
   const foundCount = getFoundIncorrectCount();
+  const totalPickedCount = Math.min(state.lockedCorrect.size + state.selected.size, TOTAL_CORRECT_COUNT);
+  const remainingCount = TOTAL_CORRECT_COUNT - state.lockedCorrect.size;
 
   if (state.progressMode === "result") {
     footerMessageEl.innerHTML = `Keep trying. You picked <span class="trust-highlight-pill">${state.lastCorrectPickedCount}</span> out of ${TOTAL_CORRECT_COUNT} correct statements.`;
     progressEl.setAttribute("aria-label", `${state.lastCorrectPickedCount} of ${TOTAL_CORRECT_COUNT} correct statements selected`);
   } else {
-    footerMessageEl.textContent = "Select the 14 correct AI statement cards.";
-    progressEl.setAttribute("aria-label", `${state.selected.size} of ${TOTAL_CORRECT_COUNT} correct cards selected`);
+    footerMessageEl.textContent =
+      remainingCount === TOTAL_CORRECT_COUNT
+        ? "Select the 14 correct AI statement cards."
+        : `Select the remaining ${remainingCount} correct AI statement card${remainingCount === 1 ? "" : "s"}.`;
+    progressEl.setAttribute("aria-label", `${totalPickedCount} of ${TOTAL_CORRECT_COUNT} correct cards selected`);
   }
 
-  const canSubmit = !state.isSubmitting && foundCount < TOTAL_INCORRECT_COUNT && state.selected.size === TOTAL_CORRECT_COUNT;
+  const canSubmit =
+    !state.isSubmitting &&
+    foundCount < TOTAL_INCORRECT_COUNT &&
+    state.lockedCorrect.size + state.selected.size === TOTAL_CORRECT_COUNT;
   submitBtn.disabled = !canSubmit;
   submitBtn.classList.toggle("is-disabled", !canSubmit);
   submitLabel.textContent = "Submit";
@@ -342,6 +408,7 @@ function renderAll() {
   renderBoard();
   renderProgress();
   renderFooter();
+  scheduleTickOverlayRender();
 }
 
 startBtn.addEventListener("click", showGameStage);
