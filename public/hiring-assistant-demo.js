@@ -8,10 +8,20 @@ const nextBtn = document.getElementById("liha-demo-next");
 const screenWrap = document.getElementById("liha-demo-screen-wrap");
 const viewLink = document.querySelector(".liha-demo-view-btn");
 
-const TOTAL_STEPS = 11;
+const RIVE_SRC = "/assets/rive/liha-demo.riv";
+const RIVE_ARTBOARD = "app";
+const RIVE_STATE_MACHINE = "State Machine 1";
+const RIVE_VIEW_MODEL = "MainView";
+const RIVE_REGION_INSTANCES = {
+  anz: "anz",
+  asia: "asia",
+  india: "india",
+};
+
 let selectedRegion = "";
-let currentStep = 0;
-let autoAdvanceTimer = 0;
+let riveDemo = null;
+let riveDemoEndedTrigger = null;
+let riveResizeObserver = null;
 let completed = false;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -29,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   nextBtn.addEventListener("click", () => {
     if (!selectedRegion) return;
     showStage(clickthroughStage);
-    loadStep(1);
+    startRiveDemo();
     logEvent("region_selected", selectedRegion.toUpperCase());
   });
 
@@ -56,126 +66,127 @@ function showStage(activeStage) {
   });
 }
 
-async function loadStep(stepNumber) {
-  clearTimeout(autoAdvanceTimer);
-  currentStep = stepNumber;
-  screenWrap.dataset.step = String(stepNumber);
+function startRiveDemo() {
   screenWrap.dataset.region = selectedRegion;
-  screenWrap.innerHTML = "";
+  screenWrap.replaceChildren();
   screenWrap.setAttribute("aria-busy", "true");
 
-  try {
-    const response = await fetch(`/assets/images/demo/Step-${stepNumber}_${selectedRegion}.svg`, { cache: "force-cache" });
-    if (!response.ok) throw new Error(`Step ${stepNumber} asset failed to load`);
-    const svgText = await response.text();
-    screenWrap.innerHTML = svgText;
-    prepareSvg();
-  } catch (error) {
-    screenWrap.textContent = "This step could not be loaded.";
-    console.error(error);
-  } finally {
-    screenWrap.setAttribute("aria-busy", "false");
-  }
-}
+  cleanupRiveDemo();
 
-function prepareSvg() {
-  const svg = screenWrap.querySelector("svg");
-  if (!svg) {
-    scheduleAutoAdvance();
+  if (!window.rive?.Rive) {
+    showRiveError("This demo could not be loaded.");
     return;
   }
 
-  svg.removeAttribute("width");
-  svg.removeAttribute("height");
-  svg.classList.add("liha-demo-screen-svg");
-  svg.setAttribute("role", "img");
-  svg.setAttribute("aria-label", `Hiring Assistant demo step ${currentStep}`);
-  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
-  const frame = wrapSvgInFrame(svg);
+  window.rive.RuntimeLoader?.setWasmUrl?.("/vendor/rive/rive.wasm");
+  window.rive.RuntimeLoader?.setWasmFallbackUrl?.("/vendor/rive/rive_fallback.wasm");
 
-  const hotspot = svg.querySelector('[id="hotspot"], [id^="hotspot_"]');
-  if (!hotspot) {
-    scheduleAutoAdvance();
-    return;
-  }
-
-  const overlayHotspot = createHotspotOverlay(svg, hotspot, frame);
-  if (!overlayHotspot) {
-    scheduleAutoAdvance();
-    return;
-  }
-
-  overlayHotspot.addEventListener("click", advanceFromHotspot);
-  overlayHotspot.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    advanceFromHotspot();
+  const frame = createRiveFrame();
+  const canvas = frame.querySelector("canvas");
+  const layout = new window.rive.Layout({
+    fit: window.rive.Fit.Contain,
+    alignment: window.rive.Alignment.Center,
   });
-}
 
-function wrapSvgInFrame(svg) {
-  const viewBoxValues = svg.getAttribute("viewBox")?.trim().split(/[\s,]+/).map(Number);
-  const frame = document.createElement("div");
-  frame.className = "liha-demo-screen-frame";
-  if (viewBoxValues && viewBoxValues.length === 4 && !viewBoxValues.some(Number.isNaN)) {
-    frame.style.setProperty("--demo-screen-ratio", `${viewBoxValues[2]} / ${viewBoxValues[3]}`);
-    frame.style.setProperty("--demo-screen-ratio-number", `${viewBoxValues[2] / viewBoxValues[3]}`);
-    frame.style.setProperty("--demo-screen-scale-y", "1");
+  riveDemo = new window.rive.Rive({
+    src: RIVE_SRC,
+    canvas,
+    artboard: RIVE_ARTBOARD,
+    stateMachines: RIVE_STATE_MACHINE,
+    autoplay: true,
+    autoBind: false,
+    layout,
+    onLoad: () => {
+      screenWrap.setAttribute("aria-busy", "false");
+      setRiveLoading(false);
+      resizeRiveCanvas();
+      bindRiveRegion();
+    },
+    onLoadError: (error) => {
+      console.error(error);
+      showRiveError("This demo could not be loaded.");
+    },
+  });
+
+  if (window.rive.EventType?.RiveEvent) {
+    riveDemo.on(window.rive.EventType.RiveEvent, handleRiveEvent);
   }
 
-  screenWrap.replaceChildren(frame);
+  riveResizeObserver = new ResizeObserver(resizeRiveCanvas);
+  riveResizeObserver.observe(frame);
+}
+
+function createRiveFrame() {
+  const frame = document.createElement("div");
+  frame.className = "liha-demo-screen-frame liha-demo-rive-frame";
   const mask = document.createElement("div");
   mask.className = "liha-demo-screen-mask";
+  const canvas = document.createElement("canvas");
+  canvas.className = "liha-demo-rive-canvas";
+  canvas.setAttribute("aria-label", "Hiring Assistant interactive demo");
+  const loader = document.createElement("div");
+  loader.className = "liha-demo-rive-loader";
+  loader.setAttribute("role", "status");
+  loader.setAttribute("aria-label", "Loading demo");
+
   frame.appendChild(mask);
-  mask.appendChild(svg);
+  mask.appendChild(canvas);
+  frame.appendChild(loader);
+  screenWrap.replaceChildren(frame);
   return frame;
 }
 
-function createHotspotOverlay(svg, hotspot, frame) {
-  const viewBox = svg.getAttribute("viewBox");
-  if (!viewBox) return null;
-
-  const overlay = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  overlay.classList.add("liha-demo-hotspot-overlay");
-  overlay.setAttribute("viewBox", viewBox);
-  overlay.setAttribute("preserveAspectRatio", "xMidYMid meet");
-  overlay.setAttribute("aria-hidden", "true");
-
-  const overlayHotspot = hotspot.cloneNode(true);
-  overlayHotspot.removeAttribute("id");
-  overlayHotspot.classList.add("liha-demo-hotspot");
-  overlayHotspot.setAttribute("role", "button");
-  overlayHotspot.setAttribute("tabindex", "0");
-  overlayHotspot.setAttribute("aria-label", currentStep >= TOTAL_STEPS ? "Finish demo" : "Continue to next step");
-
-  hotspot.setAttribute("aria-hidden", "true");
-  hotspot.style.visibility = "hidden";
-  overlay.appendChild(overlayHotspot);
-  frame.appendChild(overlay);
-  return overlayHotspot;
+function setRiveLoading(isLoading) {
+  screenWrap.querySelector(".liha-demo-rive-loader")?.classList.toggle("is-hidden", !isLoading);
 }
 
-function advanceFromHotspot() {
-  if (currentStep >= TOTAL_STEPS) {
-    showEndScreen();
+function bindRiveRegion() {
+  const viewModel = riveDemo?.viewModelByName?.(RIVE_VIEW_MODEL);
+  const instanceName = RIVE_REGION_INSTANCES[selectedRegion] || RIVE_REGION_INSTANCES.india;
+  const viewModelInstance = viewModel?.instanceByName?.(instanceName) || viewModel?.defaultInstance?.();
+
+  if (!viewModelInstance) {
+    showRiveError("This demo could not be loaded.");
     return;
   }
 
-  loadStep(currentStep + 1);
+  riveDemo.bindViewModelInstance(viewModelInstance);
+  riveDemoEndedTrigger = viewModelInstance.trigger?.("demoEnded");
+  riveDemoEndedTrigger?.on?.(showEndScreen);
+  riveDemo.resizeDrawingSurfaceToCanvas();
 }
 
-function scheduleAutoAdvance() {
-  autoAdvanceTimer = window.setTimeout(() => {
-    if (currentStep >= TOTAL_STEPS) {
-      showEndScreen();
-      return;
-    }
-    loadStep(currentStep + 1);
-  }, 1000);
+function handleRiveEvent(event) {
+  const eventName = event?.data?.name || event?.data?.eventName || event?.data?.properties?.name;
+  if (eventName === "demoEnded") {
+    showEndScreen();
+  }
+}
+
+function resizeRiveCanvas() {
+  riveDemo?.resizeDrawingSurfaceToCanvas?.();
+}
+
+function cleanupRiveDemo() {
+  riveResizeObserver?.disconnect();
+  riveResizeObserver = null;
+  riveDemoEndedTrigger?.off?.(showEndScreen);
+  riveDemoEndedTrigger = null;
+  if (riveDemo && window.rive?.EventType?.RiveEvent) {
+    riveDemo.off(window.rive.EventType.RiveEvent, handleRiveEvent);
+  }
+  riveDemo?.cleanup?.();
+  riveDemo = null;
+}
+
+function showRiveError(message) {
+  screenWrap.setAttribute("aria-busy", "false");
+  setRiveLoading(false);
+  screenWrap.textContent = message;
 }
 
 function showEndScreen() {
-  clearTimeout(autoAdvanceTimer);
+  cleanupRiveDemo();
   showStage(endStage);
   if (!completed && typeof window.Analytics !== "undefined") {
     completed = true;
