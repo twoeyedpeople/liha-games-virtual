@@ -2613,19 +2613,6 @@
       "region": "",
       "company": "",
       "modules_completed_count": 1
-    },
-    {
-      "id": "161cfdd5-e62c-4786-8374-18ccbaba6945",
-      "timestamp": "2026-05-21T14:16:47.995Z",
-      "createdAt": 1779373008012,
-      "session_id": "d7695810-3ce9-4f60-8bf1-1eeec4a16ae4",
-      "module_name": "Hiring Assistant Demo",
-      "event_type": "module_start",
-      "event_detail": "",
-      "country": "",
-      "region": "",
-      "company": "",
-      "modules_completed_count": 1
     }
   ],
   "introSubmissions": [
@@ -2677,7 +2664,7 @@
   "promptRounds": [],
   "trustRuns": [],
   "softSkillsRuns": [],
-  "updatedAt": 1779373008012,
+  "updatedAt": 1779372222265,
   "customEvents": [
     {
       "timestamp": "2026-05-08T07:07:17.155Z",
