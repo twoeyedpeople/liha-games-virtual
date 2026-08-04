@@ -1,7 +1,16 @@
 (function () {
+  const CONSENT_KEY = "lihaCookieConsent";
   const SESSION_KEY = "lihaAnalyticsSessionId";
   const DEMOGRAPHICS_KEY = "lihaAnalyticsDemographics";
   const COMPLETED_KEY = "lihaAnalyticsCompletedModules";
+
+  function hasConsent() {
+    try {
+      return window.localStorage.getItem(CONSENT_KEY) === "accepted";
+    } catch (_) {
+      return false;
+    }
+  }
 
   function uuid() {
     if (window.crypto && typeof window.crypto.randomUUID === "function") {
@@ -39,11 +48,15 @@
     }
   }
 
-  const sessionId = getSessionId();
-  const demographics = readJson(DEMOGRAPHICS_KEY, {});
-  const completedModules = new Set(readJson(COMPLETED_KEY, []));
+  // No cookie consent yet (or it was rejected): stay fully inert. Nothing is
+  // written to storage and nothing is sent to the server until enable() runs.
+  let enabled = false;
+  let sessionId = null;
+  let demographics = {};
+  let completedModules = new Set();
 
   function send(payload) {
+    if (!enabled) return;
     const body = JSON.stringify(payload);
     if (navigator.sendBeacon) {
       try {
@@ -76,19 +89,31 @@
     };
   }
 
+  function enable() {
+    if (enabled) return;
+    enabled = true;
+    sessionId = getSessionId();
+    demographics = readJson(DEMOGRAPHICS_KEY, {});
+    completedModules = new Set(readJson(COMPLETED_KEY, []));
+    window.Analytics.sessionId = sessionId;
+  }
+
   window.Analytics = {
     sessionId,
+    enable,
     setDemographics(country, region, company) {
+      if (!enabled) return;
       if (country !== null && typeof country !== "undefined") demographics.country = String(country || "");
       if (region !== null && typeof region !== "undefined") demographics.region = String(region || "");
       if (company !== null && typeof company !== "undefined") demographics.company = String(company || "");
       writeJson(DEMOGRAPHICS_KEY, demographics);
     },
     logEvent(moduleName, eventType, eventDetail, companyOverride) {
-      if (!eventType) return;
+      if (!enabled || !eventType) return;
       send(eventPayload(moduleName, eventType, eventDetail, companyOverride));
     },
     markModuleComplete(moduleName) {
+      if (!enabled) return;
       const safeModuleName = String(moduleName || "").trim();
       if (safeModuleName) {
         completedModules.add(safeModuleName);
@@ -97,7 +122,10 @@
       send(eventPayload(safeModuleName, "module_complete", ""));
     },
     dropOff(moduleName, eventDetail) {
+      if (!enabled) return;
       send(eventPayload(moduleName, "drop_off", eventDetail));
     },
   };
+
+  if (hasConsent()) enable();
 })();

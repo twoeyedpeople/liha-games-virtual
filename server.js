@@ -1628,6 +1628,10 @@ app.get("/resources-and-takeaways", (_, res) => {
   res.redirect(301, "/resources");
 });
 
+app.get("/cookie-table", (_, res) => {
+  res.sendFile(path.join(__dirname, "public", "cookie-table.html"));
+});
+
 app.get("/dev-cert.pem", (req, res) => {
   if (!fs.existsSync(SSL_CERT_PATH)) {
     return res.status(404).send("Certificate not found. Run: npm run cert");

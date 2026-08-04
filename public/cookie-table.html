@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cookie Table | AI Skills Sprint Virtual Hub</title>
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
+  <link rel="alternate icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="alternate icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/viewport-guard.css" />
+  <link rel="stylesheet" href="/landing.css" />
+  <link rel="stylesheet" href="/site-legal.css" />
+  <script src="/landing-topbar.js" defer></script>
+</head>
+
+<body class="landing-body" data-viewport-guard-min-width="1100">
+  <div data-landing-topbar></div>
+
+  <main class="landing-main">
+    <div class="cookie-table-wrap">
+      <h1>Cookie Table</h1>
+      <p class="cookie-table-updated">Last updated: 3 August 2026</p>
+
+      <div class="cookie-table-notice">
+        <strong>Why this matters:</strong> this training hub uses your browser's local storage to remember who you
+        are during the event and to save your progress and score as you complete each activity. If you select
+        <strong>Reject</strong> on the cookie banner, this site will not be able to save or track your score and
+        progress — you can still take part, but nothing will be remembered between activities or reported back to
+        your session's leaderboard.
+        <br /><br />
+        This page lists the cookies and local storage this site sets. It is separate from
+        <a href="https://www.linkedin.com/legal/cookie-policy" target="_blank" rel="noopener noreferrer">LinkedIn's
+          own Cookie Policy</a>, which covers linkedin.com itself.
+      </div>
+
+      <table class="cookie-table">
+        <caption>Essential (always set — required for the site to function)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Provider</th>
+            <th scope="col">Purpose</th>
+            <th scope="col">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>lihaCookieConsent</code> (local storage)</td>
+            <td>This site (first-party)</td>
+            <td>Remembers your Accept/Reject cookie choice so we don't ask again on every page.</td>
+            <td>Until cleared</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cookie-table">
+        <caption>Set only if you Accept — score &amp; progress tracking</caption>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Provider</th>
+            <th scope="col">Purpose</th>
+            <th scope="col">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>lihaAnalyticsSessionId</code> (local storage)</td>
+            <td>This site (first-party)</td>
+            <td>Identifies your browser as one participant so your activity and score can be tied together and
+              shown on the session leaderboard.</td>
+            <td>Until cleared</td>
+          </tr>
+          <tr>
+            <td><code>lihaAnalyticsDemographics</code> (local storage)</td>
+            <td>This site (first-party)</td>
+            <td>Stores the country, region, and company you enter at the start of the event.</td>
+            <td>Until cleared</td>
+          </tr>
+          <tr>
+            <td><code>lihaAnalyticsCompletedModules</code> (local storage)</td>
+            <td>This site (first-party)</td>
+            <td>Tracks which training activities you've completed.</td>
+            <td>Until cleared</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="cookie-table">
+        <caption>Set only if you Accept — analytics</caption>
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Provider</th>
+            <th scope="col">Purpose</th>
+            <th scope="col">Duration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>_ga</code></td>
+            <td>Google Analytics</td>
+            <td>Distinguishes unique visitors.</td>
+            <td>~2 years</td>
+          </tr>
+          <tr>
+            <td><code>_ga_&lt;container-id&gt;</code></td>
+            <td>Google Analytics</td>
+            <td>Persists session state for Google Analytics 4.</td>
+            <td>~2 years</td>
+          </tr>
+          <tr>
+            <td><code>_gid</code></td>
+            <td>Google Analytics</td>
+            <td>Distinguishes unique visitors.</td>
+            <td>24 hours</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <button type="button" class="cookie-table-manage-btn" id="cookie-table-manage-btn">Manage Cookie
+        Preferences</button>
+    </div>
+  </main>
+
+  <script src="/viewport-guard.js"></script>
+  <script src="/analytics.js"></script>
+  <script src="/site-legal.js" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("cookie-table-manage-btn").addEventListener("click", function () {
+        if (window.CookieConsent) window.CookieConsent.open();
+      });
+    });
+  </script>
+</body>
+
+</html>
