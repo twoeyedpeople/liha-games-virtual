@@ -2,12 +2,10 @@
   const CONSENT_KEY = "lihaCookieConsent";
   const GA_ID = "G-TYWTZBGTQH";
 
-  // TODO(terms-of-use-url): waiting on the real Terms of Use URL from the
-  // client — this placeholder must be replaced before launch.
   const LINKS = {
-    privacyPolicy: "https://www.linkedin.com/legal/privacy-policy",
-    termsOfUse: "#terms-of-use-url-pending",
-    userAgreement: "https://www.linkedin.com/legal/user-agreement",
+    userAgreement: "https://www.linkedin.com/legal/user-agreement?src=direct%2Fnone&veh=direct%2Fnone%7Cdirect%2Fnone&trk=hiringassistant",
+    privacyPolicy: "https://www.linkedin.com/legal/privacy-policy?src=direct%2Fnone&veh=direct%2Fnone%7Cdirect%2Fnone&trk=hiringassistant",
+    cookiePolicy: "https://www.linkedin.com/legal/cookie-policy?src=direct%2Fnone&veh=direct%2Fnone%7Cdirect%2Fnone&trk=hiringassistant",
     cookieTable: "/cookie-table",
   };
 
@@ -130,9 +128,9 @@
     links.className = "site-footer-links";
 
     const linkItems = [
-      { label: "Privacy Policy", href: LINKS.privacyPolicy },
-      { label: "Terms of Use", href: LINKS.termsOfUse },
       { label: "User Agreement", href: LINKS.userAgreement },
+      { label: "Privacy Policy", href: LINKS.privacyPolicy },
+      { label: "Cookie Policy", href: LINKS.cookiePolicy },
       { label: "Cookie Table", href: LINKS.cookieTable },
     ];
 
