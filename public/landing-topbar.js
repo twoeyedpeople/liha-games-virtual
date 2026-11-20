@@ -4,7 +4,7 @@
     { href: "/recruiterfocusfinder.html", label: "Focus Finder" },
     { href: "/ai-trust-test", label: "AI Trust Test" },
     { href: "/prompt-like-a-pro", label: "Prompt Like a Pro" },
-    { href: "/hiring-assistant-demo", label: "Hiring Assistant Demo" },
+    { href: "https://business.linkedin.com/hire/hiring-assistant", label: "Hiring Assistant", external: true },
     { href: "/human-skills-in-the-age-of-ai", label: "Human Skills" },
     { href: "/ai-adoption-plan", label: "AI Adoption Plan" },
     { href: "/resources", label: "Resources" },
@@ -36,6 +36,10 @@
       const link = document.createElement("a");
       link.href = item.href;
       link.textContent = item.label;
+      if (item.external) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
 
       nav.appendChild(link);
     });

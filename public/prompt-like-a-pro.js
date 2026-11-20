@@ -1,11 +1,10 @@
-const REGION_BRIEFS = window.PROMPT_BRIEF_DATA.REGION_BRIEFS;
+const ALL_BRIEFS = window.PROMPT_BRIEF_DATA.PROMPT_BRIEF_LIST;
 
 const PROMPT_MAX_CHARS = 2000;
 const PROMPT_WARN_CHARS = 1700;
 const isEventMode = new URLSearchParams(window.location.search).has("event");
 
 const state = {
-  region: "",
   selectedBrief: "",
   prompt: "",
   lastScore: 0,
@@ -17,7 +16,6 @@ const state = {
 
 const stages = {
   intro: document.getElementById("stage-intro"),
-  regionPick: document.getElementById("stage-region-pick"),
   briefPick: document.getElementById("stage-brief-pick"),
   brief: document.getElementById("stage-brief"),
   prompt: document.getElementById("stage-prompt"),
@@ -26,8 +24,6 @@ const stages = {
 };
 
 const globalError = document.getElementById("global-error");
-const regionCards = [...document.querySelectorAll("[data-region-choice]")];
-const regionNextBtn = document.getElementById("region-next-btn");
 const briefChoiceGrid = document.getElementById("brief-choice-grid");
 const briefPickBackBtn = document.getElementById("brief-pick-back-btn");
 const briefBackBtn = document.getElementById("brief-back-btn");
@@ -94,7 +90,7 @@ if (isEventMode) {
 }
 
 function currentBriefs() {
-  return REGION_BRIEFS[state.region]?.briefs || [];
+  return ALL_BRIEFS;
 }
 
 function currentBrief() {
@@ -109,15 +105,6 @@ function clearPromptDraft() {
   promptInputEl.value = "";
   submitResult.textContent = "";
   updatePromptCharCounter();
-}
-
-function renderRegionCards() {
-  regionCards.forEach((card) => {
-    const selected = card.dataset.regionChoice === state.region;
-    card.classList.toggle("is-selected", selected);
-    card.setAttribute("aria-pressed", selected ? "true" : "false");
-  });
-  regionNextBtn.disabled = !state.region;
 }
 
 function renderBriefChoices() {
@@ -312,7 +299,6 @@ function renderResult(scored) {
 
 function resetExperience() {
   showError("");
-  state.region = "";
   state.selectedBrief = "";
   state.prompt = "";
   state.lastScore = 0;
@@ -322,7 +308,6 @@ function resetExperience() {
   promptInputEl.value = "";
   submitResult.textContent = "";
   updatePromptCharCounter();
-  renderRegionCards();
   setStage("intro");
 }
 
@@ -383,27 +368,7 @@ async function submitPrompt() {
 
 document.getElementById("intro-get-started").addEventListener("click", () => {
   showError("");
-  setStage("regionPick");
-});
-
-regionCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const nextRegion = card.dataset.regionChoice || "";
-    if (nextRegion !== state.region) {
-      clearPromptDraft();
-      state.selectedBrief = "";
-    }
-    state.region = nextRegion;
-    renderRegionCards();
-  });
-});
-
-regionNextBtn.addEventListener("click", () => {
-  if (!state.region) {
-    showError("Please select a region to continue.");
-    return;
-  }
-  state.selectedBrief = currentBriefs()[0]?.id || "";
+  state.selectedBrief = state.selectedBrief || currentBriefs()[0]?.id || "";
   renderBriefChoices();
   updateJobBriefContent();
   setStage("briefPick");
@@ -411,8 +376,7 @@ regionNextBtn.addEventListener("click", () => {
 
 briefPickBackBtn.addEventListener("click", () => {
   showError("");
-  state.selectedBrief = "";
-  setStage("regionPick");
+  setStage("intro");
 });
 
 confirmBriefBtn.addEventListener("click", () => {
@@ -474,7 +438,6 @@ resultDoneBtn.addEventListener("click", () => {
 
 promptInputEl.addEventListener("input", updatePromptCharCounter);
 updatePromptCharCounter();
-renderRegionCards();
 setStage("intro");
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -176,7 +176,7 @@ select {
   gap: 0;
   flex-wrap: wrap;
   color: var(--landing-blue-deep);
-  font-size: var(--landing-nav-font-size);
+  font-size: 13px;
   font-weight: 700;
 }
 
