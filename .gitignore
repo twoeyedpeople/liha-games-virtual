@@ -1,1 +1,4 @@
 .env
+
+# Source video masters (web copy lives in public/assets/videos)
+public/video/

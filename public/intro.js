@@ -369,9 +369,9 @@ function renderSavingsPipeline() {
     const tasksHtml = column.tasks
       .map((task, taskIndex) => {
         const id = taskId(column.stage, task.task);
-        const selected = selectedTasks.has(id);
+        // Final slide: user selections are no longer highlighted; every task shows as AI-optimised (blue) or people-centric (grey)
         const peopleCentric = isPeopleCentricById(id);
-        const variant = selected ? "love" : peopleCentric ? "people" : "optimised";
+        const variant = peopleCentric ? "people" : "optimised";
         const delay = Math.min(480, columnIndex * 90 + taskIndex * 50);
         return `<div class="intro-task readonly intro-task-savings intro-task-${variant}" style="--row-delay:${delay}ms">
           <span>${task.task}</span>

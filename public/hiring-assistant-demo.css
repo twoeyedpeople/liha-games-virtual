@@ -672,3 +672,32 @@ button {
     min-height: 230px;
   }
 }
+
+/* Demo video stage (replaces the Rive click-through while DEMO_MODE = "video") */
+.liha-demo-video-stage.liha-demo-stage-active {
+  height: 100vh;
+}
+
+.liha-demo-video-card {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Absolutely filled so the player can never overflow the card and slide under the footer
+   (that hid the native play/pause and scrub bar). */
+.liha-demo-video-player {
+  position: absolute;
+  inset: clamp(18px, 2vw, 34px);
+  display: block;
+  width: calc(100% - 2 * clamp(18px, 2vw, 34px));
+  height: calc(100% - 2 * clamp(18px, 2vw, 34px));
+  border: 0;
+  border-radius: 22px;
+  background: #000;
+  object-fit: contain;
+}
+
+.liha-demo-footer-btn {
+  min-width: 0;
+}

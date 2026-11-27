@@ -1,4 +1,11 @@
+// "video": intro -> demo video -> end screen.
+// "rive": intro -> region picker -> Rive click-through -> end screen (parked; set this back to bring it back).
+const DEMO_MODE = "video";
+
 const introStage = document.getElementById("liha-demo-intro");
+const videoStage = document.getElementById("liha-demo-video");
+const demoVideo = document.getElementById("liha-demo-video-player");
+const doneBtn = document.getElementById("liha-demo-done");
 const regionStage = document.getElementById("liha-demo-region");
 const clickthroughStage = document.getElementById("liha-demo-clickthrough");
 const endStage = document.getElementById("liha-demo-end");
@@ -32,9 +39,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   startBtn.addEventListener("click", () => {
-    showStage(regionStage);
+    if (DEMO_MODE === "video") {
+      showStage(videoStage);
+      demoVideo?.play?.().catch(() => {});
+    } else {
+      showStage(regionStage);
+    }
     logEvent("intro_complete", "Get Started");
   });
+
+  doneBtn?.addEventListener("click", showEndScreen);
+  demoVideo?.addEventListener("ended", showEndScreen);
 
   nextBtn.addEventListener("click", () => {
     if (!selectedRegion) return;
@@ -61,9 +76,12 @@ function selectRegion(region) {
 }
 
 function showStage(activeStage) {
-  [introStage, regionStage, clickthroughStage, endStage].forEach((stage) => {
-    stage.classList.toggle("liha-demo-stage-active", stage === activeStage);
+  [introStage, videoStage, regionStage, clickthroughStage, endStage].forEach((stage) => {
+    stage?.classList.toggle("liha-demo-stage-active", stage === activeStage);
   });
+  if (demoVideo && activeStage !== videoStage) {
+    demoVideo.pause();
+  }
 }
 
 function startRiveDemo() {

@@ -4,7 +4,7 @@
     { href: "/recruiterfocusfinder.html", label: "Focus Finder" },
     { href: "/ai-trust-test", label: "AI Trust Test" },
     { href: "/prompt-like-a-pro", label: "Prompt Like a Pro" },
-    { href: "https://business.linkedin.com/hire/hiring-assistant", label: "Hiring Assistant", external: true },
+    { href: "/hiring-assistant-demo", label: "Hiring Assistant Demo" },
     { href: "/human-skills-in-the-age-of-ai", label: "Human Skills" },
     { href: "/ai-adoption-plan", label: "AI Adoption Plan" },
     { href: "/resources", label: "Resources" },
